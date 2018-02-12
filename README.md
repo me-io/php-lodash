@@ -1,11 +1,21 @@
-<div align="center">
-  <img alt="lodash-php logo" src="https://raw.githubusercontent.com/tajawal/lodash-php/master/screenshot-1.png">
-</div>
+<h1 align="center">
+  PHP Lodash
+</h1>
+<p>
+lodash-php is a PHP utility library, similar to Underscore/Lodash, that utilizes `namespace`s and dynamic auto loading to improve library performance.
+</p>
+<hr />
 
+[![Build Status][build-badge]][build]
+[![downloads][downloads-badge]][downloads]
+[![MIT License][license-badge]][license]
 
-# lodash-php
-[![Build Status](https://travis-ci.org/tajawal/lodash-php.png)](https://travis-ci.org/tajawal/lodash-php)
-[![PHP version](https://badge.fury.io/ph/tajawal%2Flodash-php.svg)](http://badge.fury.io/ph/tajawal%2Flodash-php)
+[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors)
+[![PRs Welcome][prs-badge]][prs]
+[![Code of Conduct][coc-badge]][coc]
+[![Watch on GitHub][github-watch-badge]][github-watch]
+[![Star on GitHub][github-star-badge]][github-star]
+[![Tweet][twitter-badge]][twitter]
 
 
 ## Table of Contents:
@@ -347,4 +357,22 @@ Please feel free to contribute to this project! Pull requests and feature reques
 
 
 ## License
-MIT
+
+The code is available under the [MIT license](LICENSE.md).
+
+[build-badge]: https://img.shields.io/travis/me-io/php-lodash.svg?style=flat-square
+[build]: https://travis-ci.org/me-io/php-lodash
+[downloads-badge]: https://img.shields.io/packagist/dm/me-io/php-lodash.svg?style=flat-square
+[downloads]: https://packagist.org/packages/me-io/php-lodash/stats
+[license-badge]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
+[license]: https://github.com/me-io/php-lodash/blob/master/LICENSE.md
+[prs-badge]: https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square
+[prs]: http://makeapullrequest.com
+[coc-badge]: https://img.shields.io/badge/code%20of-conduct-ff69b4.svg?style=flat-square
+[coc]: https://github.com/me-io/php-lodash/blob/master/CODE_OF_CONDUCT.md
+[github-watch-badge]: https://img.shields.io/github/watchers/me-io/php-lodash.svg?style=social
+[github-watch]: https://github.com/me-io/php-lodash/watchers
+[github-star-badge]: https://img.shields.io/github/stars/me-io/php-lodash.svg?style=social
+[github-star]: https://github.com/me-io/php-lodash/stargazers
+[twitter]: https://twitter.com/intent/tweet?text=Check%20out%20php-lodash!%20https://github.com/me-io/php-lodash%20%F0%9F%91%8D
+[twitter-badge]: https://img.shields.io/twitter/url/https/github.com/me-io/php-lodash.svg?style=social
