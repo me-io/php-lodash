@@ -7,6 +7,8 @@ lodash-php is a PHP utility library, similar to Underscore/Lodash, that utilizes
 <hr />
 
 [![Build Status][build-badge]][build]
+[![Code Cov][codecov-badge]][codecov]
+[![Scrutinizer][scrutinizer-badge]][scrutinizer]
 [![downloads][downloads-badge]][downloads]
 [![MIT License][license-badge]][license]
 
@@ -376,3 +378,7 @@ The code is available under the [MIT license](LICENSE.md).
 [github-star]: https://github.com/me-io/php-lodash/stargazers
 [twitter]: https://twitter.com/intent/tweet?text=Check%20out%20php-lodash!%20https://github.com/me-io/php-lodash%20%F0%9F%91%8D
 [twitter-badge]: https://img.shields.io/twitter/url/https/github.com/me-io/php-lodash.svg?style=social
+[codecov-badge]: https://codecov.io/gh/me-io/php-lodash/branch/master/graph/badge.svg
+[codecov]: https://codecov.io/gh/me-io/php-lodash
+[scrutinizer-badge]: https://scrutinizer-ci.com/g/me-io/php-lodash/badges/quality-score.png?b=master
+[scrutinizer]: https://scrutinizer-ci.com/g/me-io/php-lodash/?branch=master
