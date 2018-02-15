@@ -188,12 +188,22 @@ Shuffle an array ensuring no item remains in the same position.
 
 ```php
 __::randomize([1, 2, 3]);
-// → [2, 3, 1]
+// >> [2, 3, 1]
 ```
 
 ### Chaining
 
-`coming soon...`
+#### [`__::chain($initialValue)`](src/Sequence/Chain.php)
+
+Returns a wrapper instance, allows the value to be passed through multiple php-lodash functions
+
+```php
+__::chain([0, 1, 2, 3, null])
+    ->compact()
+    ->prepend(4)
+    ->value();
+// >> [4, 1, 2, 3]
+```
 
 ### Collections
 

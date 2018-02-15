@@ -1,5 +1,6 @@
 <?php
 
+use __\Sequence\Chain;
 use __\Traits\Arrays;
 use __\Traits\Collections;
 use __\Traits\Functions;
@@ -15,4 +16,5 @@ class __
     use Objects;
     use Utilities;
     use Strings;
+    use Chain;
 }
