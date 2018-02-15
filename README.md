@@ -103,7 +103,7 @@ composer require me-io/php-lodash
 
 ### Arrays
 
-##### [`__::append()`](src/Traits/Arrays.php)
+##### [`__::append(array $array = [], $value = null)`](src/Traits/Arrays.php)
 
 Append item to array
 
@@ -112,7 +112,7 @@ __::append([1, 2, 3], 4);
 // >> [1, 2, 3, 4]
 ```
 
-##### [`__::compact()`](src/Traits/Arrays.php)
+##### [`__::compact(array $array = [])`](src/Traits/Arrays.php)
 
 Returns a copy of the array with falsy values removed.
 
@@ -121,7 +121,7 @@ __::compact([0, 1, false, 2, '', 3]);
 // >> [1, 2, 3]
 ```
 
-##### [`__::flatten()`](src/Traits/Arrays.php)
+##### [`__::flatten($array, $shallow = false)`](src/Traits/Arrays.php)
 
 Flattens a multidimensional array. If you pass shallow, the array will only be flattened a single level.
 
@@ -130,7 +130,7 @@ __::flatten([1, 2, [3, [4]]], [flatten]);
 // >> [1, 2, 3, 4]
 ```
 
-##### [`__::patch()`](src/Traits/Arrays.php)
+##### [`__::patch($arr, $patches, $parent = '')`](src/Traits/Arrays.php)
 
 Patches array with list of xpath-value pairs.
 
@@ -139,14 +139,14 @@ __::patch(['addr' => ['country' => 'US', 'zip' => 12345]], ['/addr/country' => '
 // >> ['addr' => ['country' => 'CA', 'zip' => 54321]]
 ```
 
-##### [`__::prepend()`](src/Traits/Arrays.php)
+##### [`__::prepend(array $array = [], $value = null)`](src/Traits/Arrays.php)
 
 ```php
 __::prepend([1, 2, 3], 4);
 // >> [4, 1, 2, 3]
 ```
 
-##### [`__::range()`](src/Traits/Arrays.php)
+##### [`__::range($start = null, $stop = null, $step = 1)`](src/Traits/Arrays.php)
 
 Returns an array of integers from start to stop (exclusive) by step.
 
@@ -155,7 +155,7 @@ __::range(1, 10, 2);
 // >> [1, 3, 5, 7, 9]
 ```
 
-##### [`__::repeat($val, $n)`](src/Traits/Arrays.php)
+##### [`__::repeat($object = '', $times = null)`](src/Traits/Arrays.php)
 
 Returns an array of `$n` length with each index containing the provided value.
 
@@ -164,7 +164,7 @@ __::repeat('foo', 3);
 // >> ['foo', 'foo', 'foo']
 ```
 
-#### [`__::chunk()`](src/Traits/Arrays.php)
+#### [`__::chunk(array $array, $size = 1, $preserveKeys = false)`](src/Traits/Arrays.php)
 
 Split an array into chunks
 
@@ -173,7 +173,7 @@ __::chunk([1, 2, 3, 4, 5], 3);
 // >> [[1, 2, 3], [4, 5]]
 ```
 
-#### [`__::drop()`](src/Traits/Arrays.php)
+#### [`__::drop(array $input, $number = 1)`](src/Traits/Arrays.php)
 
 Creates a slice of array with n elements dropped from the beginning.
 
@@ -182,7 +182,7 @@ __::drop([0, 1, 3], 2);
 // >> [3]
 ```
 
-#### [`__::randomize()`](src/Traits/Arrays.php)
+#### [`__::randomize(array $array)`](src/Traits/Arrays.php)
 
 Shuffle an array ensuring no item remains in the same position.
 
