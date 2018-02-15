@@ -197,7 +197,9 @@ __::randomize([1, 2, 3]);
 ### Collections
 
 ##### [`__::filter($array, callback($n))`](src/Traits/Collections.php)
+
 Returns the values in the collection that pass the truth test.
+
 ```php
 $a = [
     ['name' => 'fred',   'age' => 32],
@@ -211,27 +213,36 @@ __::filter($a, function($n) {
 ```
 
 ##### [`__::first($array, [$n])`](src/Traits/Collections.php)
+
 Gets the first element of an array. Passing n returns the first n elements.
+
 ```php
 __::first([1, 2, 3, 4, 5], 2);
 // >> [1, 2]
 ```
 
 ##### [`__::get($array, JSON $string)`](src/Traits/Collections.php)
+
+Get item of an array by index, aceepting nested index
+
 ```php
 __::get(['foo' => ['bar' => 'ter']], 'foo.bar');
 // >> 'ter'
 ```
 
 ##### [`__::last($array, [$n])`](src/Traits/Collections.php)
+
 Gets the last element of an array. Passing n returns the last n elements.
+
 ```php
 __::last([1, 2, 3, 4, 5], 2);
 // >> [4, 5]
 ```
 
 ##### [`__::map($array, callback($n))`](src/Traits/Collections.php)
+
 Returns an array of values by mapping each in collection through the iterator.
+
 ```php
 __::map([1, 2, 3], function($n) {
     return $n * 3;
@@ -240,21 +251,27 @@ __::map([1, 2, 3], function($n) {
 ```
 
 ##### [`__::max($array)`](src/Traits/Collections.php)
+
 Returns the maximum value from the collection. If passed an iterator, max will return max value returned by the iterator.
+
 ```php
 __::max([1, 2, 3]);
 // >> 3
 ```
 
 ##### [`__::min($array)`](src/Traits/Collections.php)
+
 Returns the minimum value from the collection. If passed an iterator, min will return min value returned by the iterator.
+
 ```php
 __::min([1, 2, 3]);
 // >> 1
 ```
 
 ##### [`__::pluck($array, $property)`](src/Traits/Collections.php)
+
 Returns an array of values belonging to a given property of each item in a collection.
+
 ```php
 $a = [
     ['foo' => 'bar',  'bis' => 'ter' ],
@@ -266,7 +283,9 @@ __::pluck($a, 'foo');
 ```
 
 ##### [`__::where($array, $parameters[])`](src/Traits/Collections.php)
+
 Returns a collection of objects matching the given array of parameters.
+
 ```php
 $a = [
     ['name' => 'fred',   'age' => 32],
@@ -277,6 +296,250 @@ __::where($a, ['age' => 16]);
 // >> [['name' => 'maciej', 'age' => 16]]
 ```
 
+#### [`__::assign($collection1, $collection2)`](src/Traits/Collections.php)
+
+Combines and merge collections provided with each others.
+
+```php
+$a = [
+    'color' => [
+        'favorite' => 'red', 
+        5
+    ], 
+    3
+];
+$b = [
+    10, 
+    'color' => [
+        'favorite' => 'green', 
+        'blue'
+    ]
+];
+
+__::assign($a, $b);
+// >> ['color' => ['favorite' => 'green', 'blue'], 10]
+```
+
+#### [`__::reduceRight($collection, \Closure $iteratee, $accumulator = null)`](src/Traits/Collections.php)
+
+Reduces $collection to a value which is the $accumulator result of running each element in $collection - from right to left - thru $iteratee, where each successive invocation is supplied the return value of the previous.
+
+```php
+__::reduceRight(['a', 'b', 'c'], function ($word, $char) {
+    return $word . $char;
+}, '');
+// >> 'cba'
+```
+
+#### [`__::doForEachRight($collection, \Closure $iteratee)`](src/Traits/Collections.php)
+
+Iterate over elements of the collection, from right to left, and invokes iterate for each element.
+
+```php
+__::doForEachRight([1, 2, 3], function ($value) { print_r($value) });
+// >> (Side effect: print 3, 2, 1)
+```
+
+#### [`__::doForEach($collection, \Closure $iteratee)`](src/Traits/Collections.php)
+
+Iterate over elements of the collection and invokes iterate for each element.
+
+```php
+__::doForEach([1, 2, 3], function ($value) { print_r($value) });
+// >> (Side effect: print 1, 2, 3)
+```
+
+#### [`__::set($collection, $path, $value = null)`](src/Traits/Collections.php)
+
+Return a new collection with the item set at index to given value. Index can be a path of nested indexes.
+
+```php
+__::set(['foo' => ['bar' => 'ter']], 'foo.baz.ber', 'fer');
+// >> '['foo' => ['bar' => 'ter', 'baz' => ['ber' => 'fer']]]'
+```
+
+#### [`__::hasKeys($collection, $path, $value = null)`](src/Traits/Collections.php)
+
+Returns if $input contains all requested $keys. If $strict is true it also checks if $input exclusively contains the given $keys.
+
+```php
+__::hasKeys(['foo' => 'bar', 'foz' => 'baz'], ['foo', 'foz']);
+// >> true
+```
+
+#### [`__::has($collection, $path)`](src/Traits/Collections.php)
+
+Return true if $collection contains the requested $key.
+
+```php
+__::has(['foo' => ['bar' => 'num'], 'foz' => 'baz'], 'foo.bar');
+// >> true
+
+__::hasKeys((object) ['foo' => 'bar', 'foz' => 'baz'], 'bar');
+// >> false
+```
+
+#### [`__::concat($collection1, $collection2)`](src/Traits/Collections.php)
+
+Combines and concat collections provided with each others.
+
+```php
+__::concat(['color' => ['favorite' => 'red', 5], 3], [10, 'color' => ['favorite' => 'green', 'blue']]);
+// >> ['color' => ['favorite' => ['green'], 5, 'blue'], 3, 10]
+```
+
+#### [`__::concatDeep($collection1, $collection2)`](src/Traits/Collections.php)
+
+Recursively combines and concat collections provided with each others.
+
+```php
+__::concatDeep(['color' => ['favorite' => 'red', 5], 3], [10, 'color' => ['favorite' => 'green', 'blue']]);
+// >> ['color' => ['favorite' => ['red', 'green'], 5, 'blue'], 3, 10]
+```
+
+#### [`__::ease(array $collection, $glue = '.')`](src/Traits/Collections.php)
+
+Flattens a complex collection by mapping each ending leafs value to a key consisting of all previous indexes.
+
+```php
+__::ease(['foo' => ['bar' => 'ter'], 'baz' => ['b', 'z']]);
+// >> '['foo.bar' => 'ter', 'baz.0' => 'b', , 'baz.1' => 'z']'
+```
+
+#### [`__::every($collection, \Closure $iteratee)`](src/Traits/Collections.php)
+
+Checks if predicate returns truthy for all elements of collection.
+
+```php
+__::every([1, 3, 4], function ($v) { return is_int($v); });
+// → true
+```
+
+#### [`__::groupBy(array $array, $key)`](src/Traits/Collections.php)
+
+Returns an associative array where the keys are values of $key.
+
+```php
+__::groupBy([
+        ['state' => 'IN', 'city' => 'Indianapolis', 'object' => 'School bus'],
+        ['state' => 'CA', 'city' => 'San Diego', 'object' => 'Light bulb'],
+        ['state' => 'CA', 'city' => 'Mountain View', 'object' => 'Space pen'],
+    ],
+    'state'
+);
+// >> [
+//   'IN' => [
+//      ['state' => 'IN', 'city' => 'Indianapolis', 'object' => 'School bus'],
+//      ['state' => 'CA', 'city' => 'San Diego', 'object' => 'Light bulb'],
+//   ],
+//   'CA' => [
+//      ['state' => 'CA', 'city' => 'Mountain View', 'object' => 'Space pen']
+//   ]
+// ]
+
+__::groupBy([
+        ['state' => 'IN', 'city' => 'Indianapolis', 'object' => 'School bus'],
+        ['state' => 'IN', 'city' => 'Indianapolis', 'object' => 'Manhole'],
+        ['state' => 'CA', 'city' => 'San Diego', 'object' => 'Light bulb'],
+    ],
+    function ($value) {
+        return $value->city;
+    }
+);
+// >> [
+//   'Indianapolis' => [
+//      ['state' => 'IN', 'city' => 'Indianapolis', 'object' => 'School bus'],
+//      ['state' => 'IN', 'city' => 'Indianapolis', 'object' => 'Manhole'],
+//   ],
+//   'San Diego' => [
+//      ['state' => 'CA', 'city' => 'San Diego', 'object' => 'Light bulb'],
+//   ]
+// ]
+```
+
+#### [`__::isEmpty($value)`](src/Traits/Collections.php)
+
+Check if value is an empty array or object.
+
+```php
+__::isEmpty([]);
+// >> true
+```
+
+#### [`__::merge($collection1, $collection2)`](src/Traits/Collections.php)
+
+Recursively combines and merge collections provided with each others.
+
+```php
+__::merge(['color' => ['favorite' => 'red', 'model' => 3, 5], 3], [10, 'color' => ['favorite' => 'green', 'blue']]);
+// >> ['color' => ['favorite' => 'green', 'model' => 3, 'blue'], 10]
+```
+
+#### [`__::pick($collection = [], array $paths = [], $default = null)`](src/Traits/Collections.php)
+
+Returns an array having only keys present in the given path list.
+
+```php
+__::pick(['a' => 1, 'b' => ['c' => 3, 'd' => 4]], ['a', 'b.d']);
+// >> ['a' => 1, 'b' => ['d' => 4]]
+```
+
+#### [`__::reduce($collection, \Closure $iteratee, $accumulator = null)`](src/Traits/Collections.php)
+
+Reduces $collection to a value which is the $accumulator result of running each element in $collection thru $iteratee, where each successive invocation is supplied the return value of the previous.
+
+```php
+__::reduce([1, 2], function ($sum, $number) {
+    return $sum + $number;
+}, 0);
+// >> 3
+
+$a = [
+    ['state' => 'IN', 'city' => 'Indianapolis', 'object' => 'School bus'],
+    ['state' => 'IN', 'city' => 'Indianapolis', 'object' => 'Manhole'],
+    ['state' => 'IN', 'city' => 'Plainfield', 'object' => 'Basketball'],
+    ['state' => 'CA', 'city' => 'San Diego', 'object' => 'Light bulb'],
+    ['state' => 'CA', 'city' => 'Mountain View', 'object' => 'Space pen'],
+];
+$iteratee = function ($accumulator, $value) {
+    if (isset($accumulator[$value['city']]))
+        $accumulator[$value['city']]++;
+    else
+        $accumulator[$value['city']] = 1;
+    return $accumulator;
+};
+__::reduce($c, $iteratee, []);
+// >> [
+// >>    'Indianapolis' => 2,
+// >>    'Plainfield' => 1,
+// >>    'San Diego' => 1,
+// >>    'Mountain View' => 1,
+// >> ]
+
+$object = new \stdClass();
+$object->a = 1;
+$object->b = 2;
+$object->c = 1;
+__::reduce($object, function ($result, $value, $key) {
+    if (!isset($result[$value]))
+        $result[$value] = [];
+    $result[$value][] = $key;
+    return $result;
+}, [])
+// >> [
+// >>     '1' => ['a', 'c'],
+// >>     '2' => ['b']
+// >> ]
+```
+
+#### [`__::unease(array $collection, $separator = '.')`](src/Traits/Collections.php)
+
+Builds a multidimensional collection out of a hash map using the key as indicator where to put the value.
+
+```php
+__::unease(['foo.bar' => 'ter', 'baz.0' => 'b', , 'baz.1' => 'z']);
+// >> '['foo' => ['bar' => 'ter'], 'baz' => ['b', 'z']]'
+```
 
 ### Functions
 
@@ -298,6 +561,7 @@ __::slug('Something you don\'t know about know about Jackson', $options);
 ```
 
 ##### [`__::truncate($string, [$limit=40])`](src/Traits/Functions.php)
+
 ```php
 $string = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque et mi orci.';
 __::truncate($string);
@@ -308,6 +572,7 @@ __::truncate($string, 60);
 ```
 
 ##### [`__::urlify($string)`](src/Traits/Functions.php)
+
 ```php
 __::urlify('I love https://google.com');
 // >> 'I love <a href="https://google.com">google.com</a>'
@@ -317,6 +582,7 @@ __::urlify('I love https://google.com');
 ### Objects
 
 ##### [`__::isArray($array)`](src/Traits/Objects.php)
+
 ```php
 __::isArray([1, 2, 3]);
 // >> true
@@ -326,30 +592,35 @@ __::isArray(123);
 ```
 
 ##### [`__::isFunction($string)`](src/Traits/Objects.php)
+
 ```php
 __::isFunction(function ($a) { return $a + 2; });
 // >> true
 ```
 
 ##### [`__::isNull($null)`](src/Traits/Objects.php)
+
 ```php
 __::isNull(null);
 // >> true
 ```
 
 ##### [`__::isNumber($int|$float)`](src/Traits/Objects.php)
+
 ```php
 __::isNumber(123);
 // >> true
 ```
 
 ##### [`__::isObject($object)`](src/Traits/Objects.php)
+
 ```php
 __::isObject('fred');
 // >> false
 ```
 
 ##### [`__::isString($string)`](src/Traits/Objects.php)
+
 ```php
 __::isString('fred');
 // >> true
@@ -357,7 +628,9 @@ __::isString('fred');
 
 
 ### Utilities
+
 ##### [`__::isEmail($string)`](src/Traits/Objects.php)
+
 ```php
 __::isEmail('test@test.com');
 // >> true
@@ -367,14 +640,18 @@ __::isEmail('test_test.com');
 ```
 
 ##### [`__::now()`](src/Traits/Utilities.php)
+
 Wrapper of the [`time()`](http://php.net/manual/en/function.time.php) function that returns the current offset in seconds since the Unix Epoch.
+
 ```php
 __::now();
 // >> 1417546029
 ```
 
 ##### [`__::stringContains($needle, $haystack, [$offset])`](src/Traits/Utilities.php)
+
 Wrapper of the [`time()`](http://php.net/manual/en/function.time.php) function that returns the current offset in seconds since the Unix Epoch.
+
 ```php
 __::stringContains('waffle', 'wafflecone');
 // >> true
