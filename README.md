@@ -1,7 +1,7 @@
 <h1 align="center">
   PHP Lodash
 </h1>
-<p>
+<p align="center" style="font-size: 1.2rem;">
 lodash-php is a PHP utility library, similar to Underscore/Lodash, that utilizes `namespace`s and dynamic auto loading to improve library performance.
 </p>
 <hr />
@@ -19,8 +19,8 @@ lodash-php is a PHP utility library, similar to Underscore/Lodash, that utilizes
 [![Star on GitHub][github-star-badge]][github-star]
 [![Tweet][twitter-badge]][twitter]
 
+## Table of Contents
 
-## Table of Contents:
 - [Introduction](#introduction)
 - [Installation](#installation)
 - [Structure](#structure)
@@ -28,88 +28,75 @@ lodash-php is a PHP utility library, similar to Underscore/Lodash, that utilizes
 - [Contributing](#contributing)
 - [License](#license)
 
-
 ## Requirements
 
+This library requires php `php_mbstring` extension. To enable this extension open your `php.ini` file and find for the line `extension=php_mbstring.dll` and uncomment it. If this line is not there then manually add this line in `php.ini`.
+
 ```ini
-; php.ini
 extension=php_mbstring.dll
 ```
 
 ## Introduction
 
-lodash-php is a PHP utility library, similar to Underscore/Lodash, that utilizes `namespace`s and dynamic auto loading to improve library performance.
-
+`lodash-php` is a PHP utility library, similar to `Underscore/Lodash`, that utilizes `namespace`s and dynamic auto loading to improve library performance.
 
 ### Project Structure
 
-- `lodash.php` is the entry point for the lodash-php utility library
+- `lodash.php` is the entry point for the `lodash-php` utility library
 - All lodash-php methods are stored in separate files within their respective `namespace` folder outlined in `/src/__`
 - Tests reflect the `namespace` defined within the library and are processed using [phpunit testing](https://phpunit.de)
-    + To test lodash-php, [install phpunit](https://phpunit.de/getting-started.html) and in the terminal, run `phpunit`
+  - To run tests run the following command `phpunit`
 
 ```bash
-/lodash-php
-├── /images
-│   └── (place relevant graphics in this folder)
-├── /src
-│   └── /__
-│       ├── /arrays
-│       ├── /collections
-│       ├── /functions
-│       ├── /objects
-│       ├── /utilities
-│       └── load.php        # (autoloader script for all lodash-php methods)
-├── /tests
-│   ├── arrays.php
-│   ├── chaining.php
-│   ├── collections.php
-│   ├── functions.php
-│   ├── objects.php
-│   └── utilities.php
-├── .gitignore
-├── .travis.yaml
-├── lodash.php
-├── composer.json
-├── phpunit.xml
-├── LICENSE
-└── README.md
+.
+├── images                        # Place relevant graphics in this folder
+├── src                           # Core code of the application.
+│   ├── __.php                    # Entry point for the library                  
+│   └── Traits                    # Contains all lodash-php methods
+│       ├── Arrays.php            # Methods related to arrays
+│       ├── Collections.php       # Methods related to collections
+│       ├── Functions.php         # Methods related to functions
+│       ├── Objects.php           # Methods related to objects
+│       └── Utilities.php         # Methods related to utilities
+├── tests                         # Tests are placed in that folder.
+├── composer.json                 # This file defines the project requirements
+├── phpunit.xml                   # Contains the configuration for PHPUnit.
+├── LICENSE                       # License file for `lodash-php`
+└── README.md                     # Introduces our library to user.
 ```
 
 ---
 
-**NOTE:** lodash-php is not currently in feature parity with Underscore/Lodash. Review the [contributing](#contributing) section for more information.
+<p align="center">
+    <b>NOTE:</b> lodash-php is not currently in feature parity with Underscore/Lodash. Review the <a href="#contributing">contributing</a> section for more information.
+</p>
 
 ---
 
 ### Benchmarks
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/tajawal/lodash-php/master/screenshot-2.png"/>
+  <img src="https://github.com/me-io/php-lodash/blob/master/images/screenshot-2.png?raw=true" alt="benchmark" />
 </div>
 
 
 ## Installation
 
-Install lodash-php as described in the methods below:
-
-
-### via Composer and packagist
-
-[Packagist repo](https://packagist.org/packages/tajawal/lodash-php)
-
-Put the require statement in your `composer.json` file and run `composer install`:
+Just add `me-io/php-lodash` to your project composer.json file:
 
 ```json
 {
     "require": {
-        ...
         "me-io/php-lodash": "^1"
-        ...
     }
 }
 ```
 
+and then run composer install. This will install `me-io/php-lodash` and all it's dependencies. Or run the following command:
+
+```bash
+composer require me-io/php-lodash
+```
 
 ## Usage
 
@@ -165,7 +152,6 @@ __::repeat('foo', 3);
 ### Chaining
 
 `coming soon...`
-
 
 ### Collections
 
@@ -357,6 +343,15 @@ __::stringContains('waffle', 'wafflecone');
 
 Please feel free to contribute to this project! Pull requests and feature requests welcome! :v:
 
+## Contributors
+
+A huge thanks to all of our contributors:
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore -->
+| [<img src="https://avatars0.githubusercontent.com/u/45731?v=3" width="100px;"/><br /><sub><b>Mohamed Meabed</b></sub>](https://github.com/Meabed)<br />[💻](https://github.com//php-lodash/commits?author=Meabed "Code") [📢](#talk-Meabed "Talks") | [<img src="https://avatars2.githubusercontent.com/u/16267321?v=3" width="100px;"/><br /><sub><b>Zeeshan Ahmad</b></sub>](https://github.com/zeeshanu)<br />[💻](https://github.com//php-lodash/commits?author=zeeshanu "Code") [🐛](https://github.com//php-lodash/issues?q=author%3Azeeshanu "Bug reports") [⚠️](https://github.com//php-lodash/commits?author=zeeshanu "Tests") [📖](https://github.com//php-lodash/commits?author=zeeshanu "Documentation") |
+| :---: | :---: |
+<!-- ALL-CONTRIBUTORS-LIST:END -->
 
 ## License
 
