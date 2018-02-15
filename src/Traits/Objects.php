@@ -83,4 +83,16 @@ trait Objects
         return \is_string($value);
     }
 
+    /**
+     * Check if the object is a collection.
+     * A collection is either an array or an object.
+     *
+     * @param null $object
+     *
+     * @return bool
+     */
+    public static function isCollection($object)
+    {
+        return \__::isArray($object) || \__::isObject($object);
+    }
 }
