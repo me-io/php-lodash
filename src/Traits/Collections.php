@@ -2,6 +2,8 @@
 
 namespace __\Traits;
 
+use __;
+
 trait Collections
 {
     /**
@@ -13,10 +15,10 @@ trait Collections
      * @return array
      *
      */
-    public static function filter(array $array = [], \Closure $closure)
+    public static function filter(array $array = [], \Closure $closure = null)
     {
         if (!$closure) {
-            return \__::compact($array);
+            return __::compact($array);
         } else {
             $result = [];
 
@@ -63,16 +65,16 @@ trait Collections
      */
     public static function get($collection = [], $key = '', $default = null)
     {
-        if (\__::isNull($key)) {
+        if (__::isNull($key)) {
             return $collection;
         }
 
-        if (!\__::isObject($collection) && isset($collection[$key])) {
+        if (!__::isObject($collection) && isset($collection[$key])) {
             return $collection[$key];
         }
 
         foreach (\explode('.', $key) as $segment) {
-            if (\__::isObject($collection)) {
+            if (__::isObject($collection)) {
                 if (!isset($collection->{$segment})) {
                     return $default instanceof \Closure ? $default() : $default;
                 } else {
@@ -109,21 +111,23 @@ trait Collections
     }
 
     /**
-     * Returns an array of values by mapping each in collection through the iterator.
+     * Returns an array of values by mapping each in collection through the iteratee.
      *
-     * @param array    $array   array of values
-     * @param \Closure $closure closure to mapp based on
+     * The iteratee is invoked with three arguments: (value, index|key, collection).
+     *
+     * @param array|object $collection The collection of values to map over.
+     * @param \Closure     $iteratee   The function to apply on each value.
      *
      * @return array
-     *
      */
-    public static function map(array $array = [], \Closure $closure)
+    public static function map($collection, \Closure $iteratee)
     {
-        foreach ($array as $key => $value) {
-            $array[$key] = $closure($value, $key);
-        }
+        $result = [];
+        \__::doForEach($collection, function ($value, $key, $collection) use (&$result, $iteratee) {
+            $result[] = $iteratee($value, $key, $collection);
+        });
 
-        return $array;
+        return $result;
     }
 
     /**
@@ -157,25 +161,39 @@ trait Collections
     /**
      * Returns an array of values belonging to a given property of each item in a collection.
      *
-     * @param array  $collection rray
-     * @param string $property   property
+     * @param array|object $collection array or object that can be converted to array
+     * @param string       $property   property name
      *
-     * @return array|object
-     *
+     * @return array
      */
-    public static function pluck($collection = [], $property = '')
+    public static function pluck($collection, $property)
     {
-        $plucked = \array_map(
-            function ($value) use ($property) {
-                return \__::get($value, $property);
-            }, (array)$collection
-        );
+        $result = \array_map(function ($value) use ($property) {
+            if (is_array($value) && isset($value[$property])) {
+                return $value[$property];
+            } elseif (\is_object($value) && isset($value->{$property})) {
+                return $value->{$property};
+            }
+            foreach (\__::split($property, '.') as $segment) {
+                if (\is_object($value)) {
+                    if (isset($value->{$segment})) {
+                        $value = $value->{$segment};
+                    } else {
+                        return null;
+                    }
+                } else {
+                    if (isset($value[$segment])) {
+                        $value = $value[$segment];
+                    } else {
+                        return null;
+                    }
+                }
+            }
 
-        if (\__::isObject($collection)) {
-            $plucked = (object)$plucked;
-        }
+            return $value;
+        }, (array)$collection);
 
-        return $plucked;
+        return \array_values($result);
     }
 
 
@@ -200,7 +218,7 @@ trait Collections
             $not = false;
 
             foreach ($key as $j => $w) {
-                if (\__::isArray($w)) {
+                if (__::isArray($w)) {
                     if (count(array_intersect($w, $v[$j])) == 0) {
                         $not = true;
                         break;
@@ -244,9 +262,9 @@ trait Collections
      */
     public static function assign($collection1, $collection2)
     {
-        return \__::reduceRight(func_get_args(), function ($source, $result) {
-            \__::doForEach($source, function ($sourceValue, $key) use (&$result) {
-                $result = \__::set($result, $key, $sourceValue);
+        return __::reduceRight(func_get_args(), function ($source, $result) {
+            __::doForEach($source, function ($sourceValue, $key) use (&$result) {
+                $result = __::set($result, $key, $sourceValue);
             });
 
             return $result;
@@ -279,9 +297,9 @@ trait Collections
     {
         // TODO Factorize using iteratorReverse: make it a function. (See doForEachRight)
         if ($accumulator === null) {
-            $accumulator = \__::first($collection);
+            $accumulator = __::first($collection);
         }
-        \__::doForEachRight(
+        __::doForEachRight(
             $collection,
             function ($value, $key, $collection) use (&$accumulator, $iteratee) {
                 $accumulator = $iteratee($accumulator, $value, $key, $collection);
@@ -308,7 +326,7 @@ trait Collections
      */
     public static function doForEachRight($collection, \Closure $iteratee)
     {
-        \__::doForEach(\__::iteratorReverse($collection), $iteratee);
+        __::doForEach(__::iteratorReverse($collection), $iteratee);
     }
 
     /**
@@ -365,10 +383,10 @@ trait Collections
         if ($path === null) {
             return $collection;
         }
-        $portions = \__::split($path, '.', 2);
+        $portions = __::split($path, '.', 2);
         $key      = $portions[0];
         if (\count($portions) === 1) {
-            return \__::universalSet($collection, $key, $value);
+            return __::universalSet($collection, $key, $value);
         }
         // Here we manage the case where the portion of the path points to nothing,
         // or to a value that does not match the type of the source collection
@@ -377,14 +395,14 @@ trait Collections
         //  - following the current collection type - to 'for.bar' before setting
         // 'foo.bar.fun' to the specified value).
         if (
-            !\__::has($collection, $key)
-            || (\__::isObject($collection) && !\__::isObject(\__::get($collection, $key)))
-            || (\__::isArray($collection) && !\__::isArray(\__::get($collection, $key)))
+            !__::has($collection, $key)
+            || (__::isObject($collection) && !__::isObject(__::get($collection, $key)))
+            || (__::isArray($collection) && !__::isArray(__::get($collection, $key)))
         ) {
-            $collection = \__::universalSet($collection, $key, \__::isObject($collection) ? new \stdClass : []);
+            $collection = __::universalSet($collection, $key, __::isObject($collection) ? new \stdClass : []);
         }
 
-        return \__::universalSet($collection, $key, set(\__::get($collection, $key), $portions[1], $value));
+        return __::universalSet($collection, $key, __::set(__::get($collection, $key), $portions[1], $value));
     }
 
     public static function universalSet($collection, $key, $value)
@@ -400,7 +418,7 @@ trait Collections
 
             return $array;
         };
-        $setter     = \__::isObject($collection) ? $set_object : $set_array;
+        $setter     = __::isObject($collection) ? $set_object : $set_array;
 
         return call_user_func_array($setter, [$collection, $key, $value]);
     }
@@ -426,9 +444,9 @@ trait Collections
             return false;
         }
 
-        return \__::every(
-            \__::map($keys, function ($key) use ($collection) {
-                return \__::has($collection, $key);
+        return __::every(
+            __::map($keys, function ($key) use ($collection) {
+                return __::has($collection, $key);
             }),
             function ($v) {
                 return $v === true;
@@ -455,13 +473,13 @@ trait Collections
      */
     public static function has($collection, $path)
     {
-        $portions = \__::split($path, '.', 2);
+        $portions = __::split($path, '.', 2);
         $key      = $portions[0];
         if (\count($portions) === 1) {
             return array_key_exists($key, (array)$collection);
         }
 
-        return has(\__::get($collection, $key), $portions[1]);
+        return __::has(__::get($collection, $key), $portions[1]);
     }
 
     /**
@@ -482,9 +500,9 @@ trait Collections
      */
     public static function concat($collection1, $collection2)
     {
-        $isObject = \__::isObject($collection1);
+        $isObject = __::isObject($collection1);
 
-        $args = \__::map(func_get_args(), function ($arg) {
+        $args = __::map(func_get_args(), function ($arg) {
             return (array)$arg;
         });
 
@@ -512,18 +530,18 @@ trait Collections
      */
     public static function concatDeep($collection1, $collection2)
     {
-        return \__::reduceRight(func_get_args(), function ($source, $result) {
-            \__::doForEach($source, function ($sourceValue, $key) use (&$result) {
-                if (!\__::has($result, $key)) {
-                    $result = \__::set($result, $key, $sourceValue);
+        return __::reduceRight(func_get_args(), function ($source, $result) {
+            __::doForEach($source, function ($sourceValue, $key) use (&$result) {
+                if (!__::has($result, $key)) {
+                    $result = __::set($result, $key, $sourceValue);
                 } else {
                     if (is_numeric($key)) {
-                        $result = \__::concat($result, [$sourceValue]);
+                        $result = __::concat($result, [$sourceValue]);
                     } else {
-                        $resultValue = \__::get($result, $key);
-                        $result      = \__::set($result, $key, concatDeep(
-                            \__::isCollection($resultValue) ? $resultValue : (array)$resultValue,
-                            \__::isCollection($sourceValue) ? $sourceValue : (array)$sourceValue
+                        $resultValue = __::get($result, $key);
+                        $result      = __::set($result, $key, __::concatDeep(
+                            __::isCollection($resultValue) ? $resultValue : (array)$resultValue,
+                            __::isCollection($sourceValue) ? $sourceValue : (array)$sourceValue
                         ));
                     }
                 }
@@ -548,7 +566,7 @@ trait Collections
     public static function ease(array $collection, $glue = '.')
     {
         $map = [];
-        self::_ease($map, $collection, $glue);
+        __::_ease($map, $collection, $glue);
 
         return $map;
     }
@@ -561,11 +579,11 @@ trait Collections
      * @param string $glue
      * @param string $prefix
      */
-    private static function _ease(&$map, $array, $glue, $prefix = '')
+    public static function _ease(&$map, $array, $glue, $prefix = '')
     {
         foreach ($array as $index => $value) {
             if (\is_array($value)) {
-                _ease($map, $value, $glue, $prefix . $index . $glue);
+                __::_ease($map, $value, $glue, $prefix . $index . $glue);
             } else {
                 $map[$prefix . $index] = $value;
             }
@@ -590,7 +608,7 @@ trait Collections
     {
         $truthy = true;
         // We could use __::reduce(), but it won't allow us to return preliminarily.
-        \__::doForEach(
+        __::doForEach(
             $collection,
             function ($value, $key, $collection) use (&$truthy, $iteratee) {
                 $truthy = $truthy && $iteratee($value, $key, $collection);
@@ -699,7 +717,7 @@ trait Collections
     public static function isEmpty($value)
     {
         // TODO Create and use our own __::size(). (Manage object, etc.).
-        return (!\__::isArray($value) && !\__::isObject($value)) || count((array)$value) === 0;
+        return (!__::isArray($value) && !__::isObject($value)) || count((array)$value) === 0;
     }
 
     /**
@@ -770,13 +788,13 @@ trait Collections
      */
     public static function merge($collection1, $collection2)
     {
-        return \__::reduceRight(func_get_args(), function ($source, $result) {
-            \__::doForEach($source, function ($sourceValue, $key) use (&$result) {
+        return __::reduceRight(func_get_args(), function ($source, $result) {
+            __::doForEach($source, function ($sourceValue, $key) use (&$result) {
                 $value = $sourceValue;
-                if (\__::isCollection($value)) {
-                    $value = merge(\__::get($result, $key), $sourceValue);
+                if (__::isCollection($value)) {
+                    $value = __::merge(__::get($result, $key), $sourceValue);
                 }
-                $result = \__::set($result, $key, $value);
+                $result = __::set($result, $key, $value);
             });
 
             return $result;
@@ -800,9 +818,9 @@ trait Collections
      */
     public static function pick($collection = [], array $paths = [], $default = null)
     {
-        return \__::reduce($paths, function ($results, $path) use ($collection, $default) {
-            return \__::set($results, $path, \__::get($collection, $path, $default));
-        }, \__::isObject($collection) ? new \stdClass() : []);
+        return __::reduce($paths, function ($results, $path) use ($collection, $default) {
+            return __::set($results, $path, __::get($collection, $path, $default));
+        }, __::isObject($collection) ? new \stdClass() : []);
     }
 
     /**
@@ -867,9 +885,9 @@ trait Collections
     public static function reduce($collection, \Closure $iteratee, $accumulator = null)
     {
         if ($accumulator === null) {
-            $accumulator = \__::first($collection);
+            $accumulator = __::first($collection);
         }
-        \__::doForEach(
+        __::doForEach(
             $collection,
             function ($value, $key, $collection) use (&$accumulator, $iteratee) {
                 $accumulator = $iteratee($accumulator, $value, $key, $collection);
@@ -896,7 +914,7 @@ trait Collections
         $nonDefaultSeparator = $separator !== '.';
         $map                 = [];
         foreach ($collection as $key => $value) {
-            $map = \__::set(
+            $map = __::set(
                 $map,
                 $nonDefaultSeparator ? \str_replace($separator, '.', $key) : $key,
                 $value
