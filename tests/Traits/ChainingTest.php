@@ -4,15 +4,19 @@ use PHPUnit\Framework\TestCase;
 
 class ChainingTest extends TestCase
 {
-    public function testTODO()
+    public function testChaining()
     {
         // Arrange
-        $a = 'testing';
+        $a = [4, 1, 2, 3];
 
         // Act
-        $x = $a;
+
+        $x = __::chain([0, 1, 2, 3, null])
+               ->compact()
+               ->prepend(4)
+               ->value();
 
         // Assert
-        $this->assertEquals('testing', $x);
+        $this->assertEquals($a, $x);
     }
 }
