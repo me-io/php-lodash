@@ -51,7 +51,7 @@ trait Collections
     }
 
     /**
-     * get item of an array by index , aceepting nested index
+     * get item of an array by index, aceepting nested index
      *
      ** __::get(['foo' => ['bar' => 'ter']], 'foo.bar');
      ** // → 'ter'
