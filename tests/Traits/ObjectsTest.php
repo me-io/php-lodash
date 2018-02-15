@@ -1,9 +1,9 @@
 <?php
 
-class ObjectsTest extends \PHPUnit\Framework\TestCase
-{
-    // ...
+use PHPUnit\Framework\TestCase;
 
+class ObjectsTest extends TestCase
+{
     public function testIsArray()
     {
         // Arrange
@@ -77,6 +77,4 @@ class ObjectsTest extends \PHPUnit\Framework\TestCase
         // Assert
         $this->assertEquals(true, $x);
     }
-
-    // ...
 }
