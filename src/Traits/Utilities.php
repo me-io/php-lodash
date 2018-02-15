@@ -34,9 +34,9 @@ trait Utilities
     /**
      * Readable wrapper for strpos()
      *
-     * @param  string $needle Substring to search for
-     * @param  string $haystack String to search within
-     * @param  integer $offset Index of the $haystack we wish to start at
+     * @param  string  $needle   Substring to search for
+     * @param  string  $haystack String to search within
+     * @param  integer $offset   Index of the $haystack we wish to start at
      *
      * @return bool              whether the
      */
@@ -45,4 +45,18 @@ trait Utilities
         return strpos($haystack, $needle, $offset) !== false ? true : false;
     }
 
+    /**
+     * Returns the first argument it receives
+     *
+     * __::identity('arg1', 'arg2');
+     *      >> 'arg1'
+     *
+     * @return mixed
+     */
+    public static function identity()
+    {
+        $args = func_get_args();
+
+        return isset($args[0]) ? $args[0] : null;
+    }
 }
