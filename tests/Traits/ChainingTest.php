@@ -1,9 +1,9 @@
 <?php
 
-class ChainingTest extends \PHPUnit\Framework\TestCase
-{
-    // ...
+use PHPUnit\Framework\TestCase;
 
+class ChainingTest extends TestCase
+{
     public function testTODO()
     {
         // Arrange
@@ -15,7 +15,4 @@ class ChainingTest extends \PHPUnit\Framework\TestCase
         // Assert
         $this->assertEquals('testing', $x);
     }
-
-
-    // ...
 }

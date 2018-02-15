@@ -1,9 +1,9 @@
 <?php
 
-class CollectionsTest extends \PHPUnit\Framework\TestCase
-{
-    // ...
+use PHPUnit\Framework\TestCase;
 
+class CollectionsTest extends TestCase
+{
     public function testFilter()
     {
         // Arrange
@@ -130,6 +130,4 @@ class CollectionsTest extends \PHPUnit\Framework\TestCase
         // Assert
         $this->assertEquals([$a[1]], $x);
     }
-
-    // ...
 }
