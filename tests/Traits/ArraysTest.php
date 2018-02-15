@@ -1,11 +1,9 @@
 <?php
 
-namespace Tests\Lodash;
+use PHPUnit\Framework\TestCase;
 
-class ArraysTest extends \PHPUnit\Framework\TestCase
+class ArraysTest extends TestCase
 {
-    // ...
-
     public function testAppend()
     {
         // Arrange
@@ -33,11 +31,11 @@ class ArraysTest extends \PHPUnit\Framework\TestCase
     public function testFlatten()
     {
         // Arrange
-        $a = [1, 2, [3, [4]]];
+        $a  = [1, 2, [3, [4]]];
         $a2 = [1, 2, [3, [[4]]]];
 
         // Act
-        $x = \__::flatten($a);
+        $x  = \__::flatten($a);
         $x2 = \__::flatten($a2, true);
 
         // Assert
@@ -94,6 +92,4 @@ class ArraysTest extends \PHPUnit\Framework\TestCase
         // Assert
         $this->assertEquals(['foo', 'foo', 'foo'], $x);
     }
-
-    // ...
 }
