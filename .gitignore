@@ -48,3 +48,5 @@ coverage.xml
 coverage.clover
 /report
 !.gitkeep
+
+index.php
