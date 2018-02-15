@@ -343,6 +343,15 @@ __::stringContains('waffle', 'wafflecone');
 
 Please feel free to contribute to this project! Pull requests and feature requests welcome! :v:
 
+## Contributors
+
+Thanks goes to these wonderful people ([emoji key](https://github.com/kentcdodds/all-contributors#emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore -->
+| [<img src="https://avatars0.githubusercontent.com/u/45731?v=3" width="100px;"/><br /><sub><b>Mohamed Meabed</b></sub>](https://github.com/Meabed)<br />[💻](https://github.com//php-lodash/commits?author=Meabed "Code") [📢](#talk-Meabed "Talks") | [<img src="https://avatars2.githubusercontent.com/u/16267321?v=3" width="100px;"/><br /><sub><b>Zeeshan Ahmad</b></sub>](https://github.com/zeeshanu)<br />[💻](https://github.com//php-lodash/commits?author=zeeshanu "Code") [🐛](https://github.com//php-lodash/issues?q=author%3Azeeshanu "Bug reports") [⚠️](https://github.com//php-lodash/commits?author=zeeshanu "Tests") [📖](https://github.com//php-lodash/commits?author=zeeshanu "Documentation") |
+| :---: | :---: |
+<!-- ALL-CONTRIBUTORS-LIST:END -->
 
 ## License
 

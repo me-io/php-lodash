@@ -1,0 +1,33 @@
+{
+  "projectName": "php-lodash",
+  "projectOwner": "",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "Meabed",
+      "name": "Mohamed Meabed",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/45731?v=3",
+      "profile": "https://github.com/Meabed",
+      "contributions": [
+        "code",
+        "talk"
+      ]
+    },
+    {
+      "login": "zeeshanu",
+      "name": "Zeeshan Ahmad",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/16267321?v=3",
+      "profile": "https://github.com/zeeshanu",
+      "contributions": [
+        "code",
+        "bug",
+        "test",
+        "doc"
+      ]
+    }
+  ]
+}
