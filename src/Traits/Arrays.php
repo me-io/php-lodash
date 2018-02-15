@@ -11,7 +11,7 @@ trait Arrays
      ** // → [1, 2, 3, 4]
      *
      * @param array $array original array
-     * @param null $value new item or valie to append
+     * @param null  $value new item or valie to append
      *
      * @return array
      *
@@ -53,9 +53,9 @@ trait Arrays
      * base flatten
      *
      * @param array $array
-     * @param bool $shallow
-     * @param bool $strict
-     * @param int $startIndex
+     * @param bool  $shallow
+     * @param bool  $strict
+     * @param int   $startIndex
      *
      * @return array
      *
@@ -64,7 +64,7 @@ trait Arrays
     {
 
         $output = [];
-        $idx = 0;
+        $idx    = 0;
 
         foreach ($array as $index => $value) {
             if (is_array($value)) {
@@ -72,13 +72,15 @@ trait Arrays
                 if (!$shallow) {
                     $value = static::baseFlatten($value, $shallow, $strict);
                 }
-                $j = 0;
+                $j   = 0;
                 $len = count($value);
                 while ($j < $len) {
                     $output[$idx++] = $value[$j++];
                 }
-            } else if (!$strict) {
-                $output[$idx++] = $value;
+            } else {
+                if (!$strict) {
+                    $output[$idx++] = $value;
+                }
             }
         }
 
@@ -108,7 +110,7 @@ trait Arrays
      ** __::patch(['addr' => ['country' => 'US', 'zip' => 12345]], ['/addr/country' => 'CA', '/addr/zip' => 54321]);
      ** // → ['addr' => ['country' => 'CA', 'zip' => 54321]]
      *
-     * @param array $arr The array to patch
+     * @param array  $arr     The array to patch
      * @param  array $patches List of new xpath-value pairs
      * @param string $parent
      *
@@ -144,7 +146,7 @@ trait Arrays
      ** // → [4, 1, 2, 3]
      *
      * @param array $array
-     * @param null $value
+     * @param null  $value
      *
      * @return array
      *
@@ -162,8 +164,8 @@ trait Arrays
      ** // → [1, 3, 5, 7, 9]
      *
      * @param integer|null $start range start
-     * @param integer|null $stop range end
-     * @param integer $step range step value
+     * @param integer|null $stop  range end
+     * @param integer      $step  range step value
      *
      * @return array range of values
      *
@@ -171,7 +173,7 @@ trait Arrays
     public static function range($start = null, $stop = null, $step = 1)
     {
         if ($stop == null && $start != null) {
-            $stop = $start;
+            $stop  = $start;
             $start = 1;
         }
 
@@ -185,7 +187,7 @@ trait Arrays
      ** // → ['foo', 'foo', 'foo']
      *
      * @param string $object The object to repeat.
-     * @param null $times ow many times has to be repeated.
+     * @param null   $times  ow many times has to be repeated.
      *
      * @return array Returns a new array of filled values.
      *
@@ -200,4 +202,61 @@ trait Arrays
     }
 
 
+    /**
+     * Creates an array of elements split into groups the length of size. If array can't be split evenly, the final
+     * chunk will be the remaining elements.
+     *
+     * __::chunk([1, 2, 3, 4, 5], 3);
+     * // → [[1, 2, 3], [4, 5]]
+     *
+     * @param array   $array        original array
+     * @param int     $size         the chunk size
+     * @param boolean $preserveKeys When set to TRUE keys will be preserved. Default is FALSE which will reindex the
+     *                              chunk numerically
+     *
+     * @return array
+     *
+     */
+    public static function chunk(array $array, $size = 1, $preserveKeys = false)
+    {
+        return \array_chunk($array, $size, $preserveKeys);
+    }
+
+    /**
+     * Creates a slice of array with n elements dropped from the beginning.
+     *
+     ** __::drop([0, 1, 3], 2);
+     ** // → [3]
+     *
+     * @param array $input  The array to query.
+     * @param int   $number The number of elements to drop.
+     *
+     * @return array
+     *
+     */
+    public static function drop(array $input, $number = 1)
+    {
+        return array_slice($input, $number);
+    }
+
+    /**
+     * Shuffle an array ensuring no item remains in the same position.
+     *
+     ** __::randomize([1, 2, 3]);
+     ** // → [2, 3, 1]
+     *
+     * @param array $array original array
+     *
+     * @return array
+     *
+     */
+    public static function randomize(array $array)
+    {
+        for ($i = 0, $c = \count($array); $i < $c - 1; $i++) {
+            $j = \rand($i + 1, $c - 1);
+            list($array[$i], $array[$j]) = [$array[$j], $array[$i]];
+        }
+
+        return $array;
+    }
 }
