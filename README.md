@@ -103,50 +103,91 @@ composer require me-io/php-lodash
 ### Arrays
 
 ##### [`__::append()`](src/Traits/Arrays.php)
+
+Append item to array
+
 ```php
 __::append([1, 2, 3], 4);
 // >> [1, 2, 3, 4]
 ```
 
 ##### [`__::compact()`](src/Traits/Arrays.php)
+
 Returns a copy of the array with falsy values removed.
+
 ```php
 __::compact([0, 1, false, 2, '', 3]);
 // >> [1, 2, 3]
 ```
 
 ##### [`__::flatten()`](src/Traits/Arrays.php)
+
 Flattens a multidimensional array. If you pass shallow, the array will only be flattened a single level.
+
 ```php
 __::flatten([1, 2, [3, [4]]], [flatten]);
 // >> [1, 2, 3, 4]
 ```
 
 ##### [`__::patch()`](src/Traits/Arrays.php)
+
 Patches array with list of xpath-value pairs.
+
 ```php
 __::patch(['addr' => ['country' => 'US', 'zip' => 12345]], ['/addr/country' => 'CA', '/addr/zip' => 54321]);
 // >> ['addr' => ['country' => 'CA', 'zip' => 54321]]
 ```
 
 ##### [`__::prepend()`](src/Traits/Arrays.php)
+
 ```php
 __::prepend([1, 2, 3], 4);
 // >> [4, 1, 2, 3]
 ```
 
 ##### [`__::range()`](src/Traits/Arrays.php)
+
 Returns an array of integers from start to stop (exclusive) by step.
+
 ```php
 __::range(1, 10, 2);
 // >> [1, 3, 5, 7, 9]
 ```
 
 ##### [`__::repeat($val, $n)`](src/Traits/Arrays.php)
+
 Returns an array of `$n` length with each index containing the provided value.
+
 ```php
 __::repeat('foo', 3);
 // >> ['foo', 'foo', 'foo']
+```
+
+#### [`__::chunk()`](src/Traits/Arrays.php)
+
+Split an array into chunks
+
+```php
+__::chunk([1, 2, 3, 4, 5], 3);
+// >> [[1, 2, 3], [4, 5]]
+```
+
+#### [`__::drop()`](src/Traits/Arrays.php)
+
+Creates a slice of array with n elements dropped from the beginning.
+
+```php
+__::drop([0, 1, 3], 2);
+// >> [3]
+```
+
+#### [`__::randomize()`](src/Traits/Arrays.php)
+
+Shuffle an array ensuring no item remains in the same position.
+
+```php
+__::randomize([1, 2, 3]);
+// → [2, 3, 1]
 ```
 
 ### Chaining
