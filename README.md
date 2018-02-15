@@ -57,6 +57,7 @@ extension=php_mbstring.dll
 │       ├── Collections.php       # Methods related to collections
 │       ├── Functions.php         # Methods related to functions
 │       ├── Objects.php           # Methods related to objects
+│       ├── Strings.php           # Methods related to strings
 │       └── Utilities.php         # Methods related to utilities
 ├── tests                         # Tests are placed in that folder.
 ├── composer.json                 # This file defines the project requirements
@@ -539,6 +540,128 @@ Builds a multidimensional collection out of a hash map using the key as indicato
 ```php
 __::unease(['foo.bar' => 'ter', 'baz.0' => 'b', , 'baz.1' => 'z']);
 // >> '['foo' => ['bar' => 'ter'], 'baz' => ['b', 'z']]'
+```
+
+### Strings
+
+#### [`__::split($input, $delimiter, $limit = PHP_INT_MAX)`](src/Traits/Strings.php)
+
+Split a string by string.
+
+```php
+__::split('a-b-c', '-', 2);
+// >> ['a', 'b-c']
+```
+
+#### [`__::camelCase($input)`](src/Traits/Strings.php)
+
+Converts string to [camel case](https://en.wikipedia.org/wiki/CamelCase).
+
+```php
+__::camelCase('Foo Bar');
+// >> 'fooBar'
+```
+
+#### [`__::capitalize($input)`](src/Traits/Strings.php)
+
+Converts the first character of string to upper case and the remaining to lower case.
+
+```php
+__::capitalize('FRED');
+// >> 'Fred'
+```
+
+#### [`__::kebabCase($input)`](src/Traits/Strings.php)
+
+Converts string to [kebab case](https://en.wikipedia.org/wiki/Letter_case#Special_case_styles).
+
+```php
+__::kebabCase('Foo Bar');
+// >> 'foo-bar'
+```
+
+#### [`__::lowerFirst($input)`](src/Traits/Strings.php)
+
+Converts the first character of string to lower case, like lcfirst.
+
+```php
+__::lowerFirst('Fred');
+// >> 'fred'
+```
+
+#### [`__::snakeCase($input)`](src/Traits/Strings.php)
+
+Converts string to [snake case](https://en.wikipedia.org/wiki/Snake_case).
+
+```php
+__::snakeCase('Foo Bar');
+// >> 'foo_bar'
+```
+
+#### [`__::startCase($input)`](src/Traits/Strings.php)
+
+Converts string to [start case](https://en.wikipedia.org/wiki/Letter_case#Stylistic_or_specialised_usage).
+
+```php
+__::startCase('--foo-bar--');
+// >> 'Foo Bar'
+```
+
+#### [`__::toLower($input)`](src/Traits/Strings.php)
+
+Converts string, as a whole, to lower case just like strtolower.
+
+```php
+__::toLower('fooBar');
+// >> 'foobar'
+```
+
+#### [`__::toUpper($input)`](src/Traits/Strings.php)
+
+Converts string, as a whole, to lower case just like strtoupper.
+
+```php
+__::toUpper('fooBar');
+// >> 'FOOBAR'
+```
+
+#### [`__::upperCase($input)`](src/Traits/Strings.php)
+
+Converts string, as space separated words, to upper case.
+
+```php
+__::upperCase('--foo-bar');
+// >> 'FOO BAR'
+```
+
+#### [`__::upperFirst($input)`](src/Traits/Strings.php)
+
+Converts the first character of string to upper case, like ucfirst.
+
+```php
+__::upperFirst('fred');
+// >> 'Fred'
+```
+
+#### [`__::words($input, $pattern = null)`](src/Traits/Strings.php)
+
+Splits string into an array of its words.
+
+```php
+__::words('fred, barney, & pebbles');
+// >> ['fred', 'barney', 'pebbles']
+
+__::words('fred, barney, & pebbles', '/[^, ]+/');
+// >> ['fred', 'barney', '&', 'pebbles']
+```
+
+#### [`__::lowerCase($input)`](src/Traits/Strings.php)
+
+Converts string, as space separated words, to lower case.
+
+```php
+__::lowerCase('--Foo-Bar--');
+// >> 'foo bar'
 ```
 
 ### Functions
