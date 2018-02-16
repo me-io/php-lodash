@@ -778,6 +778,8 @@ __::isString('fred');
 
 ##### [`__::isEmail($string)`](src/Traits/Objects.php)
 
+Check if the value is valid email.
+
 ```php
 __::isEmail('test@test.com');
 // >> true

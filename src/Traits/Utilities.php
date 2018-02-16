@@ -5,24 +5,27 @@ namespace __\Traits;
 trait Utilities
 {
     /**
-     * @utilities @isEmail
-     * check if the value is valid email
+     * Check if the value is valid email.
+     *
+     * @usage __::isEmail('test@test.com');
+     *        >> true
      *
      * @param string $value
      *
      * @return bool
-     *
      */
-    public static function isEmail($value = null)
+    public static function isEmail(string $value = null): bool
     {
-        return \filter_var($value, FILTER_VALIDATE_EMAIL) != false;
+        return filter_var($value, FILTER_VALIDATE_EMAIL) != false;
     }
 
     /**
-     * alis to original time() function which return current time
+     * Alis to original time() function which return current time.
+     *
+     * @usage __::now();
+     *        >> 1417546029
      *
      * @return mixed
-     *
      */
     public static function now()
     {
@@ -34,13 +37,16 @@ trait Utilities
     /**
      * Readable wrapper for strpos()
      *
-     * @param  string  $needle   Substring to search for
-     * @param  string  $haystack String to search within
-     * @param  integer $offset   Index of the $haystack we wish to start at
+     * @usage __::stringContains('waffle', 'wafflecone');
+     *        >> true
      *
-     * @return bool              whether the
+     * @param  string $needle   Substring to search for
+     * @param  string $haystack String to search within
+     * @param  int    $offset   Index of the $haystack we wish to start at
+     *
+     * @return bool
      */
-    public static function stringContains($needle, $haystack, $offset = 0)
+    public static function stringContains(string $needle, string $haystack, int $offset = 0): bool
     {
         return strpos($haystack, $needle, $offset) !== false ? true : false;
     }
@@ -48,8 +54,8 @@ trait Utilities
     /**
      * Returns the first argument it receives
      *
-     * __::identity('arg1', 'arg2');
-     *      >> 'arg1'
+     * @usage __::identity('arg1', 'arg2');
+     *        >> 'arg1'
      *
      * @return mixed
      */
