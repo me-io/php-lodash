@@ -2,97 +2,110 @@
 
 namespace __\Traits;
 
+use __;
+
 trait Objects
 {
     /**
-     * check if give value is array or not
+     * Check if give value is array or not.
+     *
+     * __::isArray([1, 2, 3]);
+     * // >> true
      *
      * @param null $value
      *
      * @return bool
-     *
      */
-    public static function isArray($value = null)
+    public static function isArray($value = null): bool
     {
-        return \is_array($value);
+        return is_array($value);
     }
 
     /**
-     * check if give value is function or not
+     * Check if give value is function or not.
+     *
+     * __::isFunction(function ($a) { return $a + 2; });
+     * // >> true
      *
      * @param null $value
      *
      * @return bool
-     *
      */
-    public static function isFunction($value = null)
+    public static function isFunction($value = null): bool
     {
-        return \is_callable($value);
+        return is_callable($value);
     }
 
     /**
-     * check if give value is null or not
+     * Check if give value is null or not.
+     *
+     * __::isNull(null);
+     * // >> true
      *
      * @param null $value
      *
      * @return bool
-     *
      */
-    public static function isNull($value = null)
+    public static function isNull($value = null): bool
     {
-        return \is_null($value);
+        return is_null($value);
     }
 
 
     /**
-     * check if give value is number or not
+     * Check if give value is number or not.
+     *
+     * __::isNumber(123);
+     * // >> true
      *
      * @param null $value
      *
      * @return bool
-     *
      */
-    public static function isNumber($value = null)
+    public static function isNumber($value = null): bool
     {
-        return \is_numeric($value);
+        return is_numeric($value);
     }
 
     /**
-     * check if give value is object or not
+     * Check if give value is object or not.
+     *
+     * __::isObject('fred');
+     * // >> false
      *
      * @param null $value
      *
      * @return bool
-     *
      */
-    public static function isObject($value = null)
+    public static function isObject($value = null): bool
     {
-        return \is_object($value);
+        return is_object($value);
     }
 
     /**
-     * check if give value is string or not
+     * Check if give value is string or not.
+     *
+     * __::isString('fred');
+     * // >> true
      *
      * @param null $value
      *
      * @return bool
-     *
      */
-    public static function isString($value = null)
+    public static function isString($value = null): bool
     {
-        return \is_string($value);
+        return is_string($value);
     }
 
     /**
-     * Check if the object is a collection.
-     * A collection is either an array or an object.
+     * Check if the object is a collection. A collection is either an array or an object.
      *
      * @param null $object
      *
      * @return bool
      */
-    public static function isCollection($object)
+    public static function isCollection($object): bool
     {
-        return \__::isArray($object) || \__::isObject($object);
+        return __::isArray($object) || __::isObject($object);
     }
 }
