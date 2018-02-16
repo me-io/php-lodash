@@ -31,11 +31,11 @@ class ArraysTest extends TestCase
     public function testFlatten()
     {
         // Arrange
-        $a  = [1, 2, [3, [4]]];
+        $a = [1, 2, [3, [4]]];
         $a2 = [1, 2, [3, [[4]]]];
 
         // Act
-        $x  = \__::flatten($a);
+        $x = \__::flatten($a);
         $x2 = \__::flatten($a2, true);
 
         // Assert
@@ -83,13 +83,46 @@ class ArraysTest extends TestCase
 
     public function testRepeat()
     {
-        // Arrange
-        $string = 'foo';
-
         // Act
         $x = \__::repeat('foo', 3);
 
         // Assert
         $this->assertEquals(['foo', 'foo', 'foo'], $x);
+
+        // Act
+        $x = \__::repeat('foo', null);
+
+        // Assert
+        $this->assertEquals([], $x);
+    }
+
+    public function testChunk()
+    {
+        // Act
+        $x = \__::chunk([1, 2, 3, 4, 5], 3);
+
+        // Assert
+        $this->assertEquals([1, 2, 3], $x[0]);
+
+        // Assert
+        $this->assertEquals([4, 5], $x[1]);
+    }
+
+    public function testDrop()
+    {
+        // Act
+        $x = \__::drop([1, 2, 3], 2);
+
+        // Assert
+        $this->assertEquals([3], $x);
+    }
+
+    public function testRandomize()
+    {
+        // Act
+        $x = \__::randomize([1, 2, 3, 4, 5]);
+
+        // Assert
+        $this->assertNotEquals([1, 2, 3, 4, 5], $x);
     }
 }

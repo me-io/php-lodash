@@ -394,8 +394,7 @@ trait Collections
         // want to set a string at 'foo.bar.fun'. We first set an object or array
         //  - following the current collection type - to 'for.bar' before setting
         // 'foo.bar.fun' to the specified value).
-        if (
-            !__::has($collection, $key)
+        if (!__::has($collection, $key)
             || (__::isObject($collection) && !__::isObject(__::get($collection, $key)))
             || (__::isArray($collection) && !__::isArray(__::get($collection, $key)))
         ) {
