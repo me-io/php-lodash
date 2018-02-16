@@ -3,6 +3,7 @@
 namespace __\Sequence;
 
 use __;
+use Exception;
 
 class PhpLodashWrapper
 {
@@ -12,7 +13,7 @@ class PhpLodashWrapper
     private $value;
 
     /**
-     * BottomlineWrapper constructor.
+     * Php-lodash constructor.
      *
      * @param mixed $value the value that is going to be chained
      */
@@ -30,7 +31,7 @@ class PhpLodashWrapper
      * @return $this
      * @throws \Exception
      */
-    public function __call($functionName, $params)
+    public function __call(string $functionName, array $params): self
     {
         if (is_callable('__', $functionName)) {
             $params      = $params == null ? [] : $params;
@@ -39,7 +40,7 @@ class PhpLodashWrapper
 
             return $this;
         } else {
-            throw new \Exception("Invalid function {$functionName}");
+            throw new Exception("Invalid function {$functionName}");
         }
     }
 

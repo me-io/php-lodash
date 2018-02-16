@@ -695,6 +695,8 @@ __::slug('Something you don\'t know about know about Jackson', $options);
 
 ##### [`__::truncate($string, [$limit=40])`](src/Traits/Functions.php)
 
+Truncate string based on count of words
+
 ```php
 $string = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque et mi orci.';
 __::truncate($string);
@@ -706,15 +708,18 @@ __::truncate($string, 60);
 
 ##### [`__::urlify($string)`](src/Traits/Functions.php)
 
+Find the urls inside a string a put them inside anchor tags
+
 ```php
 __::urlify('I love https://google.com');
 // >> 'I love <a href="https://google.com">google.com</a>'
 ```
 
-
 ### Objects
 
 ##### [`__::isArray($array)`](src/Traits/Objects.php)
+
+Check if give value is array or not.
 
 ```php
 __::isArray([1, 2, 3]);
@@ -726,12 +731,16 @@ __::isArray(123);
 
 ##### [`__::isFunction($string)`](src/Traits/Objects.php)
 
+Check if give value is function or not.
+
 ```php
 __::isFunction(function ($a) { return $a + 2; });
 // >> true
 ```
 
 ##### [`__::isNull($null)`](src/Traits/Objects.php)
+
+Check if give value is null or not.
 
 ```php
 __::isNull(null);
@@ -740,12 +749,16 @@ __::isNull(null);
 
 ##### [`__::isNumber($int|$float)`](src/Traits/Objects.php)
 
+Check if give value is number or not.
+
 ```php
 __::isNumber(123);
 // >> true
 ```
 
 ##### [`__::isObject($object)`](src/Traits/Objects.php)
+
+Check if give value is object or not.
 
 ```php
 __::isObject('fred');
@@ -754,15 +767,18 @@ __::isObject('fred');
 
 ##### [`__::isString($string)`](src/Traits/Objects.php)
 
+Check if give value is string or not.
+
 ```php
 __::isString('fred');
 // >> true
 ```
 
-
 ### Utilities
 
 ##### [`__::isEmail($string)`](src/Traits/Objects.php)
+
+Check if the value is valid email.
 
 ```php
 __::isEmail('test@test.com');
