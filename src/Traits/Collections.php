@@ -16,7 +16,6 @@ trait Collections
      * @param \Closure $closure closure to filter array based on
      *
      * @return array
-     *
      */
     public static function filter(array $array = [], Closure $closure = null): array
     {
@@ -24,7 +23,7 @@ trait Collections
             $result = [];
 
             foreach ($array as $key => $value) {
-                if (\call_user_func($closure, $value)) {
+                if (call_user_func($closure, $value)) {
                     $result[] = $value;
                 }
             }
@@ -39,14 +38,13 @@ trait Collections
     /**
      * Gets the first element of an array. Passing n returns the first n elements.
      *
-     * __::first([1, 2, 3]);
-     * >> // => 1
+     * @usage __::first([1, 2, 3]);
+     *        >> 1
      *
      * @param array    $array of values
      * @param int|null $take  number of values to return
      *
-     * @return array|mixed
-     *
+     * @return mixed
      */
     public static function first(array $array, $take = null)
     {
@@ -60,15 +58,14 @@ trait Collections
     /**
      * Get item of an array by index, accepting nested index
      *
-     ** __::get(['foo' => ['bar' => 'ter']], 'foo.bar');
-     ** // >> 'ter'
+     * @usage __::get(['foo' => ['bar' => 'ter']], 'foo.bar');
+     *        >> 'ter'
      *
-     * @param array|object  $collection array of values
-     * @param string $key        key or index
-     * @param null   $default    default value to return if index not exist
+     * @param array|object $collection array of values
+     * @param string       $key        key or index
+     * @param null         $default    default value to return if index not exist
      *
-     * @return array|mixed|null
-     *
+     * @return mixed
      */
     public static function get($collection = [], string $key = '', $default = null)
     {
@@ -80,7 +77,7 @@ trait Collections
             return $collection[$key];
         }
 
-        foreach (\explode('.', $key) as $segment) {
+        foreach (explode('.', $key) as $segment) {
             if (__::isObject($collection)) {
                 if (!isset($collection->{$segment})) {
                     return $default instanceof Closure ? $default() : $default;
@@ -102,14 +99,13 @@ trait Collections
     /**
      * Get last item(s) of an array
      *
-     * __::last([1, 2, 3, 4, 5], 2);
-     * // >> [4, 5]
+     * @usage __::last([1, 2, 3, 4, 5], 2);
+     *        >> [4, 5]
      *
      * @param array    $array array of values
      * @param int|null $take  number of returned values
      *
-     * @return array|mixed
-     *
+     * @return mixed
      */
     public static function last(array $array, $take = null)
     {
@@ -124,10 +120,10 @@ trait Collections
      * Returns an array of values by mapping each in collection through the iteratee. The iteratee is invoked with
      * three arguments: (value, index|key, collection).
      *
-     * __::map([1, 2, 3], function($n) {
-     *     return $n * 3;
-     * });
-     * // >> [3, 6, 9]
+     * @usage __::map([1, 2, 3], function($n) {
+     *               return $n * 3;
+     *           });
+     *       >> [3, 6, 9]
      *
      * @param array|object $collection The collection of values to map over.
      * @param \Closure     $iteratee   The function to apply on each value.
@@ -149,13 +145,12 @@ trait Collections
      * Returns the maximum value from the collection. If passed an iterator, max will return max value returned by the
      * iterator.
      *
-     * __::max([1, 2, 3]);
-     * // >> 3
+     * @usage __::max([1, 2, 3]);
+     *        >> 3
      *
      * @param array $array The array to iterate over
      *
      * @return mixed Returns the maximum value
-     *
      */
     public static function max(array $array = [])
     {
@@ -166,13 +161,12 @@ trait Collections
      * Returns the minimum value from the collection. If passed an iterator, min will return min value returned by the
      * iterator.
      *
-     * __::min([1, 2, 3]);
-     * // >> 1
+     * @usage __::min([1, 2, 3]);
+     *        >> 1
      *
      * @param array $array array of values
      *
      * @return mixed
-     *
      */
     public static function min(array $array = [])
     {
@@ -182,13 +176,13 @@ trait Collections
     /**
      * Returns an array of values belonging to a given property of each item in a collection.
      *
-     ** $a = [
-     **    ['foo' => 'bar',  'bis' => 'ter' ],
-     **    ['foo' => 'bar2', 'bis' => 'ter2'],
-     ** ];
-     **
-     ** __::pluck($a, 'foo');
-     ** // >> ['bar', 'bar2']
+     * @usage $a = [
+     *            ['foo' => 'bar',  'bis' => 'ter' ],
+     *            ['foo' => 'bar2', 'bis' => 'ter2'],
+     *        ];
+     *
+     *        __::pluck($a, 'foo');
+     *        >> ['bar', 'bar2']
      *
      * @param array|object $collection array or object that can be converted to array
      * @param string       $property   property name
@@ -229,15 +223,14 @@ trait Collections
     /**
      * Return data matching specific key value condition
      *
-     **_::where($a, ['age' => 16]);
-     ** // >> [['name' => 'maciej', 'age' => 16]]
+     * @usage __::where($a, ['age' => 16]);
+     *        >> [['name' => 'maciej', 'age' => 16]]
      *
      * @param array $array    array of values
      * @param array $key      condition in format of ['KEY'=>'VALUE']
      * @param bool  $keepKeys keep original keys
      *
      * @return array
-     *
      */
     public static function where(array $array = [], array $key = [], bool $keepKeys = false): array
     {
@@ -281,8 +274,8 @@ trait Collections
      *
      * For a recursive merge, see __::merge.
      *
-     ** __::assign(['color' => ['favorite' => 'red', 5], 3], [10, 'color' => ['favorite' => 'green', 'blue']]);
-     ** // >> ['color' => ['favorite' => 'green', 'blue'], 10]
+     * @usage __::assign(['color' => ['favorite' => 'red', 5], 3], [10, 'color' => ['favorite' => 'green', 'blue']]);
+     *        >> ['color' => ['favorite' => 'green', 'blue'], 10]
      *
      * @param array|object $collection1 Collection to assign to.
      * @param array|object $collection2 Other collections to assign
@@ -311,10 +304,10 @@ trait Collections
      * The $iteratee is invoked with four arguments:
      * ($accumulator, $value, $index|$key, $collection).
      *
-     ** __::reduceRight(['a', 'b', 'c'], function ($word, $char) {
-     **     return $word . $char;
-     ** }, '');
-     ** // >> 'cba'
+     * @usage __::reduceRight(['a', 'b', 'c'], function ($word, $char) {
+     *                return $word . $char;
+     *            }, '');
+     *        >> 'cba'
      *
      * @param array|object $collection The collection to iterate over.
      * @param \Closure     $iteratee   The function invoked per iteration.
@@ -345,8 +338,8 @@ trait Collections
      * The iterate is invoked with three arguments: (value, index|key, collection).
      * Iterate functions may exit iteration early by explicitly returning false.
      *
-     ** __::doForEachRight([1, 2, 3], function ($value) { print_r($value) });
-     ** // >> (Side effect: print 3, 2, 1)
+     * @usage __::doForEachRight([1, 2, 3], function ($value) { print_r($value) });
+     *        >> (Side effect: print 3, 2, 1)
      *
      * @param array|object $collection The collection to iterate over.
      * @param \Closure     $iteratee   The function to call for each value.
@@ -355,7 +348,7 @@ trait Collections
      */
     public static function doForEachRight($collection, Closure $iteratee)
     {
-        __::doForEach(__::iteratorReverse($collection), $iteratee);
+        return __::doForEach(__::iteratorReverse($collection), $iteratee);
     }
 
     /**
@@ -364,8 +357,8 @@ trait Collections
      * The iterate is invoked with three arguments: (value, index|key, collection).
      * Iterate functions may exit iteration early by explicitly returning false.
      *
-     ** __::doForEach([1, 2, 3], function ($value) { print_r($value) });
-     ** // >> (Side effect: print 1, 2, 3)
+     * @usage __::doForEach([1, 2, 3], function ($value) { print_r($value) });
+     *        >> (Side effect: print 1, 2, 3)
      *
      * @param array|object $collection The collection to iterate over.
      * @param \Closure     $iteratee   The function to call for each value
@@ -381,6 +374,11 @@ trait Collections
         }
     }
 
+    /**
+     * @param $iterable
+     *
+     * @return \Generator
+     */
     public static function iteratorReverse($iterable)
     {
         for (end($iterable); ($key = key($iterable)) !== null; prev($iterable)) {
@@ -395,8 +393,8 @@ trait Collections
      * If a portion of path doesn't exist, it's created. Arrays are created for missing
      * index in an array; objects are created for missing property in an object.
      *
-     ** __::set(['foo' => ['bar' => 'ter']], 'foo.baz.ber', 'fer');
-     ** // >> '['foo' => ['bar' => 'ter', 'baz' => ['ber' => 'fer']]]'
+     * @usage __::set(['foo' => ['bar' => 'ter']], 'foo.baz.ber', 'fer');
+     *        >> '['foo' => ['bar' => 'ter', 'baz' => ['ber' => 'fer']]]'
      *
      * @param array|object $collection collection of values
      * @param string       $path       key or index
@@ -405,7 +403,6 @@ trait Collections
      * @throws \Exception if the path consists of a non collection and strict is set to false
      *
      * @return array|object the new collection with the item set
-     *
      */
     public static function set($collection, string $path, $value = null)
     {
@@ -414,7 +411,7 @@ trait Collections
         }
         $portions = __::split($path, '.', 2);
         $key      = $portions[0];
-        if (\count($portions) === 1) {
+        if (count($portions) === 1) {
             return __::universalSet($collection, $key, $value);
         }
         // Here we manage the case where the portion of the path points to nothing,
@@ -434,6 +431,13 @@ trait Collections
         return __::universalSet($collection, $key, __::set(__::get($collection, $key), $portions[1], $value));
     }
 
+    /**
+     * @param $collection
+     * @param $key
+     * @param $value
+     *
+     * @return mixed
+     */
     public static function universalSet($collection, $key, $value)
     {
         $set_object = function ($object, $key, $value) {
@@ -456,15 +460,14 @@ trait Collections
      * Returns if $input contains all requested $keys. If $strict is true it also checks if $input exclusively contains
      * the given $keys.
      *
-     ** __::hasKeys(['foo' => 'bar', 'foz' => 'baz'], ['foo', 'foz']);
-     ** // >> true
+     * @usage __::hasKeys(['foo' => 'bar', 'foz' => 'baz'], ['foo', 'foz']);
+     *        >> true
      *
      * @param array|object $collection of key values pairs
      * @param array        $keys       collection of keys to look for
      * @param boolean      $strict     to exclusively check
      *
      * @return boolean
-     *
      */
     public static function hasKeys($collection = [], array $keys = [], bool $strict = false): bool
     {
@@ -486,19 +489,18 @@ trait Collections
     /**
      * Return true if $collection contains the requested $key.
      *
-     * In constrast to isset(), __::has() returns true if the key exists but is null.
+     * In constraint to isset(), __::has() returns true if the key exists but is null.
      *
-     ** __::has(['foo' => ['bar' => 'num'], 'foz' => 'baz'], 'foo.bar');
-     ** // >> true
+     * @usage __::has(['foo' => ['bar' => 'num'], 'foz' => 'baz'], 'foo.bar');
+     *        >> true
      *
-     ** __::hasKeys((object) ['foo' => 'bar', 'foz' => 'baz'], 'bar');
-     ** // >> false
+     *        __::hasKeys((object) ['foo' => 'bar', 'foz' => 'baz'], 'bar');
+     *        >> false
      *
      * @param array|object   $collection of key values pairs
      * @param string|integer $path       Path to look for.
      *
      * @return boolean
-     *
      */
     public static function has($collection, $path): bool
     {
@@ -520,8 +522,8 @@ trait Collections
      *
      * For a recursive merge, see __::merge.
      *
-     ** __::concat(['color' => ['favorite' => 'red', 5], 3], [10, 'color' => ['favorite' => 'green', 'blue']]);
-     ** // >> ['color' => ['favorite' => ['green'], 5, 'blue'], 3, 10]
+     * @usage __::concat(['color' => ['favorite' => 'red', 5], 3], [10, 'color' => ['favorite' => 'green', 'blue']]);
+     *        >> ['color' => ['favorite' => ['green'], 5, 'blue'], 3, 10]
      *
      * @param array|object $collection1 Collection to assign to.
      * @param array|object $collection2 Other collections to assign.
@@ -549,14 +551,14 @@ trait Collections
      *
      * For a non-recursive concat, see __::concat.
      *
-     ** __::concatDeep(['color' => ['favorite' => 'red', 5], 3], [10, 'color' => ['favorite' => 'green', 'blue']]);
-     ** // >> ['color' => ['favorite' => ['red', 'green'], 5, 'blue'], 3, 10]
+     * @usage __::concatDeep(['color' => ['favorite' => 'red', 5], 3], [10, 'color' => ['favorite' => 'green',
+     *        'blue']]);
+     *        >> ['color' => ['favorite' => ['red', 'green'], 5, 'blue'], 3, 10]
      *
      * @param array|object $collection1 First collection to concatDeep.
      * @param array|object $collection2 other collections to concatDeep.
      *
      * @return array|object Concatenated collection.
-     *
      */
     public static function concatDeep($collection1, $collection2)
     {
@@ -584,14 +586,13 @@ trait Collections
     /**
      * Flattens a complex collection by mapping each ending leafs value to a key consisting of all previous indexes.
      *
-     * __::ease(['foo' => ['bar' => 'ter'], 'baz' => ['b', 'z']]);
-     * // >> '['foo.bar' => 'ter', 'baz.0' => 'b', , 'baz.1' => 'z']'
+     * @usage __::ease(['foo' => ['bar' => 'ter'], 'baz' => ['b', 'z']]);
+     *        >> '['foo.bar' => 'ter', 'baz.0' => 'b', , 'baz.1' => 'z']'
      *
      * @param array  $collection array of values
      * @param string $glue       glue between key path
      *
      * @return array flatten collection
-     *
      */
     public static function ease(array $collection, string $glue = '.'): array
     {
@@ -626,8 +627,8 @@ trait Collections
      * Iteration is stopped once predicate returns falsey.
      * The predicate is invoked with three arguments: (value, index|key, collection).
      *
-     ** __::every([1, 3, 4], function ($v) { return is_int($v); });
-     ** // → true
+     * @usage __::every([1, 3, 4], function ($v) { return is_int($v); });
+     *        >> true
      *
      * @param array|object $collection The collection to iterate over.
      * @param \Closure     $iteratee   The function to call for each value.
@@ -657,48 +658,45 @@ trait Collections
      * @author Chauncey McAskill
      * @link   https://gist.github.com/mcaskill/baaee44487653e1afc0d array_group_by() function.
      *
-     ** __::groupBy([
-     **         ['state' => 'IN', 'city' => 'Indianapolis', 'object' => 'School bus'],
-     **         ['state' => 'CA', 'city' => 'San Diego', 'object' => 'Light bulb'],
-     **         ['state' => 'CA', 'city' => 'Mountain View', 'object' => 'Space pen'],
-     **     ],
-     **     'state'
-     ** );
-     ** // >> [
-     ** //   'IN' => [
-     ** //      ['state' => 'IN', 'city' => 'Indianapolis', 'object' => 'School bus'],
-     ** //      ['state' => 'CA', 'city' => 'San Diego', 'object' => 'Light bulb'],
-     ** //   ],
-     ** //   'CA' => [
-     ** //      ['state' => 'CA', 'city' => 'Mountain View', 'object' => 'Space pen']
-     ** //   ]
-     ** // ]
+     * @usage  __::groupBy([
+     *                 ['state' => 'IN', 'city' => 'Indianapolis', 'object' => 'School bus'],
+     *                 ['state' => 'CA', 'city' => 'San Diego', 'object' => 'Light bulb'],
+     *                 ['state' => 'CA', 'city' => 'Mountain View', 'object' => 'Space pen'],
+     *             ], 'state');
+     *         >> [
+     *              'IN' => [
+     *                  ['state' => 'IN', 'city' => 'Indianapolis', 'object' => 'School bus'],
+     *                  ['state' => 'CA', 'city' => 'San Diego', 'object' => 'Light bulb'],
+     *              ],
+     *              'CA' => [
+     *                  ['state' => 'CA', 'city' => 'Mountain View', 'object' => 'Space pen']
+     *              ]
+     *            ]
      *
      *
-     ** __::groupBy([
-     **         ['state' => 'IN', 'city' => 'Indianapolis', 'object' => 'School bus'],
-     **         ['state' => 'IN', 'city' => 'Indianapolis', 'object' => 'Manhole'],
-     **         ['state' => 'CA', 'city' => 'San Diego', 'object' => 'Light bulb'],
-     **     ],
-     **     function ($value) {
-     **         return $value->city;
-     **     }
-     ** );
-     ** // >> [
-     ** //   'Indianapolis' => [
-     ** //      ['state' => 'IN', 'city' => 'Indianapolis', 'object' => 'School bus'],
-     ** //      ['state' => 'IN', 'city' => 'Indianapolis', 'object' => 'Manhole'],
-     ** //   ],
-     ** //   'San Diego' => [
-     ** //      ['state' => 'CA', 'city' => 'San Diego', 'object' => 'Light bulb'],
-     ** //   ]
-     ** // ]
+     *         __::groupBy([
+     *                 ['state' => 'IN', 'city' => 'Indianapolis', 'object' => 'School bus'],
+     *                 ['state' => 'IN', 'city' => 'Indianapolis', 'object' => 'Manhole'],
+     *                 ['state' => 'CA', 'city' => 'San Diego', 'object' => 'Light bulb'],
+     *             ],
+     *             function ($value) {
+     *                 return $value->city;
+     *             }
+     *         );
+     *         >> [
+     *           'Indianapolis' => [
+     *              ['state' => 'IN', 'city' => 'Indianapolis', 'object' => 'School bus'],
+     *              ['state' => 'IN', 'city' => 'Indianapolis', 'object' => 'Manhole'],
+     *           ],
+     *           'San Diego' => [
+     *              ['state' => 'CA', 'city' => 'San Diego', 'object' => 'Light bulb'],
+     *           ]
+     *         ]
      *
      * @param array                     $array
      * @param int|float|string|\Closure $key
      *
      * @return array
-     *
      */
     public static function groupBy(array $array, $key): array
     {
@@ -732,17 +730,14 @@ trait Collections
     }
 
     /**
-     * Check if value is an empty array or object.
+     * Check if value is an empty array or object. We consider any non enumerable as empty.
      *
-     * We consider any non enumerable as empty.
-     *
-     ** __::isEmpty([]);
-     ** // >> true
+     * @usage __::isEmpty([]);
+     *        >> true
      *
      * @param $value The value to check for emptiness.
      *
      * @return bool
-     *
      */
     public static function isEmpty($value): bool
     {
@@ -755,7 +750,7 @@ trait Collections
      * @param array    $array   array of values
      * @param \Closure $closure closure to map the keys
      *
-     * @throws \Exception           if closure doesn't return a valid key that can be used in PHP array
+     * @throws \Exception if closure doesn't return a valid key that can be used in PHP array
      *
      * @return array
      */
@@ -806,14 +801,14 @@ trait Collections
      *
      * For a non-recursive merge, see __::merge.
      *
-     ** __::merge(['color' => ['favorite' => 'red', 'model' => 3, 5], 3], [10, 'color' => ['favorite' => 'green', 'blue']]);
-     ** // >> ['color' => ['favorite' => 'green', 'model' => 3, 'blue'], 10]
+     * @usage __::merge(['color' => ['favorite' => 'red', 'model' => 3, 5], 3], [10, 'color' => ['favorite' => 'green',
+     *        'blue']]);
+     *        >> ['color' => ['favorite' => 'green', 'model' => 3, 'blue'], 10]
      *
      * @param array|object $collection1 First collection to merge.
      * @param array|object $collection2 Other collections to merge.
      *
      * @return array|object Concatenated collection.
-     *
      */
     public static function merge($collection1, $collection2)
     {
@@ -831,16 +826,14 @@ trait Collections
     }
 
     /**
-     * Returns an array having only keys present in the given path list.
+     * Returns an array having only keys present in the given path list. Values for missing keys values will be filled
+     * with provided default value.
      *
-     * Values for missing keys values will be filled with provided default value.
-     *
-     ** __::pick(['a' => 1, 'b' => ['c' => 3, 'd' => 4]], ['a', 'b.d']);
-     ** // → ['a' => 1, 'b' => ['d' => 4]]
+     * @usage __::pick(['a' => 1, 'b' => ['c' => 3, 'd' => 4]], ['a', 'b.d']);
+     *        >> ['a' => 1, 'b' => ['d' => 4]]
      *
      * @param array|object $collection The collection to iterate over.
      * @param array        $paths      array paths to pick
-     *
      * @param null         $default
      *
      * @return array|object
@@ -863,47 +856,47 @@ trait Collections
      * The $iteratee is invoked with four arguments:
      * ($accumulator, $value, $index|$key, $collection).
      *
-     ** __::reduce([1, 2], function ($sum, $number) {
-     **     return $sum + $number;
-     ** }, 0);
-     ** // >> 3
+     * @usage __::reduce([1, 2], function ($sum, $number) {
+     *                return $sum + $number;
+     *            }, 0);
+     *        >> 3
      *
-     ** $a = [
-     **     ['state' => 'IN', 'city' => 'Indianapolis', 'object' => 'School bus'],
-     **     ['state' => 'IN', 'city' => 'Indianapolis', 'object' => 'Manhole'],
-     **     ['state' => 'IN', 'city' => 'Plainfield', 'object' => 'Basketball'],
-     **     ['state' => 'CA', 'city' => 'San Diego', 'object' => 'Light bulb'],
-     **     ['state' => 'CA', 'city' => 'Mountain View', 'object' => 'Space pen'],
-     ** ];
-     ** $iteratee = function ($accumulator, $value) {
-     **     if (isset($accumulator[$value['city']]))
-     **         $accumulator[$value['city']]++;
-     **     else
-     **         $accumulator[$value['city']] = 1;
-     **     return $accumulator;
-     ** };
-     ** __::reduce($c, $iteratee, []);
-     ** // >> [
-     ** // >>    'Indianapolis' => 2,
-     ** // >>    'Plainfield' => 1,
-     ** // >>    'San Diego' => 1,
-     ** // >>    'Mountain View' => 1,
-     ** // >> ]
+     *        $a = [
+     *            ['state' => 'IN', 'city' => 'Indianapolis', 'object' => 'School bus'],
+     *            ['state' => 'IN', 'city' => 'Indianapolis', 'object' => 'Manhole'],
+     *            ['state' => 'IN', 'city' => 'Plainfield', 'object' => 'Basketball'],
+     *            ['state' => 'CA', 'city' => 'San Diego', 'object' => 'Light bulb'],
+     *            ['state' => 'CA', 'city' => 'Mountain View', 'object' => 'Space pen'],
+     *        ];
+     *        $iteratee = function ($accumulator, $value) {
+     *            if (isset($accumulator[$value['city']]))
+     *                $accumulator[$value['city']]++;
+     *            else
+     *                $accumulator[$value['city']] = 1;
+     *            return $accumulator;
+     *        };
+     *        __::reduce($c, $iteratee, []);
+     *        >> [
+     *            'Indianapolis' => 2,
+     *            'Plainfield' => 1,
+     *            'San Diego' => 1,
+     *            'Mountain View' => 1,
+     *         ]
      *
-     ** $object = new \stdClass();
-     ** $object->a = 1;
-     ** $object->b = 2;
-     ** $object->c = 1;
-     ** __::reduce($object, function ($result, $value, $key) {
-     **     if (!isset($result[$value]))
-     **         $result[$value] = [];
-     **     $result[$value][] = $key;
-     **     return $result;
-     ** }, [])
-     ** // >> [
-     ** // >>     '1' => ['a', 'c'],
-     ** // >>     '2' => ['b']
-     ** // >> ]
+     *        $object = new \stdClass();
+     *        $object->a = 1;
+     *        $object->b = 2;
+     *        $object->c = 1;
+     *        __::reduce($object, function ($result, $value, $key) {
+     *            if (!isset($result[$value]))
+     *                $result[$value] = [];
+     *            $result[$value][] = $key;
+     *            return $result;
+     *        }, [])
+     *        >> [
+     *             '1' => ['a', 'c'],
+     *             '2' => ['b']
+     *         ]
      *
      * @param array|object $collection The collection to iterate over.
      * @param \Closure     $iteratee   The function invoked per iteration.
@@ -929,8 +922,8 @@ trait Collections
     /**
      * Builds a multidimensional collection out of a hash map using the key as indicator where to put the value.
      *
-     ** __::unease(['foo.bar' => 'ter', 'baz.0' => 'b', , 'baz.1' => 'z']);
-     ** // → '['foo' => ['bar' => 'ter'], 'baz' => ['b', 'z']]'
+     * @usage __::unease(['foo.bar' => 'ter', 'baz.0' => 'b', , 'baz.1' => 'z']);
+     *        >> '['foo' => ['bar' => 'ter'], 'baz' => ['b', 'z']]'
      *
      * @param array  $collection hash map of values
      * @param string $separator  the glue used in the keys

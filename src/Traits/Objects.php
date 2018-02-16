@@ -9,8 +9,8 @@ trait Objects
     /**
      * Check if give value is array or not.
      *
-     * __::isArray([1, 2, 3]);
-     * // >> true
+     * @usage __::isArray([1, 2, 3]);
+     *        >> true
      *
      * @param null $value
      *
@@ -24,8 +24,8 @@ trait Objects
     /**
      * Check if give value is function or not.
      *
-     * __::isFunction(function ($a) { return $a + 2; });
-     * // >> true
+     * @usage __::isFunction(function ($a) { return $a + 2; });
+     *        >> true
      *
      * @param null $value
      *
@@ -39,8 +39,8 @@ trait Objects
     /**
      * Check if give value is null or not.
      *
-     * __::isNull(null);
-     * // >> true
+     * @usage __::isNull(null);
+     *        >> true
      *
      * @param null $value
      *
@@ -55,8 +55,8 @@ trait Objects
     /**
      * Check if give value is number or not.
      *
-     * __::isNumber(123);
-     * // >> true
+     * @usage __::isNumber(123);
+     *        >> true
      *
      * @param null $value
      *
@@ -70,8 +70,8 @@ trait Objects
     /**
      * Check if give value is object or not.
      *
-     * __::isObject('fred');
-     * // >> false
+     * @usage __::isObject('fred');
+     *        >> false
      *
      * @param null $value
      *
@@ -85,8 +85,8 @@ trait Objects
     /**
      * Check if give value is string or not.
      *
-     * __::isString('fred');
-     * // >> true
+     * @usage __::isString('fred');
+     *        >> true
      *
      * @param null $value
      *

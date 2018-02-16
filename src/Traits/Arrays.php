@@ -7,14 +7,13 @@ trait Arrays
     /**
      * Append item to array
      *
-     ** __::append([1, 2, 3], 4);
-     ** // → [1, 2, 3, 4]
+     * @usage __::append([1, 2, 3], 4);
+     *        >> [1, 2, 3, 4]
      *
      * @param array $array original array
      * @param mixed $value new item or value to append
      *
      * @return array
-     *
      */
     public static function append(array $array = [], $value = null): array
     {
@@ -24,16 +23,15 @@ trait Arrays
     }
 
     /**
-     * Creates  an  array  with  all  falsey  values removed. The values
-     * false, null, 0, "", undefined, and NaN are all falsey.
+     * Creates  an  array  with  all  falsey  values removed. The values false, null, 0, "", undefined, and NaN are all
+     * falsey.
      *
-     ** __::compact([0, 1, false, 2, '', 3]);
-     ** // → [1, 2, 3]
+     * @usage __::compact([0, 1, false, 2, '', 3]);
+     *        >> [1, 2, 3]
      *
      * @param array $array array to compact
      *
      * @return array
-     *
      */
     public static function compact(array $array = []): array
     {
@@ -58,7 +56,6 @@ trait Arrays
      * @param int   $startIndex
      *
      * @return array
-     *
      */
     public static function baseFlatten(
         array $array,
@@ -93,14 +90,13 @@ trait Arrays
     /**
      * Flattens a multidimensional array. If you pass shallow, the array will only be flattened a single level.
      *
-     * __::flatten([1, 2, [3, [4]]], [flatten]);
-     *      >> [1, 2, 3, 4]
+     * @usage __::flatten([1, 2, [3, [4]]], [flatten]);
+     *        >> [1, 2, 3, 4]
      *
      * @param array $array
      * @param bool  $shallow
      *
      * @return array
-     *
      */
     public static function flatten(array $array, bool $shallow = false): array
     {
@@ -110,15 +106,17 @@ trait Arrays
     /**
      *  Patches array by xpath.
      *
-     ** __::patch(['addr' => ['country' => 'US', 'zip' => 12345]], ['/addr/country' => 'CA', '/addr/zip' => 54321]);
-     ** // → ['addr' => ['country' => 'CA', 'zip' => 54321]]
+     * @usage __::patch(
+     *               ['addr' => ['country' => 'US', 'zip' => 12345]],
+     *               ['/addr/country' => 'CA','/addr/zip' => 54321]
+     *           );
+     **       >> ['addr' => ['country' => 'CA', 'zip' => 54321]]
      *
      * @param array  $array   The array to patch
      * @param array  $patches List of new xpath-value pairs
      * @param string $parent
      *
      * @return array Returns patched array
-     *
      */
     public static function patch(array $array, array $patches, string $parent = ''): array
     {
@@ -145,14 +143,13 @@ trait Arrays
     /**
      * Prepend item or value to an array
      *
-     ** __::prepend([1, 2, 3], 4);
-     ** // >> [4, 1, 2, 3]
+     * @usage __::prepend([1, 2, 3], 4);
+     *        >> [4, 1, 2, 3]
      *
      * @param array $array
      * @param mixed $value
      *
      * @return array
-     *
      */
     public static function prepend(array $array = [], $value = null): array
     {
@@ -163,15 +160,15 @@ trait Arrays
 
     /**
      * Generate range of values based on start , end and step
-     ** __::range(1, 10, 2);
-     ** // >> [1, 3, 5, 7, 9]
+     *
+     * @usage __::range(1, 10, 2);
+     **       >> [1, 3, 5, 7, 9]
      *
      * @param int|null $start range start
      * @param int|null $stop  range end
      * @param int      $step  range step value
      *
      * @return array range of values
-     *
      */
     public static function range($start = null, $stop = null, int $step = 1): array
     {
@@ -186,8 +183,8 @@ trait Arrays
     /**
      * Generate array of repeated values
      *
-     ** __::repeat('foo', 3);
-     ** // >> ['foo', 'foo', 'foo']
+     * @usage __::repeat('foo', 3);
+     **       >> ['foo', 'foo', 'foo']
      *
      * @param string $object The object to repeat.
      * @param null   $times  ow many times has to be repeated.
@@ -210,8 +207,8 @@ trait Arrays
      * Creates an array of elements split into groups the length of size. If array can't be split evenly, the final
      * chunk will be the remaining elements.
      *
-     * __::chunk([1, 2, 3, 4, 5], 3);
-     * // >> [[1, 2, 3], [4, 5]]
+     * @usage __::chunk([1, 2, 3, 4, 5], 3);
+     *        >> [[1, 2, 3], [4, 5]]
      *
      * @param array $array          original array
      * @param int   $size           the chunk size
@@ -219,7 +216,6 @@ trait Arrays
      *                              chunk numerically
      *
      * @return array
-     *
      */
     public static function chunk(array $array, int $size = 1, bool $preserveKeys = false): array
     {
@@ -229,14 +225,13 @@ trait Arrays
     /**
      * Creates a slice of array with n elements dropped from the beginning.
      *
-     ** __::drop([0, 1, 3], 2);
-     ** // >> [3]
+     * @usage __::drop([0, 1, 3], 2);
+     *        >> [3]
      *
      * @param array $input  The array to query.
      * @param int   $number The number of elements to drop.
      *
      * @return array
-     *
      */
     public static function drop(array $input, int $number = 1): array
     {
@@ -246,13 +241,12 @@ trait Arrays
     /**
      * Shuffle an array ensuring no item remains in the same position.
      *
-     ** __::randomize([1, 2, 3]);
-     ** // >> [2, 3, 1]
+     * @usage __::randomize([1, 2, 3]);
+     *        >> [2, 3, 1]
      *
      * @param array $array original array
      *
      * @return array
-     *
      */
     public static function randomize(array $array): array
     {

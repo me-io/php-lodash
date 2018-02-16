@@ -12,8 +12,8 @@ trait Functions
      *     1) most web browsers support UTF-8 characters in URLs
      *     2) transliteration causes a loss of information
      *
-     * __::slug('Jakieś zdanie z dużą ilością obcych znaków!');
-     * // >> 'jakies-zdanie-z-duza-iloscia-obcych-znakow'
+     * @usage __::slug('Jakieś zdanie z dużą ilością obcych znaków!');
+     *        >> 'jakies-zdanie-z-duza-iloscia-obcych-znakow'
      *
      * @param string $str     string to generate slug from
      * @param array  $options method options which includes: delimiter, limit, lowercase, replacements, transliterate
@@ -360,40 +360,14 @@ trait Functions
     }
 
     /**
-     * Truncate string based on count of words
-     *
-     * $string = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque et mi orci.';
-     * __::truncate($string);
-     * // >> 'Lorem ipsum dolor sit amet, consectetur...'
-     *
-     * @param string  $text  text to truncate
-     * @param integer $limit limit of words
-     *
-     * @return string
-     *
-     */
-
-    public static function truncate(string $text, int $limit = 40): string
-    {
-        if (str_word_count($text, 0) > $limit) {
-            $words = str_word_count($text, 2);
-            $pos   = array_keys($words);
-            $text  = mb_substr($text, 0, $pos[$limit], 'UTF-8') . '...';
-        }
-
-        return $text;
-    }
-
-    /**
      * Find the urls inside a string a put them inside anchor tags.
      *
-     ** __::urlify("I love https://google.com");
-     ** // → 'I love <a href="https://google.com">google.com</a>'
+     * @usage __::urlify("I love https://google.com");
+     *        >> 'I love <a href="https://google.com">google.com</a>'
      *
      * @param string $string
      *
      * @return string|mixed
-     *
      */
     public static function urlify(string $string)
     {
@@ -416,5 +390,29 @@ trait Functions
 
             return '<a href="' . $completeUrl . '">' . $match[2] . $match[3] . $match[4] . '</a>';
         }, htmlspecialchars($string));
+    }
+
+    /**
+     * Truncate string based on count of words
+     *
+     * @usage $string = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque et mi orci.';
+     *        __::truncate($string);
+     *        >> 'Lorem ipsum dolor sit amet, consectetur...'
+     *
+     * @param string  $text  text to truncate
+     * @param integer $limit limit of words
+     *
+     * @return string
+     */
+
+    public static function truncate(string $text, int $limit = 40): string
+    {
+        if (str_word_count($text, 0) > $limit) {
+            $words = str_word_count($text, 2);
+            $pos   = array_keys($words);
+            $text  = mb_substr($text, 0, $pos[$limit], 'UTF-8') . '...';
+        }
+
+        return $text;
     }
 }
