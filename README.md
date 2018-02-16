@@ -695,6 +695,8 @@ __::slug('Something you don\'t know about know about Jackson', $options);
 
 ##### [`__::truncate($string, [$limit=40])`](src/Traits/Functions.php)
 
+Truncate string based on count of words
+
 ```php
 $string = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque et mi orci.';
 __::truncate($string);
@@ -706,11 +708,12 @@ __::truncate($string, 60);
 
 ##### [`__::urlify($string)`](src/Traits/Functions.php)
 
+Find the urls inside a string a put them inside anchor tags
+
 ```php
 __::urlify('I love https://google.com');
 // >> 'I love <a href="https://google.com">google.com</a>'
 ```
-
 
 ### Objects
 
