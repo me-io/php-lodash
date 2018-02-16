@@ -9,10 +9,9 @@ trait Strings
     /**
      * Split a string by string.
      *
-     * Based on explode, see http://php.net/manual/en/function.explode.php.
-     *
-     * __::split('a-b-c', '-', 2);
-     *      >> ['a', 'b-c']
+     * @link  http://php.net/manual/en/function.explode.php Based on explode
+     * @usage __::split('a-b-c', '-', 2);
+     *        >> ['a', 'b-c']
      *
      * @param string $input     The string to split.
      * @param string $delimiter The boundary string.
@@ -22,9 +21,9 @@ trait Strings
      *                          If the limit parameter is negative, all components except the last -limit are returned.
      *                          If the limit parameter is zero, then this is treated as 1.
      *
-     * @return string
+     * @return array
      */
-    public static function split($input, $delimiter, $limit = PHP_INT_MAX)
+    public static function split(string $input, string $delimiter, int $limit = PHP_INT_MAX)
     {
         return explode($delimiter, $input, $limit);
     }
@@ -32,17 +31,16 @@ trait Strings
     /**
      * Converts string to [camel case](https://en.wikipedia.org/wiki/CamelCase).
      *
-     * __::camelCase('Foo Bar');
-     *      >> 'fooBar'
+     * @usage __::camelCase('Foo Bar');
+     *        >> 'fooBar'
      *
      * @param string $input
      *
-     * @return string
-     *
+     * @return string|array
      */
-    public static function camelCase($input)
+    public static function camelCase(string $input)
     {
-        $words = __::words(\preg_replace("/['\x{2019}]/u", '', $input));
+        $words = __::words(preg_replace("/['\x{2019}]/u", '', $input));
 
         return array_reduce(
             $words,
@@ -59,34 +57,33 @@ trait Strings
     /**
      * Converts the first character of string to upper case and the remaining to lower case.
      *
-     * __::capitalize('FRED');
-     *      >> 'Fred'
+     * @usage __::capitalize('FRED');
+     *        >> 'Fred'
      *
      * @param string $input
      *
      * @return string
-     *
      */
-    public static function capitalize($input)
+    public static function capitalize(string $input): string
     {
         return __::upperFirst(__::toLower($input));
     }
 
     /**
-     * Converts string to
-     * [kebab case](https://en.wikipedia.org/wiki/Letter_case#Special_case_styles).
+     * Converts string to kebab case.
      *
-     * __::kebabCase('Foo Bar');
-     *      >> 'foo-bar'
+     * @link  https://en.wikipedia.org/wiki/Letter_case#Special_case_styles kebab case
+     *
+     * @usage __::kebabCase('Foo Bar');
+     *        >> 'foo-bar'
      *
      * @param string $input
      *
      * @return string
-     *
      */
-    public static function kebabCase($input)
+    public static function kebabCase(string $input): string
     {
-        $words = __::words(\preg_replace("/['\x{2019}]/u", '', $input));
+        $words = __::words(preg_replace("/['\x{2019}]/u", '', $input));
 
         return array_reduce(
             $words,
@@ -102,34 +99,33 @@ trait Strings
     /**
      * Converts the first character of string to lower case, like lcfirst.
      *
-     * __::lowerFirst('Fred');
-     *      >> 'fred'
+     * @usage __::lowerFirst('Fred');
+     *        >> 'fred'
      *
      * @param string $input
      *
      * @return string
-     *
      */
-    public static function lowerFirst($input)
+    public static function lowerFirst(string $input): string
     {
-        return \lcfirst($input);
+        return lcfirst($input);
     }
 
     /**
-     * Converts string to
-     * [snake case](https://en.wikipedia.org/wiki/Snake_case).
+     * Converts string to snake case.
      *
-     * __::snakeCase('Foo Bar');
-     *      >> 'foo_bar'
+     * @link  https://en.wikipedia.org/wiki/Snake_case snake case
+     *
+     * @usage __::snakeCase('Foo Bar');
+     *        >> 'foo_bar'
      *
      * @param string $input
      *
      * @return string
-     *
      */
-    public static function snakeCase($input)
+    public static function snakeCase(string $input): string
     {
-        $words = __::words(\preg_replace("/['\x{2019}]/u", '', $input));
+        $words = __::words(preg_replace("/['\x{2019}]/u", '', $input));
 
         return array_reduce(
             $words,
@@ -143,19 +139,20 @@ trait Strings
     }
 
     /**
-     * Converts string to [start case](https://en.wikipedia.org/wiki/Letter_case#Stylistic_or_specialised_usage).
+     * Converts string to start case.
      *
-     * __::startCase('--foo-bar--');
-     *      >> 'Foo Bar'
+     * @link  https://en.wikipedia.org/wiki/Letter_case#Stylistic_or_specialised_usage start case
+     *
+     * @usage __::startCase('--foo-bar--');
+     *        >> 'Foo Bar'
      *
      * @param string $input
      *
      * @return string
-     *
      */
-    public static function startCase($input)
+    public static function startCase(string $input): string
     {
-        $words = __::words(\preg_replace("/['\x{2019}]/u", '', $input));
+        $words = __::words(preg_replace("/['\x{2019}]/u", '', $input));
 
         return array_reduce(
             $words,
@@ -171,49 +168,46 @@ trait Strings
     /**
      * Converts string, as a whole, to lower case just like strtolower.
      *
-     * __::toLower('fooBar');
-     *      >> 'foobar'
+     * @usage __::toLower('fooBar');
+     *        >> 'foobar'
      *
      * @param string $input
      *
      * @return string
-     *
      */
-    public static function toLower($input)
+    public static function toLower(string $input): string
     {
-        return \strtolower($input);
+        return strtolower($input);
     }
 
     /**
      * Converts string, as a whole, to lower case just like strtoupper.
      *
-     * __::toUpper('fooBar');
-     *      >> 'FOOBAR'
+     * @usage __::toUpper('fooBar');
+     *        >> 'FOOBAR'
      *
      * @param string $input
      *
      * @return string
-     *
      */
-    public static function toUpper($input)
+    public static function toUpper(string $input): string
     {
-        return \strtoupper($input);
+        return strtoupper($input);
     }
 
     /**
      * Converts string, as space separated words, to upper case.
      *
-     * __::upperCase('--foo-bar');
-     *      >> 'FOO BAR'
+     * @usage __::upperCase('--foo-bar');
+     *        >> 'FOO BAR'
      *
      * @param string $input
      *
      * @return string
-     *
      */
-    public static function upperCase($input)
+    public static function upperCase(string $input): string
     {
-        $words = __::words(\preg_replace("/['\x{2019}]/u", '', $input));
+        $words = __::words(preg_replace("/['\x{2019}]/u", '', $input));
 
         return array_reduce(
             $words,
@@ -229,35 +223,33 @@ trait Strings
     /**
      * Converts the first character of string to upper case, like ucfirst.
      *
-     * __::upperFirst('fred');
-     *      >> 'Fred'
+     * @usage __::upperFirst('fred');
+     *        >> 'Fred'
      *
      * @param string $input
      *
      * @return string
-     *
      */
-    public static function upperFirst($input)
+    public static function upperFirst(string $input): string
     {
-        return \ucfirst($input);
+        return ucfirst($input);
     }
 
     /**
      * Splits string into an array of its words.
      *
-     * __::words('fred, barney, & pebbles');
-     *      >> ['fred', 'barney', 'pebbles']
+     * @usage __::words('fred, barney, & pebbles');
+     *        >> ['fred', 'barney', 'pebbles']
      *
-     * __::words('fred, barney, & pebbles', '/[^, ]+/');
-     *      >> ['fred', 'barney', '&', 'pebbles']
+     *        __::words('fred, barney, & pebbles', '/[^, ]+/');
+     *        >> ['fred', 'barney', '&', 'pebbles']
      *
      * @param string $input
      * @param string $pattern : The pattern to match words.
      *
-     * @return string
-     *
+     * @return mixed
      */
-    public static function words($input, $pattern = null)
+    public static function words(string $input, $pattern = null)
     {
         /** Used to compose unicode character classes. */
         $rsAstralRange         = '\x{e800}-\x{efff}';
@@ -326,31 +318,30 @@ trait Strings
                 $rsEmoji,
             ]) . '/u';
         if ($pattern === null) {
-            $hasUnicodeWord = \preg_match($hasUnicodeWordRegex, $input);
+            $hasUnicodeWord = preg_match($hasUnicodeWordRegex, $input);
             $pattern        = $hasUnicodeWord ? $unicodeWords : $asciiWords;
         }
-        $r = \preg_match_all($pattern, $input, $matches, PREG_PATTERN_ORDER);
+        $r = preg_match_all($pattern, $input, $matches, PREG_PATTERN_ORDER);
         if ($r === false) {
             throw new RuntimeException('Regex exception');
         }
 
-        return \count($matches[0]) > 0 ? $matches[0] : [];
+        return count($matches[0]) > 0 ? $matches[0] : [];
     }
 
     /**
      * Converts string, as space separated words, to lower case.
      *
-     * __::lowerCase('--Foo-Bar--');
-     *      >> 'foo bar'
+     * @usage __::lowerCase('--Foo-Bar--');
+     *        >> 'foo bar'
      *
      * @param string $input
      *
      * @return string
-     *
      */
-    public static function lowerCase($input)
+    public static function lowerCase(string $input): string
     {
-        $words = __::words(\preg_replace("/['\x{2019}]/u", '', $input));
+        $words = __::words(preg_replace("/['\x{2019}]/u", '', $input));
 
         return array_reduce(
             $words,
