@@ -3,6 +3,9 @@
 namespace __\Traits;
 
 use __;
+use Closure;
+use Exception;
+use stdClass;
 
 trait Collections
 {
@@ -15,11 +18,9 @@ trait Collections
      * @return array
      *
      */
-    public static function filter(array $array = [], \Closure $closure = null)
+    public static function filter(array $array = [], Closure $closure = null): array
     {
-        if (!$closure) {
-            return __::compact($array);
-        } else {
+        if ($closure) {
             $result = [];
 
             foreach ($array as $key => $value) {
@@ -29,41 +30,47 @@ trait Collections
             }
 
             return $result;
+
         }
+
+        return __::compact($array);
     }
 
     /**
      * Gets the first element of an array. Passing n returns the first n elements.
      *
-     * @param array $array of values
-     * @param null  $take  number of values to return
+     * __::first([1, 2, 3]);
+     * >> // => 1
+     *
+     * @param array    $array of values
+     * @param int|null $take  number of values to return
      *
      * @return array|mixed
      *
      */
-    public static function first($array, $take = null)
+    public static function first(array $array, $take = null)
     {
         if (!$take) {
-            return \array_shift($array);
+            return array_shift($array);
         }
 
-        return \array_splice($array, 0, $take, true);
+        return array_splice($array, 0, $take, true);
     }
 
     /**
-     * get item of an array by index, aceepting nested index
+     * Get item of an array by index, accepting nested index
      *
      ** __::get(['foo' => ['bar' => 'ter']], 'foo.bar');
-     ** // → 'ter'
+     ** // >> 'ter'
      *
-     * @param array  $collection array of values
+     * @param array|object  $collection array of values
      * @param string $key        key or index
      * @param null   $default    default value to return if index not exist
      *
      * @return array|mixed|null
      *
      */
-    public static function get($collection = [], $key = '', $default = null)
+    public static function get($collection = [], string $key = '', $default = null)
     {
         if (__::isNull($key)) {
             return $collection;
@@ -76,13 +83,13 @@ trait Collections
         foreach (\explode('.', $key) as $segment) {
             if (__::isObject($collection)) {
                 if (!isset($collection->{$segment})) {
-                    return $default instanceof \Closure ? $default() : $default;
+                    return $default instanceof Closure ? $default() : $default;
                 } else {
                     $collection = $collection->{$segment};
                 }
             } else {
                 if (!isset($collection[$segment])) {
-                    return $default instanceof \Closure ? $default() : $default;
+                    return $default instanceof Closure ? $default() : $default;
                 } else {
                     $collection = $collection[$segment];
                 }
@@ -93,37 +100,45 @@ trait Collections
     }
 
     /**
-     * get last item(s) of an array
+     * Get last item(s) of an array
      *
-     * @param array $array array of values
-     * @param null  $take  number of returned values
+     * __::last([1, 2, 3, 4, 5], 2);
+     * // >> [4, 5]
+     *
+     * @param array    $array array of values
+     * @param int|null $take  number of returned values
      *
      * @return array|mixed
      *
      */
-    public static function last($array, $take = null)
+    public static function last(array $array, $take = null)
     {
         if (!$take) {
-            return \array_pop($array);
+            return array_pop($array);
         }
 
-        return \array_splice($array, -$take);
+        return array_splice($array, -$take);
     }
 
     /**
-     * Returns an array of values by mapping each in collection through the iteratee.
+     * Returns an array of values by mapping each in collection through the iteratee. The iteratee is invoked with
+     * three arguments: (value, index|key, collection).
      *
-     * The iteratee is invoked with three arguments: (value, index|key, collection).
+     * __::map([1, 2, 3], function($n) {
+     *     return $n * 3;
+     * });
+     * // >> [3, 6, 9]
      *
      * @param array|object $collection The collection of values to map over.
      * @param \Closure     $iteratee   The function to apply on each value.
      *
      * @return array
      */
-    public static function map($collection, \Closure $iteratee)
+    public static function map($collection, Closure $iteratee): array
     {
         $result = [];
-        \__::doForEach($collection, function ($value, $key, $collection) use (&$result, $iteratee) {
+
+        __::doForEach($collection, function ($value, $key, $collection) use (&$result, $iteratee) {
             $result[] = $iteratee($value, $key, $collection);
         });
 
@@ -134,19 +149,25 @@ trait Collections
      * Returns the maximum value from the collection. If passed an iterator, max will return max value returned by the
      * iterator.
      *
-     * @param array $array array
+     * __::max([1, 2, 3]);
+     * // >> 3
      *
-     * @return mixed maximum value
+     * @param array $array The array to iterate over
+     *
+     * @return mixed Returns the maximum value
      *
      */
     public static function max(array $array = [])
     {
-        return \max($array);
+        return max($array);
     }
 
     /**
      * Returns the minimum value from the collection. If passed an iterator, min will return min value returned by the
      * iterator.
+     *
+     * __::min([1, 2, 3]);
+     * // >> 1
      *
      * @param array $array array of values
      *
@@ -155,27 +176,35 @@ trait Collections
      */
     public static function min(array $array = [])
     {
-        return \min($array);
+        return min($array);
     }
 
     /**
      * Returns an array of values belonging to a given property of each item in a collection.
+     *
+     ** $a = [
+     **    ['foo' => 'bar',  'bis' => 'ter' ],
+     **    ['foo' => 'bar2', 'bis' => 'ter2'],
+     ** ];
+     **
+     ** __::pluck($a, 'foo');
+     ** // >> ['bar', 'bar2']
      *
      * @param array|object $collection array or object that can be converted to array
      * @param string       $property   property name
      *
      * @return array
      */
-    public static function pluck($collection, $property)
+    public static function pluck($collection, string $property): array
     {
-        $result = \array_map(function ($value) use ($property) {
+        $result = array_map(function ($value) use ($property) {
             if (is_array($value) && isset($value[$property])) {
                 return $value[$property];
-            } elseif (\is_object($value) && isset($value->{$property})) {
+            } elseif (is_object($value) && isset($value->{$property})) {
                 return $value->{$property};
             }
-            foreach (\__::split($property, '.') as $segment) {
-                if (\is_object($value)) {
+            foreach (__::split($property, '.') as $segment) {
+                if (is_object($value)) {
                     if (isset($value->{$segment})) {
                         $value = $value->{$segment};
                     } else {
@@ -193,12 +222,12 @@ trait Collections
             return $value;
         }, (array)$collection);
 
-        return \array_values($result);
+        return array_values($result);
     }
 
 
     /**
-     * return data matching specific key value condition
+     * Return data matching specific key value condition
      *
      **_::where($a, ['age' => 16]);
      ** // >> [['name' => 'maciej', 'age' => 16]]
@@ -210,7 +239,7 @@ trait Collections
      * @return array
      *
      */
-    public static function where(array $array = [], array $key = [], $keepKeys = false)
+    public static function where(array $array = [], array $key = [], bool $keepKeys = false): array
     {
         $result = [];
 
@@ -293,12 +322,12 @@ trait Collections
      *
      * @return array|mixed|null (*): Returns the accumulated value.
      */
-    public static function reduceRight($collection, \Closure $iteratee, $accumulator = null)
+    public static function reduceRight($collection, Closure $iteratee, $accumulator = null)
     {
-        // TODO Factorize using iteratorReverse: make it a function. (See doForEachRight)
         if ($accumulator === null) {
             $accumulator = __::first($collection);
         }
+
         __::doForEachRight(
             $collection,
             function ($value, $key, $collection) use (&$accumulator, $iteratee) {
@@ -317,14 +346,14 @@ trait Collections
      * Iterate functions may exit iteration early by explicitly returning false.
      *
      ** __::doForEachRight([1, 2, 3], function ($value) { print_r($value) });
-     ** // → (Side effect: print 3, 2, 1)
+     ** // >> (Side effect: print 3, 2, 1)
      *
      * @param array|object $collection The collection to iterate over.
      * @param \Closure     $iteratee   The function to call for each value.
      *
      * @return null
      */
-    public static function doForEachRight($collection, \Closure $iteratee)
+    public static function doForEachRight($collection, Closure $iteratee)
     {
         __::doForEach(__::iteratorReverse($collection), $iteratee);
     }
@@ -336,14 +365,14 @@ trait Collections
      * Iterate functions may exit iteration early by explicitly returning false.
      *
      ** __::doForEach([1, 2, 3], function ($value) { print_r($value) });
-     ** // → (Side effect: print 1, 2, 3)
+     ** // >> (Side effect: print 1, 2, 3)
      *
      * @param array|object $collection The collection to iterate over.
      * @param \Closure     $iteratee   The function to call for each value
      *
      * @return null
      */
-    public static function doForEach($collection, \Closure $iteratee)
+    public static function doForEach($collection, Closure $iteratee)
     {
         foreach ($collection as $key => $value) {
             if ($iteratee($value, $key, $collection) === false) {
@@ -367,7 +396,7 @@ trait Collections
      * index in an array; objects are created for missing property in an object.
      *
      ** __::set(['foo' => ['bar' => 'ter']], 'foo.baz.ber', 'fer');
-     ** // → '['foo' => ['bar' => 'ter', 'baz' => ['ber' => 'fer']]]'
+     ** // >> '['foo' => ['bar' => 'ter', 'baz' => ['ber' => 'fer']]]'
      *
      * @param array|object $collection collection of values
      * @param string       $path       key or index
@@ -378,7 +407,7 @@ trait Collections
      * @return array|object the new collection with the item set
      *
      */
-    public static function set($collection, $path, $value = null)
+    public static function set($collection, string $path, $value = null)
     {
         if ($path === null) {
             return $collection;
@@ -399,7 +428,7 @@ trait Collections
             || (__::isObject($collection) && !__::isObject(__::get($collection, $key)))
             || (__::isArray($collection) && !__::isArray(__::get($collection, $key)))
         ) {
-            $collection = __::universalSet($collection, $key, __::isObject($collection) ? new \stdClass : []);
+            $collection = __::universalSet($collection, $key, __::isObject($collection) ? new stdClass : []);
         }
 
         return __::universalSet($collection, $key, __::set(__::get($collection, $key), $portions[1], $value));
@@ -428,7 +457,7 @@ trait Collections
      * the given $keys.
      *
      ** __::hasKeys(['foo' => 'bar', 'foz' => 'baz'], ['foo', 'foz']);
-     ** // → true
+     ** // >> true
      *
      * @param array|object $collection of key values pairs
      * @param array        $keys       collection of keys to look for
@@ -437,10 +466,10 @@ trait Collections
      * @return boolean
      *
      */
-    public static function hasKeys($collection = [], array $keys = [], $strict = false)
+    public static function hasKeys($collection = [], array $keys = [], bool $strict = false): bool
     {
-        $keyCount = \count($keys);
-        if ($strict && \count($collection) !== $keyCount) {
+        $keyCount = count($keys);
+        if ($strict && count($collection) !== $keyCount) {
             return false;
         }
 
@@ -460,10 +489,10 @@ trait Collections
      * In constrast to isset(), __::has() returns true if the key exists but is null.
      *
      ** __::has(['foo' => ['bar' => 'num'], 'foz' => 'baz'], 'foo.bar');
-     ** // → true
+     ** // >> true
      *
      ** __::hasKeys((object) ['foo' => 'bar', 'foz' => 'baz'], 'bar');
-     ** // → false
+     ** // >> false
      *
      * @param array|object   $collection of key values pairs
      * @param string|integer $path       Path to look for.
@@ -471,11 +500,12 @@ trait Collections
      * @return boolean
      *
      */
-    public static function has($collection, $path)
+    public static function has($collection, $path): bool
     {
         $portions = __::split($path, '.', 2);
         $key      = $portions[0];
-        if (\count($portions) === 1) {
+
+        if (count($portions) === 1) {
             return array_key_exists($key, (array)$collection);
         }
 
@@ -525,7 +555,7 @@ trait Collections
      * @param array|object $collection1 First collection to concatDeep.
      * @param array|object $collection2 other collections to concatDeep.
      *
-     * @return array|object Concatened collection.
+     * @return array|object Concatenated collection.
      *
      */
     public static function concatDeep($collection1, $collection2)
@@ -555,7 +585,7 @@ trait Collections
      * Flattens a complex collection by mapping each ending leafs value to a key consisting of all previous indexes.
      *
      * __::ease(['foo' => ['bar' => 'ter'], 'baz' => ['b', 'z']]);
-     * // → '['foo.bar' => 'ter', 'baz.0' => 'b', , 'baz.1' => 'z']'
+     * // >> '['foo.bar' => 'ter', 'baz.0' => 'b', , 'baz.1' => 'z']'
      *
      * @param array  $collection array of values
      * @param string $glue       glue between key path
@@ -563,7 +593,7 @@ trait Collections
      * @return array flatten collection
      *
      */
-    public static function ease(array $collection, $glue = '.')
+    public static function ease(array $collection, string $glue = '.'): array
     {
         $map = [];
         __::_ease($map, $collection, $glue);
@@ -579,10 +609,10 @@ trait Collections
      * @param string $glue
      * @param string $prefix
      */
-    public static function _ease(&$map, $array, $glue, $prefix = '')
+    public static function _ease(array &$map, array $array, string $glue, string $prefix = '')
     {
         foreach ($array as $index => $value) {
-            if (\is_array($value)) {
+            if (is_array($value)) {
                 __::_ease($map, $value, $glue, $prefix . $index . $glue);
             } else {
                 $map[$prefix . $index] = $value;
@@ -604,10 +634,10 @@ trait Collections
      *
      * @return bool
      */
-    public static function every($collection, \Closure $iteratee)
+    public static function every($collection, Closure $iteratee): bool
     {
         $truthy = true;
-        // We could use __::reduce(), but it won't allow us to return preliminarily.
+
         __::doForEach(
             $collection,
             function ($value, $key, $collection) use (&$truthy, $iteratee) {
@@ -624,8 +654,8 @@ trait Collections
     /**
      * Returns an associative array where the keys are values of $key.
      *
-     * Based on {@author Chauncey McAskill}'s
-     * {@link https://gist.github.com/mcaskill/baaee44487653e1afc0d array_group_by()} function.
+     * @author Chauncey McAskill
+     * @link   https://gist.github.com/mcaskill/baaee44487653e1afc0d array_group_by() function.
      *
      ** __::groupBy([
      **         ['state' => 'IN', 'city' => 'Indianapolis', 'object' => 'School bus'],
@@ -670,19 +700,19 @@ trait Collections
      * @return array
      *
      */
-    public static function groupBy(array $array, $key)
+    public static function groupBy(array $array, $key): array
     {
-        if (!\is_bool($key) && !\is_scalar($key) && !\is_callable($key)) {
+        if (!is_bool($key) && !is_scalar($key) && !is_callable($key)) {
             return $array;
         }
         $grouped = [];
         foreach ($array as $value) {
             $groupKey = null;
-            if (\is_callable($key)) {
+            if (is_callable($key)) {
                 $groupKey = call_user_func($key, $value);
-            } elseif (\is_object($value) && \property_exists($value, $key)) {
+            } elseif (is_object($value) && property_exists($value, $key)) {
                 $groupKey = $value->{$key};
-            } elseif (\is_array($value) && isset($value[$key])) {
+            } elseif (is_array($value) && isset($value[$key])) {
                 $groupKey = $value[$key];
             }
             if ($groupKey === null) {
@@ -707,16 +737,15 @@ trait Collections
      * We consider any non enumerable as empty.
      *
      ** __::isEmpty([]);
-     ** // → true
+     ** // >> true
      *
      * @param $value The value to check for emptiness.
      *
-     * @return boolean
+     * @return bool
      *
      */
-    public static function isEmpty($value)
+    public static function isEmpty($value): bool
     {
-        // TODO Create and use our own __::size(). (Manage object, etc.).
         return (!__::isArray($value) && !__::isObject($value)) || count((array)$value) === 0;
     }
 
@@ -730,7 +759,7 @@ trait Collections
      *
      * @return array
      */
-    public static function mapKeys(array $array, \Closure $closure = null)
+    public static function mapKeys(array $array, Closure $closure = null): array
     {
         if (is_null($closure)) {
             $closure = '__::identity';
@@ -740,7 +769,7 @@ trait Collections
             $newKey = call_user_func_array($closure, [$key, $value, $array]);
             // key must be a number or string
             if (!is_numeric($newKey) && !is_string($newKey)) {
-                throw new \Exception('closure must returns a number or string');
+                throw new Exception('closure must returns a number or string');
             }
             $resultArray[$newKey] = $value;
         }
@@ -756,7 +785,7 @@ trait Collections
      *
      * @return array
      */
-    public static function mapValues(array $array, \Closure $closure = null)
+    public static function mapValues(array $array, Closure $closure = null): array
     {
         if (is_null($closure)) {
             $closure = '__::identity';
@@ -814,13 +843,13 @@ trait Collections
      *
      * @param null         $default
      *
-     * @return array
+     * @return array|object
      */
     public static function pick($collection = [], array $paths = [], $default = null)
     {
         return __::reduce($paths, function ($results, $path) use ($collection, $default) {
             return __::set($results, $path, __::get($collection, $path, $default));
-        }, __::isObject($collection) ? new \stdClass() : []);
+        }, __::isObject($collection) ? new stdClass() : []);
     }
 
     /**
@@ -882,7 +911,7 @@ trait Collections
      *
      * @return array|mixed|null (*): Returns the accumulated value.
      */
-    public static function reduce($collection, \Closure $iteratee, $accumulator = null)
+    public static function reduce($collection, Closure $iteratee, $accumulator = null)
     {
         if ($accumulator === null) {
             $accumulator = __::first($collection);
@@ -909,14 +938,15 @@ trait Collections
      * @return array
      * @throws \Exception
      */
-    public static function unease(array $collection, $separator = '.')
+    public static function unease(array $collection, string $separator = '.'): array
     {
         $nonDefaultSeparator = $separator !== '.';
         $map                 = [];
+
         foreach ($collection as $key => $value) {
             $map = __::set(
                 $map,
-                $nonDefaultSeparator ? \str_replace($separator, '.', $key) : $key,
+                $nonDefaultSeparator ? str_replace($separator, '.', $key) : $key,
                 $value
             );
         }
