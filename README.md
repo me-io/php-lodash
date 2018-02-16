@@ -74,13 +74,6 @@ extension=php_mbstring.dll
 
 ---
 
-### Benchmarks
-
-<div align="center">
-  <img src="https://dr5mo5s7lqrtc.cloudfront.net/items/3P0x2a0G0v06231u2O1H/screenshot-2.png" alt="benchmark" />
-</div>
-
-
 ## Installation
 
 Just add `me-io/php-lodash` to your project composer.json file:
