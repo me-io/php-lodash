@@ -68,7 +68,6 @@ trait Arrays
 
         foreach ($array as $index => $value) {
             if (is_array($value)) {
-
                 if (!$shallow) {
                     $value = static::baseFlatten($value, $shallow, $strict);
                 }
