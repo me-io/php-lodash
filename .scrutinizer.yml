@@ -4,6 +4,7 @@ filter:
   - src/*
   excluded_paths:
   - tests/*
+  - src/__.php
   dependency_paths:
   - vendor/*
 checks:
