@@ -29,7 +29,6 @@ trait Collections
             }
 
             return $result;
-
         }
 
         return __::compact($array);
