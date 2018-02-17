@@ -12,9 +12,9 @@ class ChainingTest extends TestCase
         // Act
 
         $x = __::chain([0, 1, 2, 3, null])
-               ->compact()
-               ->prepend(4)
-               ->value();
+            ->compact()
+            ->prepend(4)
+            ->value();
 
         // Assert
         $this->assertEquals($a, $x);

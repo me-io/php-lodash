@@ -49,3 +49,4 @@ coverage.clover
 /report
 !.gitkeep
 index.php
+yarn.lock

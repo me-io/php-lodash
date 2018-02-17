@@ -1,6 +1,6 @@
 <?php
 
-namespace __\Sequence;
+namespace __\Traits\Sequence;
 
 trait Chain
 {
@@ -19,6 +19,6 @@ trait Chain
      */
     public static function chain($initialValue)
     {
-        return new PhpLodashWrapper($initialValue);
+        return new ChainWrapper($initialValue);
     }
 }

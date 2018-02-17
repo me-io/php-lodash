@@ -15,8 +15,8 @@ trait Functions
      * @usage __::slug('Jakieś zdanie z dużą ilością obcych znaków!');
      *        >> 'jakies-zdanie-z-duza-iloscia-obcych-znakow'
      *
-     * @param string $str     string to generate slug from
-     * @param array  $options method options which includes: delimiter, limit, lowercase, replacements, transliterate
+     * @param string $str string to generate slug from
+     * @param array $options method options which includes: delimiter, limit, lowercase, replacements, transliterate
      *
      * @return string
      */
@@ -26,10 +26,10 @@ trait Functions
         $str = mb_convert_encoding((string)$str, 'UTF-8', mb_list_encodings());
 
         $defaults = [
-            'delimiter'     => '-',
-            'limit'         => null,
-            'lowercase'     => true,
-            'replacements'  => [],
+            'delimiter' => '-',
+            'limit' => null,
+            'lowercase' => true,
+            'replacements' => [],
             'transliterate' => true,
         ];
 
@@ -378,10 +378,10 @@ trait Functions
          */
 
         $rexProtocol = '(https?://)?';
-        $rexDomain   = '((?:[-a-zA-Z0-9]{1,63}\.)+[-a-zA-Z0-9]{2,63}|(?:[0-9]{1,3}\.){3}[0-9]{1,3})';
-        $rexPort     = '(:[0-9]{1,5})?';
-        $rexPath     = '(/[!$-/0-9:;=@_\':;!a-zA-Z\x7f-\xff]*?)?';
-        $rexQuery    = '(\?[!$-/0-9:;=@_\':;!a-zA-Z\x7f-\xff]+?)?';
+        $rexDomain = '((?:[-a-zA-Z0-9]{1,63}\.)+[-a-zA-Z0-9]{2,63}|(?:[0-9]{1,3}\.){3}[0-9]{1,3})';
+        $rexPort = '(:[0-9]{1,5})?';
+        $rexPath = '(/[!$-/0-9:;=@_\':;!a-zA-Z\x7f-\xff]*?)?';
+        $rexQuery = '(\?[!$-/0-9:;=@_\':;!a-zA-Z\x7f-\xff]+?)?';
         $rexFragment = '(#[!$-/0-9:;=@_\':;!a-zA-Z\x7f-\xff]+?)?';
 
         return preg_replace_callback(
@@ -389,8 +389,8 @@ trait Functions
             function ($match) {
                 $completeUrl = $match[1] ? $match[0] : "http://{$match[0]}";
 
-            return '<a href="' . $completeUrl . '">' . $match[2] . $match[3] . $match[4] . '</a>';
-        }, htmlspecialchars($string));
+                return '<a href="' . $completeUrl . '">' . $match[2] . $match[3] . $match[4] . '</a>';
+            }, htmlspecialchars($string));
     }
 
     /**
@@ -400,7 +400,7 @@ trait Functions
      *        __::truncate($string);
      *        >> 'Lorem ipsum dolor sit amet, consectetur...'
      *
-     * @param string  $text  text to truncate
+     * @param string $text text to truncate
      * @param integer $limit limit of words
      *
      * @return string
@@ -410,8 +410,8 @@ trait Functions
     {
         if (str_word_count($text, 0) > $limit) {
             $words = str_word_count($text, 2);
-            $pos   = array_keys($words);
-            $text  = mb_substr($text, 0, $pos[$limit], 'UTF-8') . '...';
+            $pos = array_keys($words);
+            $text = mb_substr($text, 0, $pos[$limit], 'UTF-8') . '...';
         }
 
         return $text;

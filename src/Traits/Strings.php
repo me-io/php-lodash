@@ -13,9 +13,9 @@ trait Strings
      * @usage __::split('a-b-c', '-', 2);
      *        >> ['a', 'b-c']
      *
-     * @param string $input     The string to split.
+     * @param string $input The string to split.
      * @param string $delimiter The boundary string.
-     * @param int    $limit     (optional) If limit is set and positive, the returned array
+     * @param int $limit (optional) If limit is set and positive, the returned array
      *                          will contain a maximum of limit elements with the last element containing the
      *                          rest of string.
      *                          If the limit parameter is negative, all components except the last -limit are returned.
@@ -46,7 +46,7 @@ trait Strings
             $words,
             function ($result, $word) use ($words) {
                 $isFirst = __::first($words) === $word;
-                $word    = __::toLower($word);
+                $word = __::toLower($word);
 
                 return $result . (!$isFirst ? __::capitalize($word) : $word);
             },
@@ -252,52 +252,52 @@ trait Strings
     public static function words(string $input, $pattern = null)
     {
         /** Used to compose unicode character classes. */
-        $rsAstralRange         = '\x{e800}-\x{efff}';
-        $rsComboMarksRange     = '\x{0300}-\x{036f}';
+        $rsAstralRange = '\x{e800}-\x{efff}';
+        $rsComboMarksRange = '\x{0300}-\x{036f}';
         $reComboHalfMarksRange = '\x{fe20}-\x{fe2f}';
-        $rsComboSymbolsRange   = '\x{20d0}-\x{20ff}';
-        $rsComboRange          = $rsComboMarksRange . $reComboHalfMarksRange . $rsComboSymbolsRange;
-        $rsDingbatRange        = '\x{2700}-\x{27bf}';
-        $rsLowerRange          = 'a-z\\xdf-\\xf6\\xf8-\\xff';
-        $rsMathOpRange         = '\\xac\\xb1\\xd7\\xf7';
-        $rsNonCharRange        = '\\x00-\\x2f\\x3a-\\x40\\x5b-\\x60\\x7b-\\xbf';
-        $rsPunctuationRange    = '\x{2000}-\x{206f}';
-        $rsSpaceRange          = ' \\t\\x0b\\f\\xa0\x{feff}\\n\\r\x{2028}\x{2029}\x{1680}\x{180e}\x{2000}\x{2001}\x{2002}\x{2003}\x{2004}\x{2005}\x{2006}\x{2007}\x{2008}\x{2009}\x{200a}\x{202f}\x{205f}\x{3000}';
-        $rsUpperRange          = 'A-Z\\xc0-\\xd6\\xd8-\\xde';
-        $rsVarRange            = '\x{fe0e}\x{fe0f}';
-        $rsBreakRange          = $rsMathOpRange . $rsNonCharRange . $rsPunctuationRange . $rsSpaceRange;
+        $rsComboSymbolsRange = '\x{20d0}-\x{20ff}';
+        $rsComboRange = $rsComboMarksRange . $reComboHalfMarksRange . $rsComboSymbolsRange;
+        $rsDingbatRange = '\x{2700}-\x{27bf}';
+        $rsLowerRange = 'a-z\\xdf-\\xf6\\xf8-\\xff';
+        $rsMathOpRange = '\\xac\\xb1\\xd7\\xf7';
+        $rsNonCharRange = '\\x00-\\x2f\\x3a-\\x40\\x5b-\\x60\\x7b-\\xbf';
+        $rsPunctuationRange = '\x{2000}-\x{206f}';
+        $rsSpaceRange = ' \\t\\x0b\\f\\xa0\x{feff}\\n\\r\x{2028}\x{2029}\x{1680}\x{180e}\x{2000}\x{2001}\x{2002}\x{2003}\x{2004}\x{2005}\x{2006}\x{2007}\x{2008}\x{2009}\x{200a}\x{202f}\x{205f}\x{3000}';
+        $rsUpperRange = 'A-Z\\xc0-\\xd6\\xd8-\\xde';
+        $rsVarRange = '\x{fe0e}\x{fe0f}';
+        $rsBreakRange = $rsMathOpRange . $rsNonCharRange . $rsPunctuationRange . $rsSpaceRange;
         /** Used to compose unicode capture groups. */
-        $rsApos      = "['\x{2019}]";
-        $rsBreak     = '[' . $rsBreakRange . ']';
-        $rsCombo     = '[' . $rsComboRange . ']';
-        $rsDigits    = '\\d+';
-        $rsDingbat   = '[' . $rsDingbatRange . ']';
-        $rsLower     = '[' . $rsLowerRange . ']';
-        $rsMisc      = '[^' . $rsAstralRange . $rsBreakRange . $rsDigits . $rsDingbatRange . $rsLowerRange . $rsUpperRange . ']';
-        $rsFitz      = '\\x{e83c}[\x{effb}-\x{efff}]';
-        $rsModifier  = '(?:' . $rsCombo . '|' . $rsFitz . ')';
+        $rsApos = "['\x{2019}]";
+        $rsBreak = '[' . $rsBreakRange . ']';
+        $rsCombo = '[' . $rsComboRange . ']';
+        $rsDigits = '\\d+';
+        $rsDingbat = '[' . $rsDingbatRange . ']';
+        $rsLower = '[' . $rsLowerRange . ']';
+        $rsMisc = '[^' . $rsAstralRange . $rsBreakRange . $rsDigits . $rsDingbatRange . $rsLowerRange . $rsUpperRange . ']';
+        $rsFitz = '\\x{e83c}[\x{effb}-\x{efff}]';
+        $rsModifier = '(?:' . $rsCombo . '|' . $rsFitz . ')';
         $rsNonAstral = '[^' . $rsAstralRange . ']';
-        $rsRegional  = '(?:\x{e83c}[\x{ede6}-\x{edff}]){2}';
-        $rsSurrPair  = '[\x{e800}-\x{ebff}][\x{ec00}-\x{efff}]';
-        $rsUpper     = '[' . $rsUpperRange . ']';
-        $rsZWJ       = '\x{200d}';
+        $rsRegional = '(?:\x{e83c}[\x{ede6}-\x{edff}]){2}';
+        $rsSurrPair = '[\x{e800}-\x{ebff}][\x{ec00}-\x{efff}]';
+        $rsUpper = '[' . $rsUpperRange . ']';
+        $rsZWJ = '\x{200d}';
         /** Used to compose unicode regexes. */
-        $rsMiscLower         = '(?:' . $rsLower . '|' . $rsMisc . ')';
-        $rsMiscUpper         = '(?:' . $rsUpper . '|' . $rsMisc . ')';
-        $rsOptContrLower     = '(?:' . $rsApos . '(?:d|ll|m|re|s|t|ve))?';
-        $rsOptContrUpper     = '(?:' . $rsApos . '(?:D|LL|M|RE|S|T|VE))?';
-        $reOptMod            = $rsModifier . '?';
-        $rsOptVar            = '[' . $rsVarRange . ']?';
-        $rsOrdLower          = '\\d*(?:(?:1st|2nd|3rd|(?![123])\\dth)\\b)';
-        $rsOrdUpper          = '\\d*(?:(?:1ST|2ND|3RD|(?![123])\\dTH)\\b)';
-        $asciiWords          = '/[^\x00-\x2f\x3a-\x40\x5b-\x60\x7b-\x7f]+/';
+        $rsMiscLower = '(?:' . $rsLower . '|' . $rsMisc . ')';
+        $rsMiscUpper = '(?:' . $rsUpper . '|' . $rsMisc . ')';
+        $rsOptContrLower = '(?:' . $rsApos . '(?:d|ll|m|re|s|t|ve))?';
+        $rsOptContrUpper = '(?:' . $rsApos . '(?:D|LL|M|RE|S|T|VE))?';
+        $reOptMod = $rsModifier . '?';
+        $rsOptVar = '[' . $rsVarRange . ']?';
+        $rsOrdLower = '\\d*(?:(?:1st|2nd|3rd|(?![123])\\dth)\\b)';
+        $rsOrdUpper = '\\d*(?:(?:1ST|2ND|3RD|(?![123])\\dTH)\\b)';
+        $asciiWords = '/[^\x00-\x2f\x3a-\x40\x5b-\x60\x7b-\x7f]+/';
         $hasUnicodeWordRegex = '/[a-z][A-Z]|[A-Z]{2,}[a-z]|[0-9][a-zA-Z]|[a-zA-Z][0-9]|[^a-zA-Z0-9 ]/';
-        $rsOptJoin           = '(?:' . $rsZWJ . '(?:' . join(
-            '|',
-            [$rsNonAstral, $rsRegional, $rsSurrPair]
-        ) . ')' . $rsOptVar . $reOptMod . ')*';
-        $rsSeq               = $rsOptVar . $reOptMod . $rsOptJoin;
-        $rsEmoji             = '(?:' . join('|', [$rsDingbat, $rsRegional, $rsSurrPair]) . ')' . $rsSeq;
+        $rsOptJoin = '(?:' . $rsZWJ . '(?:' . join(
+                '|',
+                [$rsNonAstral, $rsRegional, $rsSurrPair]
+            ) . ')' . $rsOptVar . $reOptMod . ')*';
+        $rsSeq = $rsOptVar . $reOptMod . $rsOptJoin;
+        $rsEmoji = '(?:' . join('|', [$rsDingbat, $rsRegional, $rsSurrPair]) . ')' . $rsSeq;
 
         /**
          * Splits a Unicode `string` into an array of its words.
@@ -325,7 +325,7 @@ trait Strings
             ]) . '/u';
         if ($pattern === null) {
             $hasUnicodeWord = preg_match($hasUnicodeWordRegex, $input);
-            $pattern        = $hasUnicodeWord ? $unicodeWords : $asciiWords;
+            $pattern = $hasUnicodeWord ? $unicodeWords : $asciiWords;
         }
         $r = preg_match_all($pattern, $input, $matches, PREG_PATTERN_ORDER);
         if ($r === false) {

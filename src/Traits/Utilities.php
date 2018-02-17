@@ -40,9 +40,9 @@ trait Utilities
      * @usage __::stringContains('waffle', 'wafflecone');
      *        >> true
      *
-     * @param  string $needle   Substring to search for
+     * @param  string $needle Substring to search for
      * @param  string $haystack String to search within
-     * @param  int    $offset   Index of the $haystack we wish to start at
+     * @param  int $offset Index of the $haystack we wish to start at
      *
      * @return bool
      */

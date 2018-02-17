@@ -1,11 +1,11 @@
 <?php
 
-namespace __\Sequence;
+namespace __\Traits\Sequence;
 
 use __;
 use Exception;
 
-class PhpLodashWrapper
+class ChainWrapper
 {
     /**
      * @var mixed $value
@@ -26,7 +26,7 @@ class PhpLodashWrapper
      * Dynamically calls php-lodash functions, prepend the list of parameters with the current collection list
      *
      * @param string $functionName must be a valid php-lodash function
-     * @param array  $params
+     * @param array $params
      *
      * @return $this
      * @throws \Exception
@@ -34,8 +34,8 @@ class PhpLodashWrapper
     public function __call(string $functionName, array $params): self
     {
         if (is_callable('__', $functionName)) {
-            $params      = $params == null ? [] : $params;
-            $params      = __::prepend($params, $this->value);
+            $params = $params == null ? [] : $params;
+            $params = __::prepend($params, $this->value);
             $this->value = call_user_func_array(['__', $functionName], $params);
 
             return $this;

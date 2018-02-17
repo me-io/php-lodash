@@ -210,11 +210,11 @@ class StringsTest extends TestCase
     public function testWords()
     {
         // Arrange
-        $a        = 'fred, barney, & pebbles';
-        $b        = 'fred, barney, & pebbles';
+        $a = 'fred, barney, & pebbles';
+        $b = 'fred, barney, & pebbles';
         $bPattern = '/[^, ]+/';
-        $c        = '';
-        $d        = 'fooBar';
+        $c = '';
+        $d = 'fooBar';
 
         // Act
         $x = __::words($a);

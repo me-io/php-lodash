@@ -7,11 +7,11 @@ class UtilitiesTest extends TestCase
     public function testIsEmail()
     {
         // Arrange
-        $a  = 'test@test.com';
+        $a = 'test@test.com';
         $a2 = 'test_test.com';
 
         // Act
-        $x  = \__::isEmail($a);
+        $x = \__::isEmail($a);
         $x2 = \__::isEmail($a2);
 
         // Assert
@@ -31,12 +31,12 @@ class UtilitiesTest extends TestCase
     public function testStringContains()
     {
         // Arrange
-        $a  = 'testi';
+        $a = 'testi';
         $a2 = 'waffle';
-        $b  = 'testing wafflecones';
+        $b = 'testing wafflecones';
 
         // Act
-        $x  = \__::stringContains($a, $b);
+        $x = \__::stringContains($a, $b);
         $x2 = \__::stringContains($a2, $b);
 
         // Assert
@@ -47,12 +47,12 @@ class UtilitiesTest extends TestCase
     public function testStringContainsWithOffset()
     {
         // Arrange
-        $a  = 'testi';
+        $a = 'testi';
         $a2 = 'waffle';
-        $b  = 'testing wafflecones';
+        $b = 'testing wafflecones';
 
         // Act
-        $x  = \__::stringContains($a, $b, 5);
+        $x = \__::stringContains($a, $b, 5);
         $x2 = \__::stringContains($a2, $b, 7);
 
         // Assert
