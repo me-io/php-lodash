@@ -53,6 +53,7 @@ extension=php_mbstring.dll
 ├── src                           # Core code of the application.
 │   ├── __.php                    # Entry point for the library                  
 │   └── Traits                    # Contains all lodash-php methods
+│       ├── Sequence\Chain.php    # Methods related to chaining
 │       ├── Arrays.php            # Methods related to arrays
 │       ├── Collections.php       # Methods related to collections
 │       ├── Functions.php         # Methods related to functions

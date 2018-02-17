@@ -10,7 +10,6 @@ class ChainingTest extends TestCase
         $a = [4, 1, 2, 3];
 
         // Act
-
         $x = __::chain([0, 1, 2, 3, null])
             ->compact()
             ->prepend(4)
