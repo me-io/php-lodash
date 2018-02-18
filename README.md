@@ -227,7 +227,16 @@ Clean all falsy values from an array.
 
 ```php
 __::clean([true, false, 0, 1, 'string', '']);
->> [true, 1, 'string']
+// >> [true, 1, 'string']
+```
+
+#### [`__::random(array $array, $take = null)`](src/Traits/Arrays.php)
+
+Get a random string from an array.
+
+```php
+__::random([1, 2, 3]);
+// >> Returns 1, 2 or 3
 ```
 
 ### Chaining

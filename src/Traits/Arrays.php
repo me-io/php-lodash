@@ -338,4 +338,25 @@ trait Arrays
             return (bool) $value;
         });
     }
+
+    /**
+     * Get a random string from an array.
+     *
+     * @usage __::random([1, 2, 3])
+     *        >> Returns 1, 2 or 3
+     *
+     * @param array $array
+     * @param null  $take
+     *
+     * @return mixed
+     */
+    public static function random(array $array, $take = null)
+    {
+        if (!$take) {
+            return $array[array_rand($array)];
+        }
+        shuffle($array);
+
+        return __::first($array, $take);
+    }
 }

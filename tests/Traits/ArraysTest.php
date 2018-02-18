@@ -170,4 +170,13 @@ class ArraysTest extends TestCase
         // Assert
         $this->assertEquals([true, 1, 'string'], $x);
     }
+
+    public function testRandom()
+    {
+        // Act
+        $x = __::random([1, 2, 3]);
+
+        // Assert
+        $this->assertTrue(in_array($x, [1, 2, 3]));
+    }
 }
