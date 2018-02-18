@@ -2,6 +2,8 @@
 
 namespace __\Traits;
 
+use Closure;
+
 trait Arrays
 {
     /**
@@ -270,5 +272,21 @@ trait Arrays
     public static function search(array $array, string $value)
     {
         return array_search($value, $array, true);
+    }
+
+    /**
+     * Check if an item is in an array.
+     *
+     * @usage __::contains(['a', 'b', 'c'], 'b')
+     *        >> true
+     *
+     * @param array $array
+     * @param string $value
+     *
+     * @return bool
+     */
+    public static function contains(array $array, string $value): bool
+    {
+        return in_array($value, $array, true);
     }
 }

@@ -190,8 +190,17 @@ __::randomize([1, 2, 3]);
 Search for the index of a value in an array.
 
 ```php
-__::search(['a', 'b', 'c'], 'b')
+__::search(['a', 'b', 'c'], 'b');
 // >> 1
+```
+
+#### [`__::contains($array, $value)`](src/Traits/Arrays.php)
+
+Check if an item is in an array.
+
+```php
+__::contains(['a', 'b', 'c'], 'b');
+// >> true
 ```
 
 ### Chaining

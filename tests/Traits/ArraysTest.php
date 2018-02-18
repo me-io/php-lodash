@@ -134,4 +134,13 @@ class ArraysTest extends TestCase
         // Assert
         $this->assertEquals(1, $x);
     }
+
+    public function testContains()
+    {
+        // Act
+        $x = __::contains(['a', 'b', 'c'], 'b');
+
+        // Assert
+        $this->assertEquals(true, $x);
+    }
 }
