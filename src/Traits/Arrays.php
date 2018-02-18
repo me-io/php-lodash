@@ -2,6 +2,9 @@
 
 namespace __\Traits;
 
+use __;
+use Closure;
+
 trait Arrays
 {
     /**
@@ -51,9 +54,9 @@ trait Arrays
      * base flatten
      *
      * @param array $array
-     * @param bool $shallow
-     * @param bool $strict
-     * @param int $startIndex
+     * @param bool  $shallow
+     * @param bool  $strict
+     * @param int   $startIndex
      *
      * @return array
      */
@@ -63,7 +66,7 @@ trait Arrays
         bool $strict = true,
         int $startIndex = 0
     ): array {
-        $idx = 0;
+        $idx    = 0;
         $output = [];
 
         foreach ($array as $index => $value) {
@@ -71,7 +74,7 @@ trait Arrays
                 if (!$shallow) {
                     $value = static::baseFlatten($value, $shallow, $strict);
                 }
-                $j = 0;
+                $j   = 0;
                 $len = count($value);
                 while ($j < $len) {
                     $output[$idx++] = $value[$j++];
@@ -93,7 +96,7 @@ trait Arrays
      *        >> [1, 2, 3, 4]
      *
      * @param array $array
-     * @param bool $shallow
+     * @param bool  $shallow
      *
      * @return array
      */
@@ -111,8 +114,8 @@ trait Arrays
      *           );
      **       >> ['addr' => ['country' => 'CA', 'zip' => 54321]]
      *
-     * @param array $array The array to patch
-     * @param array $patches List of new xpath-value pairs
+     * @param array  $array   The array to patch
+     * @param array  $patches List of new xpath-value pairs
      * @param string $parent
      *
      * @return array Returns patched array
@@ -164,15 +167,15 @@ trait Arrays
      **       >> [1, 3, 5, 7, 9]
      *
      * @param int|null $start range start
-     * @param int|null $stop range end
-     * @param int $step range step value
+     * @param int|null $stop  range end
+     * @param int      $step  range step value
      *
      * @return array range of values
      */
     public static function range($start = null, $stop = null, int $step = 1): array
     {
         if ($stop == null && $start != null) {
-            $stop = $start;
+            $stop  = $start;
             $start = 1;
         }
 
@@ -186,20 +189,20 @@ trait Arrays
      **       >> ['foo', 'foo', 'foo']
      *
      * @param string $object The object to repeat.
-     * @param null $times ow many times has to be repeated.
+     * @param null   $times  ow many times has to be repeated.
      *
      * @return array Returns a new array of filled values.
      *
      */
     public static function repeat(string $object = '', $times = null): array
     {
-        if ($times != null) {
-            return array_fill(0, $times, $object);
+        $times = abs($times);
+        if ($times == null) {
+            return [];
         }
 
-        return [];
+        return array_fill(0, $times, $object);
     }
-
 
     /**
      * Creates an array of elements split into groups the length of size. If array can't be split evenly, the final
@@ -208,9 +211,9 @@ trait Arrays
      * @usage __::chunk([1, 2, 3, 4, 5], 3);
      *        >> [[1, 2, 3], [4, 5]]
      *
-     * @param array $array original array
-     * @param int $size the chunk size
-     * @param bool $preserveKeys When set to TRUE keys will be preserved. Default is FALSE which will reindex the
+     * @param array $array          original array
+     * @param int   $size           the chunk size
+     * @param bool  $preserveKeys   When set to TRUE keys will be preserved. Default is FALSE which will reindex the
      *                              chunk numerically
      *
      * @return array
@@ -226,8 +229,8 @@ trait Arrays
      * @usage __::drop([0, 1, 3], 2);
      *        >> [3]
      *
-     * @param array $input The array to query.
-     * @param int $number The number of elements to drop.
+     * @param array $input  The array to query.
+     * @param int   $number The number of elements to drop.
      *
      * @return array
      */
@@ -251,6 +254,203 @@ trait Arrays
         for ($i = 0, $c = count($array); $i < $c - 1; $i++) {
             $j = rand($i + 1, $c - 1);
             list($array[$i], $array[$j]) = [$array[$j], $array[$i]];
+        }
+
+        return $array;
+    }
+
+    /**
+     * Search for the index of a value in an array.
+     *
+     * @usage __::search(['a', 'b', 'c'], 'b')
+     *        >> 1
+     *
+     * @param array  $array
+     * @param string $value
+     *
+     * @return mixed
+     */
+    public static function search(array $array, string $value)
+    {
+        return array_search($value, $array, true);
+    }
+
+    /**
+     * Check if an item is in an array.
+     *
+     * @usage __::contains(['a', 'b', 'c'], 'b')
+     *        >> true
+     *
+     * @param array $array
+     * @param string $value
+     *
+     * @return bool
+     */
+    public static function contains(array $array, string $value): bool
+    {
+        return in_array($value, $array, true);
+    }
+
+    /**
+     * Returns the average value of an array.
+     *
+     * @usage __::average([1, 2, 3])
+     *        >> 2
+     *
+     * @param array $array    The source array
+     * @param int   $decimals The number of decimals to return
+     *
+     * @return int The average value
+     */
+    public static function average(array $array, int $decimals = 0): int
+    {
+        return round((array_sum($array) / count($array)), $decimals);
+    }
+
+    /**
+     * Get the size of an array.
+     *
+     * @usage __::size([1, 2, 3])
+     *        >> 3
+     *
+     * @param $array
+     *
+     * @return int
+     */
+    public static function size(array $array)
+    {
+        return count($array);
+    }
+
+    /**
+     * Clean all falsy values from an array.
+     *
+     * @usage __::clean([true, false, 0, 1, 'string', ''])
+     *        >> [true, 1, 'string']
+     *
+     * @param array $array
+     *
+     * @return mixed
+     */
+    public static function clean(array $array)
+    {
+        return __::filter($array, function ($value) {
+            return (bool) $value;
+        });
+    }
+
+    /**
+     * Get a random string from an array.
+     *
+     * @usage __::random([1, 2, 3])
+     *        >> Returns 1, 2 or 3
+     *
+     * @param array $array
+     * @param null  $take
+     *
+     * @return mixed
+     */
+    public static function random(array $array, $take = null)
+    {
+        if (!$take) {
+            return $array[array_rand($array)];
+        }
+        shuffle($array);
+
+        return __::first($array, $take);
+    }
+
+
+    /**
+     * Return an array with all elements found in both input arrays.
+     *
+     * @usage __::intersection(["green", "red", "blue"], ["green", "yellow", "red"])
+     *        >> ["green", "red"]
+     *
+     * @param array $a
+     * @param array $b
+     *
+     * @return array
+     */
+    public static function intersection(array $a, array $b): array
+    {
+        $a = (array) $a;
+        $b = (array) $b;
+
+        return array_values(array_intersect($a, $b));
+    }
+
+    /**
+     * Return a boolean flag which indicates whether the two input arrays have any common elements.
+     *
+     * @usage __::intersects(["green", "red", "blue"], ["green", "yellow", "red"])
+     *        >> true
+     *
+     * @param array $a
+     * @param array $b
+     *
+     * @return bool
+     */
+    public static function intersects(array $a, array $b): bool
+    {
+        $a = (array) $a;
+        $b = (array) $b;
+
+        return count(self::intersection($a, $b)) > 0;
+    }
+
+    /**
+     * Exclude the last X elements from an array
+     *
+     * @usage __::initial([1, 2, 3], 1);
+     *        >> [1, 2]
+     *
+     * @param array $array
+     * @param int   $to
+     *
+     * @return mixed
+     */
+    public static function initial(array $array, int $to = 1)
+    {
+        $slice = count($array) - $to;
+
+        return __::first($array, $slice);
+    }
+
+    /**
+     * Exclude the first X elements from an array
+     *
+     * @usage __::rest([1, 2, 3], 2);
+     *        >> [3]
+     *
+     * @param array $array
+     * @param int   $from
+     *
+     * @return array
+     */
+    public static function rest(array $array, int $from = 1): array
+    {
+        return array_splice($array, $from);
+    }
+
+    /**
+     * Sort an array by key.
+     *
+     * @usage __::sortKeys(['z' => 0, 'b' => 1, 'r' => 2])
+     *        >> ['b' => 1, 'r' => 2, 'z' => 0]
+     *
+     * @param array  $array
+     * @param string $direction
+     *
+     * @return mixed
+     */
+    public static function sortKeys(array $array, string $direction = 'ASC')
+    {
+        $direction = (strtolower($direction) === 'desc') ? SORT_DESC : SORT_ASC;
+        if ($direction === SORT_ASC) {
+            ksort($array);
+        } else {
+            krsort($array);
         }
 
         return $array;

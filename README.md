@@ -185,6 +185,108 @@ __::randomize([1, 2, 3]);
 // >> [2, 3, 1]
 ```
 
+#### [`__::search($array, $value)`](src/Traits/Arrays.php)
+
+Search for the index of a value in an array.
+
+```php
+__::search(['a', 'b', 'c'], 'b');
+// >> 1
+```
+
+#### [`__::average($array, $decimals)`](src/Traits/Arrays.php)
+
+Returns the average value of an array.
+
+```php
+__::average([1, 2, 3]);
+// >> 2
+```
+
+#### [`__::size($array)`](src/Traits/Arrays.php)
+
+Get the size of an array.
+
+```php
+__::size([1, 2, 3]);
+// >> 3
+```
+
+#### [`__::contains($array, $value)`](src/Traits/Arrays.php)
+
+Check if an item is in an array.
+
+```php
+__::contains(['a', 'b', 'c'], 'b');
+// >> true
+```
+
+#### [`__::clean(array $array)`](src/Traits/Arrays.php)
+
+Clean all falsy values from an array.
+
+```php
+__::clean([true, false, 0, 1, 'string', '']);
+// >> [true, 1, 'string']
+```
+
+#### [`__::random(array $array, $take = null)`](src/Traits/Arrays.php)
+
+Get a random string from an array.
+
+```php
+__::random([1, 2, 3]);
+// >> Returns 1, 2 or 3
+```
+
+#### [`__::intersection(array $a, array $b)`](src/Traits/Arrays.php)
+
+Return an array with all elements found in both input arrays.
+
+```php
+__::intersection(["green", "red", "blue"], ["green", "yellow", "red"]);
+// >> ["green", "red"]
+```
+
+#### [`__::intersects(array $a, array $b)`](src/Traits/Arrays.php)
+
+Return a boolean flag which indicates whether the two input arrays have any common elements.
+
+```php
+__::intersects(["green", "red", "blue"], ["green", "yellow", "red"])
+// >> true
+```
+
+#### [`__::initial(array $array, int $to = 1)`](src/Traits/Arrays.php)
+
+Exclude the last X elements from an array
+
+```php
+__::initial([1, 2, 3], 1);
+// >> [1, 2]
+```
+
+#### [`__::rest(array $array, int $from = 1)`](src/Traits/Arrays.php)
+
+Exclude the first X elements from an array
+
+```php
+__::rest([1, 2, 3], 2);
+// >> [3]
+```
+
+#### [`__::sortKeys(array $array, string $direction = 'ASC')`](src/Traits/Arrays.php)
+
+Sort an array by key.
+
+```php
+__::sortKeys(['z' => 0, 'b' => 1, 'r' => 2]);
+// >> ['b' => 1, 'r' => 2, 'z' => 0]
+
+__::sortKeys(['z' => 0, 'b' => 1, 'r' => 2], 'desc');
+// >> ['z' => 0, 'r' => 2, 'b' => 1]
+```
+
 ### Chaining
 
 #### [`__::chain($initialValue)`](src/Traits/Sequence/Chain.php)
