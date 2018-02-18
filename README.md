@@ -248,6 +248,15 @@ __::intersection(["green", "red", "blue"], ["green", "yellow", "red"]);
 // >> ["green", "red"]
 ```
 
+#### [`__::intersects(array $a, array $b)`](src/Traits/Arrays.php)
+
+Return a boolean flag which indicates whether the two input arrays have any common elements.
+
+```php
+__::intersects(["green", "red", "blue"], ["green", "yellow", "red"])
+// >> true
+```
+
 ### Chaining
 
 #### [`__::chain($initialValue)`](src/Traits/Sequence/Chain.php)

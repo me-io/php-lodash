@@ -188,4 +188,13 @@ class ArraysTest extends TestCase
         // Assert
         $this->assertEquals(["green", "red"], $x);
     }
+
+    public function testIntersects()
+    {
+        // Act
+        $x = __::intersects(["green", "red", "blue"], ["green", "yellow", "red"]);
+
+        // Assert
+        $this->assertEquals(true, $x);
+    }
 }

@@ -379,4 +379,23 @@ trait Arrays
 
         return array_values(array_intersect($a, $b));
     }
+
+    /**
+     * Return a boolean flag which indicates whether the two input arrays have any common elements.
+     *
+     * @usage __::intersects(["green", "red", "blue"], ["green", "yellow", "red"])
+     *        >> true
+     *
+     * @param array $a
+     * @param array $b
+     *
+     * @return bool
+     */
+    public static function intersects(array $a, array $b): bool
+    {
+        $a = (array) $a;
+        $b = (array) $b;
+        
+        return count(self::intersection($a, $b)) > 0;
+    }
 }
