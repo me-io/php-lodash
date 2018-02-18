@@ -221,6 +221,15 @@ __::contains(['a', 'b', 'c'], 'b');
 // >> true
 ```
 
+#### [`__::clean(array $array)`](src/Traits/Arrays.php)
+
+Clean all falsy values from an array.
+
+```php
+__::clean([true, false, 0, 1, 'string', '']);
+>> [true, 1, 'string']
+```
+
 ### Chaining
 
 #### [`__::chain($initialValue)`](src/Traits/Sequence/Chain.php)

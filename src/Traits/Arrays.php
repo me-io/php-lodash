@@ -2,6 +2,7 @@
 
 namespace __\Traits;
 
+use __;
 use Closure;
 
 trait Arrays
@@ -314,10 +315,27 @@ trait Arrays
      *
      * @param $array
      *
-     * @return int|void
+     * @return int
      */
     public static function size(array $array)
     {
         return count($array);
+    }
+
+    /**
+     * Clean all falsy values from an array.
+     *
+     * @usage __::clean([true, false, 0, 1, 'string', ''])
+     *        >> [true, 1, 'string']
+     *
+     * @param array $array
+     *
+     * @return mixed
+     */
+    public static function clean(array $array)
+    {
+        return __::filter($array, function ($value) {
+            return (bool) $value;
+        });
     }
 }

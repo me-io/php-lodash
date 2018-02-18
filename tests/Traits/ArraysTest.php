@@ -161,4 +161,13 @@ class ArraysTest extends TestCase
         // Assert
         $this->assertEquals(3, $x);
     }
+
+    public function testClean()
+    {
+        // Act
+        $x = __::clean([true, false, 0, 1, 'string', '']);
+
+        // Assert
+        $this->assertEquals([true, 1, 'string'], $x);
+    }
 }
