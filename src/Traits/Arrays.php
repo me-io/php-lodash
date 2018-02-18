@@ -416,4 +416,20 @@ trait Arrays
 
         return __::first($array, $slice);
     }
+
+    /**
+     * Exclude the first X elements from an array
+     *
+     * @usage __::rest([1, 2, 3], 2);
+     *        >> [3]
+     *
+     * @param array $array
+     * @param int   $from
+     *
+     * @return array
+     */
+    public static function rest(array $array, int $from = 1): array
+    {
+        return array_splice($array, $from);
+    }
 }

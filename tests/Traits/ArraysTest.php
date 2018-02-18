@@ -206,4 +206,13 @@ class ArraysTest extends TestCase
         // Assert
         $this->assertEquals([1, 2], $x);
     }
+
+    public function testRest()
+    {
+        // Act
+        $x = __::rest([1, 2, 3], 2);
+
+        // Assert
+        $this->assertEquals([3], $x);
+    }
 }

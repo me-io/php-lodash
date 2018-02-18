@@ -266,6 +266,15 @@ __::initial([1, 2, 3], 1);
 // >> [1, 2]
 ```
 
+#### [`__::rest(array $array, int $from = 1)`](src/Traits/Arrays.php)
+
+Exclude the first X elements from an array
+
+```php
+__::rest([1, 2, 3], 2);
+// >> [3]
+```
+
 ### Chaining
 
 #### [`__::chain($initialValue)`](src/Traits/Sequence/Chain.php)
