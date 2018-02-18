@@ -395,7 +395,25 @@ trait Arrays
     {
         $a = (array) $a;
         $b = (array) $b;
-        
+
         return count(self::intersection($a, $b)) > 0;
+    }
+
+    /**
+     * Exclude the last X elements from an array
+     *
+     * @usage __::initial([1, 2, 3], 1);
+     *        >> [1, 2]
+     *
+     * @param array $array
+     * @param int   $to
+     *
+     * @return mixed
+     */
+    public static function initial(array $array, int $to = 1)
+    {
+        $slice = count($array) - $to;
+
+        return __::first($array, $slice);
     }
 }

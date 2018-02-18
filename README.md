@@ -257,6 +257,15 @@ __::intersects(["green", "red", "blue"], ["green", "yellow", "red"])
 // >> true
 ```
 
+#### [`__::initial(array $array, int $to = 1)`](src/Traits/Arrays.php)
+
+Exclude the last X elements from an array
+
+```php
+__::initial([1, 2, 3], 1);
+// >> [1, 2]
+```
+
 ### Chaining
 
 #### [`__::chain($initialValue)`](src/Traits/Sequence/Chain.php)

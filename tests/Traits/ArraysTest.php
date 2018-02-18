@@ -197,4 +197,13 @@ class ArraysTest extends TestCase
         // Assert
         $this->assertEquals(true, $x);
     }
+
+    public function testInitial()
+    {
+        // Act
+        $x = __::initial([1, 2, 3], 1);
+
+        // Assert
+        $this->assertEquals([1, 2], $x);
+    }
 }
