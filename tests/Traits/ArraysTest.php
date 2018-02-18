@@ -143,4 +143,13 @@ class ArraysTest extends TestCase
         // Assert
         $this->assertEquals(true, $x);
     }
+
+    public function testAverage()
+    {
+        // Act
+        $x = __::average([1, 2, 3]);
+
+        // Assert
+        $this->assertEquals(2, $x);
+    }
 }

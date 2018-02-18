@@ -194,6 +194,15 @@ __::search(['a', 'b', 'c'], 'b');
 // >> 1
 ```
 
+#### [`__::average($array, $decimals)`](src/Traits/Arrays.php)
+
+Returns the average value of an array.
+
+```php
+__::average([1, 2, 3]);
+// >> 2
+```
+
 #### [`__::contains($array, $value)`](src/Traits/Arrays.php)
 
 Check if an item is in an array.

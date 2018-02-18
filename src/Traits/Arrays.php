@@ -289,4 +289,20 @@ trait Arrays
     {
         return in_array($value, $array, true);
     }
+
+    /**
+     * Returns the average value of an array.
+     *
+     * @usage __::average([1, 2, 3])
+     *        >> 2
+     *
+     * @param array $array    The source array
+     * @param int   $decimals The number of decimals to return
+     *
+     * @return int The average value
+     */
+    public static function average(array $array, int $decimals = 0): int
+    {
+        return round((array_sum($array) / count($array)), $decimals);
+    }
 }
