@@ -203,13 +203,22 @@ __::average([1, 2, 3]);
 // >> 2
 ```
 
+#### [`__::size($array)`](src/Traits/Arrays.php)
+
+Get the size of an array.
+
+```php
+__::average([1, 2, 3]);
+// >> 2
+```
+
 #### [`__::contains($array, $value)`](src/Traits/Arrays.php)
 
 Check if an item is in an array.
 
 ```php
-__::contains(['a', 'b', 'c'], 'b');
-// >> true
+__::size([1, 2, 3]);
+// >> 3
 ```
 
 ### Chaining

@@ -152,4 +152,13 @@ class ArraysTest extends TestCase
         // Assert
         $this->assertEquals(2, $x);
     }
+
+    public function testSize()
+    {
+        // Act
+        $x = __::size([1, 2, 3]);
+
+        // Assert
+        $this->assertEquals(3, $x);
+    }
 }

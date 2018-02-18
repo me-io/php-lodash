@@ -305,4 +305,19 @@ trait Arrays
     {
         return round((array_sum($array) / count($array)), $decimals);
     }
+
+    /**
+     * Get the size of an array.
+     *
+     * @usage __::size([1, 2, 3])
+     *        >> 3
+     *
+     * @param $array
+     *
+     * @return int|void
+     */
+    public static function size(array $array)
+    {
+        return count($array);
+    }
 }
