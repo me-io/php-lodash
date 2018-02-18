@@ -51,9 +51,9 @@ trait Arrays
      * base flatten
      *
      * @param array $array
-     * @param bool $shallow
-     * @param bool $strict
-     * @param int $startIndex
+     * @param bool  $shallow
+     * @param bool  $strict
+     * @param int   $startIndex
      *
      * @return array
      */
@@ -63,7 +63,7 @@ trait Arrays
         bool $strict = true,
         int $startIndex = 0
     ): array {
-        $idx = 0;
+        $idx    = 0;
         $output = [];
 
         foreach ($array as $index => $value) {
@@ -71,7 +71,7 @@ trait Arrays
                 if (!$shallow) {
                     $value = static::baseFlatten($value, $shallow, $strict);
                 }
-                $j = 0;
+                $j   = 0;
                 $len = count($value);
                 while ($j < $len) {
                     $output[$idx++] = $value[$j++];
@@ -93,7 +93,7 @@ trait Arrays
      *        >> [1, 2, 3, 4]
      *
      * @param array $array
-     * @param bool $shallow
+     * @param bool  $shallow
      *
      * @return array
      */
@@ -111,8 +111,8 @@ trait Arrays
      *           );
      **       >> ['addr' => ['country' => 'CA', 'zip' => 54321]]
      *
-     * @param array $array The array to patch
-     * @param array $patches List of new xpath-value pairs
+     * @param array  $array   The array to patch
+     * @param array  $patches List of new xpath-value pairs
      * @param string $parent
      *
      * @return array Returns patched array
@@ -164,15 +164,15 @@ trait Arrays
      **       >> [1, 3, 5, 7, 9]
      *
      * @param int|null $start range start
-     * @param int|null $stop range end
-     * @param int $step range step value
+     * @param int|null $stop  range end
+     * @param int      $step  range step value
      *
      * @return array range of values
      */
     public static function range($start = null, $stop = null, int $step = 1): array
     {
         if ($stop == null && $start != null) {
-            $stop = $start;
+            $stop  = $start;
             $start = 1;
         }
 
@@ -186,20 +186,20 @@ trait Arrays
      **       >> ['foo', 'foo', 'foo']
      *
      * @param string $object The object to repeat.
-     * @param null $times ow many times has to be repeated.
+     * @param null   $times  ow many times has to be repeated.
      *
      * @return array Returns a new array of filled values.
      *
      */
     public static function repeat(string $object = '', $times = null): array
     {
-        if ($times != null) {
-            return array_fill(0, $times, $object);
+        $times = abs($times);
+        if ($times == null) {
+            return [];
         }
 
-        return [];
+        return array_fill(0, $times, $object);
     }
-
 
     /**
      * Creates an array of elements split into groups the length of size. If array can't be split evenly, the final
@@ -208,9 +208,9 @@ trait Arrays
      * @usage __::chunk([1, 2, 3, 4, 5], 3);
      *        >> [[1, 2, 3], [4, 5]]
      *
-     * @param array $array original array
-     * @param int $size the chunk size
-     * @param bool $preserveKeys When set to TRUE keys will be preserved. Default is FALSE which will reindex the
+     * @param array $array          original array
+     * @param int   $size           the chunk size
+     * @param bool  $preserveKeys   When set to TRUE keys will be preserved. Default is FALSE which will reindex the
      *                              chunk numerically
      *
      * @return array
@@ -226,8 +226,8 @@ trait Arrays
      * @usage __::drop([0, 1, 3], 2);
      *        >> [3]
      *
-     * @param array $input The array to query.
-     * @param int $number The number of elements to drop.
+     * @param array $input  The array to query.
+     * @param int   $number The number of elements to drop.
      *
      * @return array
      */
@@ -254,5 +254,21 @@ trait Arrays
         }
 
         return $array;
+    }
+
+    /**
+     * Search for the index of a value in an array.
+     *
+     * @usage __::search(['a', 'b', 'c'], 'b')
+     *        >> 1
+     *
+     * @param array  $array
+     * @param string $value
+     *
+     * @return mixed
+     */
+    public static function search(array $array, string $value)
+    {
+        return array_search($value, $array, true);
     }
 }

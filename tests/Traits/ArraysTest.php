@@ -31,11 +31,11 @@ class ArraysTest extends TestCase
     public function testFlatten()
     {
         // Arrange
-        $a = [1, 2, [3, [4]]];
+        $a  = [1, 2, [3, [4]]];
         $a2 = [1, 2, [3, [[4]]]];
 
         // Act
-        $x = \__::flatten($a);
+        $x  = \__::flatten($a);
         $x2 = \__::flatten($a2, true);
 
         // Assert
@@ -124,5 +124,14 @@ class ArraysTest extends TestCase
 
         // Assert
         $this->assertNotEquals([1, 2, 3, 4, 5], $x);
+    }
+
+    public function testSearch()
+    {
+        // Act
+        $x = __::search(['a', 'b', 'c'], 'b');
+
+        // Assert
+        $this->assertEquals(1, $x);
     }
 }

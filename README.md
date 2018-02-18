@@ -185,6 +185,15 @@ __::randomize([1, 2, 3]);
 // >> [2, 3, 1]
 ```
 
+#### [`__::search($array, $value)`](src/Traits/Arrays.php)
+
+Search for the index of a value in an array.
+
+```php
+__::search(['a', 'b', 'c'], 'b')
+// >> 1
+```
+
 ### Chaining
 
 #### [`__::chain($initialValue)`](src/Traits/Sequence/Chain.php)
