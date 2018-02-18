@@ -275,6 +275,18 @@ __::rest([1, 2, 3], 2);
 // >> [3]
 ```
 
+#### [`__::sortKeys(array $array, string $direction = 'ASC')`](src/Traits/Arrays.php)
+
+Sort an array by key.
+
+```php
+__::sortKeys(['z' => 0, 'b' => 1, 'r' => 2]);
+// >> ['b' => 1, 'r' => 2, 'z' => 0]
+
+__::sortKeys(['z' => 0, 'b' => 1, 'r' => 2], 'desc');
+// >> ['z' => 0, 'r' => 2, 'b' => 1]
+```
+
 ### Chaining
 
 #### [`__::chain($initialValue)`](src/Traits/Sequence/Chain.php)

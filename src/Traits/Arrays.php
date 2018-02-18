@@ -432,4 +432,27 @@ trait Arrays
     {
         return array_splice($array, $from);
     }
+
+    /**
+     * Sort an array by key.
+     *
+     * @usage __::sortKeys(['z' => 0, 'b' => 1, 'r' => 2])
+     *        >> ['b' => 1, 'r' => 2, 'z' => 0]
+     *
+     * @param array  $array
+     * @param string $direction
+     *
+     * @return mixed
+     */
+    public static function sortKeys(array $array, string $direction = 'ASC')
+    {
+        $direction = (strtolower($direction) === 'desc') ? SORT_DESC : SORT_ASC;
+        if ($direction === SORT_ASC) {
+            ksort($array);
+        } else {
+            krsort($array);
+        }
+
+        return $array;
+    }
 }

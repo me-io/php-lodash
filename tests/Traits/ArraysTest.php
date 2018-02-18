@@ -215,4 +215,13 @@ class ArraysTest extends TestCase
         // Assert
         $this->assertEquals([3], $x);
     }
+
+    public function testSortKeys()
+    {
+        // Act
+        $x = __::sortKeys(['z' => 0, 'b' => 1, 'r' => 2]);
+
+        // Assert
+        $this->assertEquals(['b' => 1, 'r' => 2, 'z' => 0], $x);
+    }
 }
