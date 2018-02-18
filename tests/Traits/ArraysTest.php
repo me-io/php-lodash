@@ -179,4 +179,13 @@ class ArraysTest extends TestCase
         // Assert
         $this->assertTrue(in_array($x, [1, 2, 3]));
     }
+
+    public function testIntersection()
+    {
+        // Act
+        $x = __::intersection(["green", "red", "blue"], ["green", "yellow", "red"]);
+
+        // Assert
+        $this->assertEquals(["green", "red"], $x);
+    }
 }

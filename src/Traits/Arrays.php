@@ -359,4 +359,24 @@ trait Arrays
 
         return __::first($array, $take);
     }
+
+
+    /**
+     * Return an array with all elements found in both input arrays.
+     *
+     * @usage __::intersection(["green", "red", "blue"], ["green", "yellow", "red"])
+     *        >> ["green", "red"]
+     *
+     * @param array $a
+     * @param array $b
+     *
+     * @return array
+     */
+    public static function intersection(array $a, array $b): array
+    {
+        $a = (array) $a;
+        $b = (array) $b;
+
+        return array_values(array_intersect($a, $b));
+    }
 }

@@ -239,6 +239,15 @@ __::random([1, 2, 3]);
 // >> Returns 1, 2 or 3
 ```
 
+#### [`__::intersection(array $a, array $b)`](src/Traits/Arrays.php)
+
+Return an array with all elements found in both input arrays.
+
+```php
+__::intersection(["green", "red", "blue"], ["green", "yellow", "red"]);
+// >> ["green", "red"]
+```
+
 ### Chaining
 
 #### [`__::chain($initialValue)`](src/Traits/Sequence/Chain.php)
