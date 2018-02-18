@@ -103,7 +103,7 @@ Append item to array
 
 ```php
 __::append([1, 2, 3], 4);
-// >> [1, 2, 3, 4]
+# [1, 2, 3, 4]
 ```
 
 ##### [`__::compact(array $array = [])`](src/Traits/Arrays.php)
@@ -112,7 +112,7 @@ Returns a copy of the array with falsy values removed.
 
 ```php
 __::compact([0, 1, false, 2, '', 3]);
-// >> [1, 2, 3]
+# [1, 2, 3]
 ```
 
 ##### [`__::flatten($array, $shallow = false)`](src/Traits/Arrays.php)
@@ -121,7 +121,7 @@ Flattens a multidimensional array. If you pass shallow, the array will only be f
 
 ```php
 __::flatten([1, 2, [3, [4]]], [flatten]);
-// >> [1, 2, 3, 4]
+# [1, 2, 3, 4]
 ```
 
 ##### [`__::patch($arr, $patches, $parent = '')`](src/Traits/Arrays.php)
@@ -130,14 +130,14 @@ Patches array with list of xpath-value pairs.
 
 ```php
 __::patch(['addr' => ['country' => 'US', 'zip' => 12345]], ['/addr/country' => 'CA', '/addr/zip' => 54321]);
-// >> ['addr' => ['country' => 'CA', 'zip' => 54321]]
+# ['addr' => ['country' => 'CA', 'zip' => 54321]]
 ```
 
 ##### [`__::prepend(array $array = [], $value = null)`](src/Traits/Arrays.php)
 
 ```php
 __::prepend([1, 2, 3], 4);
-// >> [4, 1, 2, 3]
+# [4, 1, 2, 3]
 ```
 
 ##### [`__::range($start = null, $stop = null, $step = 1)`](src/Traits/Arrays.php)
@@ -146,7 +146,7 @@ Returns an array of integers from start to stop (exclusive) by step.
 
 ```php
 __::range(1, 10, 2);
-// >> [1, 3, 5, 7, 9]
+# [1, 3, 5, 7, 9]
 ```
 
 ##### [`__::repeat($object = '', $times = null)`](src/Traits/Arrays.php)
@@ -155,7 +155,7 @@ Returns an array of `$n` length with each index containing the provided value.
 
 ```php
 __::repeat('foo', 3);
-// >> ['foo', 'foo', 'foo']
+# ['foo', 'foo', 'foo']
 ```
 
 #### [`__::chunk(array $array, $size = 1, $preserveKeys = false)`](src/Traits/Arrays.php)
@@ -164,7 +164,7 @@ Split an array into chunks
 
 ```php
 __::chunk([1, 2, 3, 4, 5], 3);
-// >> [[1, 2, 3], [4, 5]]
+# [[1, 2, 3], [4, 5]]
 ```
 
 #### [`__::drop(array $input, $number = 1)`](src/Traits/Arrays.php)
@@ -173,7 +173,7 @@ Creates a slice of array with n elements dropped from the beginning.
 
 ```php
 __::drop([0, 1, 3], 2);
-// >> [3]
+# [3]
 ```
 
 #### [`__::randomize(array $array)`](src/Traits/Arrays.php)
@@ -182,7 +182,7 @@ Shuffle an array ensuring no item remains in the same position.
 
 ```php
 __::randomize([1, 2, 3]);
-// >> [2, 3, 1]
+# [2, 3, 1]
 ```
 
 #### [`__::search($array, $value)`](src/Traits/Arrays.php)
@@ -191,7 +191,7 @@ Search for the index of a value in an array.
 
 ```php
 __::search(['a', 'b', 'c'], 'b');
-// >> 1
+# 1
 ```
 
 #### [`__::average($array, $decimals)`](src/Traits/Arrays.php)
@@ -200,7 +200,7 @@ Returns the average value of an array.
 
 ```php
 __::average([1, 2, 3]);
-// >> 2
+# 2
 ```
 
 #### [`__::size($array)`](src/Traits/Arrays.php)
@@ -209,7 +209,7 @@ Get the size of an array.
 
 ```php
 __::size([1, 2, 3]);
-// >> 3
+# 3
 ```
 
 #### [`__::contains($array, $value)`](src/Traits/Arrays.php)
@@ -218,7 +218,7 @@ Check if an item is in an array.
 
 ```php
 __::contains(['a', 'b', 'c'], 'b');
-// >> true
+# true
 ```
 
 #### [`__::clean(array $array)`](src/Traits/Arrays.php)
@@ -227,7 +227,7 @@ Clean all falsy values from an array.
 
 ```php
 __::clean([true, false, 0, 1, 'string', '']);
-// >> [true, 1, 'string']
+# [true, 1, 'string']
 ```
 
 #### [`__::random(array $array, $take = null)`](src/Traits/Arrays.php)
@@ -236,7 +236,7 @@ Get a random string from an array.
 
 ```php
 __::random([1, 2, 3]);
-// >> Returns 1, 2 or 3
+# Returns 1, 2 or 3
 ```
 
 #### [`__::intersection(array $a, array $b)`](src/Traits/Arrays.php)
@@ -245,7 +245,7 @@ Return an array with all elements found in both input arrays.
 
 ```php
 __::intersection(["green", "red", "blue"], ["green", "yellow", "red"]);
-// >> ["green", "red"]
+# ["green", "red"]
 ```
 
 #### [`__::intersects(array $a, array $b)`](src/Traits/Arrays.php)
@@ -254,7 +254,7 @@ Return a boolean flag which indicates whether the two input arrays have any comm
 
 ```php
 __::intersects(["green", "red", "blue"], ["green", "yellow", "red"])
-// >> true
+# true
 ```
 
 #### [`__::initial(array $array, int $to = 1)`](src/Traits/Arrays.php)
@@ -263,7 +263,7 @@ Exclude the last X elements from an array
 
 ```php
 __::initial([1, 2, 3], 1);
-// >> [1, 2]
+# [1, 2]
 ```
 
 #### [`__::rest(array $array, int $from = 1)`](src/Traits/Arrays.php)
@@ -272,7 +272,7 @@ Exclude the first X elements from an array
 
 ```php
 __::rest([1, 2, 3], 2);
-// >> [3]
+# [3]
 ```
 
 #### [`__::sortKeys(array $array, string $direction = 'ASC')`](src/Traits/Arrays.php)
@@ -281,10 +281,10 @@ Sort an array by key.
 
 ```php
 __::sortKeys(['z' => 0, 'b' => 1, 'r' => 2]);
-// >> ['b' => 1, 'r' => 2, 'z' => 0]
+# ['b' => 1, 'r' => 2, 'z' => 0]
 
 __::sortKeys(['z' => 0, 'b' => 1, 'r' => 2], 'desc');
-// >> ['z' => 0, 'r' => 2, 'b' => 1]
+# ['z' => 0, 'r' => 2, 'b' => 1]
 ```
 
 ### Chaining
@@ -298,7 +298,7 @@ __::chain([0, 1, 2, 3, null])
     ->compact()
     ->prepend(4)
     ->value();
-// >> [4, 1, 2, 3]
+# [4, 1, 2, 3]
 ```
 
 ### Collections
@@ -316,7 +316,7 @@ $a = [
 __::filter($a, function($n) {
     return $n['age'] > 24;
 });
-// >> [['name' => 'fred', 'age' => 32]]
+# [['name' => 'fred', 'age' => 32]]
 ```
 
 ##### [`__::first($array, [$n])`](src/Traits/Collections.php)
@@ -325,7 +325,7 @@ Gets the first element of an array. Passing n returns the first n elements.
 
 ```php
 __::first([1, 2, 3, 4, 5], 2);
-// >> [1, 2]
+# [1, 2]
 ```
 
 ##### [`__::get($array, JSON $string)`](src/Traits/Collections.php)
@@ -334,7 +334,7 @@ Get item of an array by index, aceepting nested index
 
 ```php
 __::get(['foo' => ['bar' => 'ter']], 'foo.bar');
-// >> 'ter'
+# 'ter'
 ```
 
 ##### [`__::last($array, [$n])`](src/Traits/Collections.php)
@@ -343,7 +343,7 @@ Gets the last element of an array. Passing n returns the last n elements.
 
 ```php
 __::last([1, 2, 3, 4, 5], 2);
-// >> [4, 5]
+# [4, 5]
 ```
 
 ##### [`__::map($array, callback($n))`](src/Traits/Collections.php)
@@ -354,7 +354,7 @@ Returns an array of values by mapping each in collection through the iterator.
 __::map([1, 2, 3], function($n) {
     return $n * 3;
 });
-// >> [3, 6, 9]
+# [3, 6, 9]
 ```
 
 ##### [`__::max($array)`](src/Traits/Collections.php)
@@ -363,7 +363,7 @@ Returns the maximum value from the collection. If passed an iterator, max will r
 
 ```php
 __::max([1, 2, 3]);
-// >> 3
+# 3
 ```
 
 ##### [`__::min($array)`](src/Traits/Collections.php)
@@ -372,7 +372,7 @@ Returns the minimum value from the collection. If passed an iterator, min will r
 
 ```php
 __::min([1, 2, 3]);
-// >> 1
+# 1
 ```
 
 ##### [`__::pluck($array, $property)`](src/Traits/Collections.php)
@@ -386,7 +386,7 @@ $a = [
 ];
 
 __::pluck($a, 'foo');
-// >> ['bar', 'bar2']
+# ['bar', 'bar2']
 ```
 
 ##### [`__::where($array, $parameters[])`](src/Traits/Collections.php)
@@ -400,7 +400,7 @@ $a = [
 ];
 
 __::where($a, ['age' => 16]);
-// >> [['name' => 'maciej', 'age' => 16]]
+# [['name' => 'maciej', 'age' => 16]]
 ```
 
 #### [`__::assign($collection1, $collection2)`](src/Traits/Collections.php)
@@ -424,7 +424,7 @@ $b = [
 ];
 
 __::assign($a, $b);
-// >> ['color' => ['favorite' => 'green', 'blue'], 10]
+# ['color' => ['favorite' => 'green', 'blue'], 10]
 ```
 
 #### [`__::reduceRight($collection, \Closure $iteratee, $accumulator = null)`](src/Traits/Collections.php)
@@ -435,7 +435,7 @@ Reduces $collection to a value which is the $accumulator result of running each 
 __::reduceRight(['a', 'b', 'c'], function ($word, $char) {
     return $word . $char;
 }, '');
-// >> 'cba'
+# 'cba'
 ```
 
 #### [`__::doForEachRight($collection, \Closure $iteratee)`](src/Traits/Collections.php)
@@ -444,7 +444,7 @@ Iterate over elements of the collection, from right to left, and invokes iterate
 
 ```php
 __::doForEachRight([1, 2, 3], function ($value) { print_r($value) });
-// >> (Side effect: print 3, 2, 1)
+# (Side effect: print 3, 2, 1)
 ```
 
 #### [`__::doForEach($collection, \Closure $iteratee)`](src/Traits/Collections.php)
@@ -453,7 +453,7 @@ Iterate over elements of the collection and invokes iterate for each element.
 
 ```php
 __::doForEach([1, 2, 3], function ($value) { print_r($value) });
-// >> (Side effect: print 1, 2, 3)
+# (Side effect: print 1, 2, 3)
 ```
 
 #### [`__::set($collection, $path, $value = null)`](src/Traits/Collections.php)
@@ -462,7 +462,7 @@ Return a new collection with the item set at index to given value. Index can be 
 
 ```php
 __::set(['foo' => ['bar' => 'ter']], 'foo.baz.ber', 'fer');
-// >> '['foo' => ['bar' => 'ter', 'baz' => ['ber' => 'fer']]]'
+# '['foo' => ['bar' => 'ter', 'baz' => ['ber' => 'fer']]]'
 ```
 
 #### [`__::hasKeys($collection, $path, $value = null)`](src/Traits/Collections.php)
@@ -471,7 +471,7 @@ Returns if $input contains all requested $keys. If $strict is true it also check
 
 ```php
 __::hasKeys(['foo' => 'bar', 'foz' => 'baz'], ['foo', 'foz']);
-// >> true
+# true
 ```
 
 #### [`__::has($collection, $path)`](src/Traits/Collections.php)
@@ -480,10 +480,10 @@ Return true if $collection contains the requested $key.
 
 ```php
 __::has(['foo' => ['bar' => 'num'], 'foz' => 'baz'], 'foo.bar');
-// >> true
+# true
 
 __::hasKeys((object) ['foo' => 'bar', 'foz' => 'baz'], 'bar');
-// >> false
+# false
 ```
 
 #### [`__::concat($collection1, $collection2)`](src/Traits/Collections.php)
@@ -492,7 +492,7 @@ Combines and concat collections provided with each others.
 
 ```php
 __::concat(['color' => ['favorite' => 'red', 5], 3], [10, 'color' => ['favorite' => 'green', 'blue']]);
-// >> ['color' => ['favorite' => ['green'], 5, 'blue'], 3, 10]
+# ['color' => ['favorite' => ['green'], 5, 'blue'], 3, 10]
 ```
 
 #### [`__::concatDeep($collection1, $collection2)`](src/Traits/Collections.php)
@@ -501,7 +501,7 @@ Recursively combines and concat collections provided with each others.
 
 ```php
 __::concatDeep(['color' => ['favorite' => 'red', 5], 3], [10, 'color' => ['favorite' => 'green', 'blue']]);
-// >> ['color' => ['favorite' => ['red', 'green'], 5, 'blue'], 3, 10]
+# ['color' => ['favorite' => ['red', 'green'], 5, 'blue'], 3, 10]
 ```
 
 #### [`__::ease(array $collection, $glue = '.')`](src/Traits/Collections.php)
@@ -510,7 +510,7 @@ Flattens a complex collection by mapping each ending leafs value to a key consis
 
 ```php
 __::ease(['foo' => ['bar' => 'ter'], 'baz' => ['b', 'z']]);
-// >> '['foo.bar' => 'ter', 'baz.0' => 'b', , 'baz.1' => 'z']'
+# '['foo.bar' => 'ter', 'baz.0' => 'b', , 'baz.1' => 'z']'
 ```
 
 #### [`__::every($collection, \Closure $iteratee)`](src/Traits/Collections.php)
@@ -534,15 +534,15 @@ __::groupBy([
     ],
     'state'
 );
-// >> [
-//   'IN' => [
-//      ['state' => 'IN', 'city' => 'Indianapolis', 'object' => 'School bus'],
-//      ['state' => 'CA', 'city' => 'San Diego', 'object' => 'Light bulb'],
-//   ],
-//   'CA' => [
-//      ['state' => 'CA', 'city' => 'Mountain View', 'object' => 'Space pen']
-//   ]
-// ]
+# [
+#   'IN' => [
+#       ['state' => 'IN', 'city' => 'Indianapolis', 'object' => 'School bus'],
+#       ['state' => 'CA', 'city' => 'San Diego', 'object' => 'Light bulb'],
+#   ],
+#   'CA' => [
+#       ['state' => 'CA', 'city' => 'Mountain View', 'object' => 'Space pen']
+#    ]
+# ]
 
 __::groupBy([
         ['state' => 'IN', 'city' => 'Indianapolis', 'object' => 'School bus'],
@@ -553,15 +553,15 @@ __::groupBy([
         return $value->city;
     }
 );
-// >> [
-//   'Indianapolis' => [
-//      ['state' => 'IN', 'city' => 'Indianapolis', 'object' => 'School bus'],
-//      ['state' => 'IN', 'city' => 'Indianapolis', 'object' => 'Manhole'],
-//   ],
-//   'San Diego' => [
-//      ['state' => 'CA', 'city' => 'San Diego', 'object' => 'Light bulb'],
-//   ]
-// ]
+# [
+#   'Indianapolis' => [
+#     ['state' => 'IN', 'city' => 'Indianapolis', 'object' => 'School bus'],
+#     ['state' => 'IN', 'city' => 'Indianapolis', 'object' => 'Manhole'],
+#   ],
+#   'San Diego' => [
+#     ['state' => 'CA', 'city' => 'San Diego', 'object' => 'Light bulb'],
+#   ]
+# ]
 ```
 
 #### [`__::isEmpty($value)`](src/Traits/Collections.php)
@@ -570,7 +570,7 @@ Check if value is an empty array or object.
 
 ```php
 __::isEmpty([]);
-// >> true
+# true
 ```
 
 #### [`__::merge($collection1, $collection2)`](src/Traits/Collections.php)
@@ -579,7 +579,7 @@ Recursively combines and merge collections provided with each others.
 
 ```php
 __::merge(['color' => ['favorite' => 'red', 'model' => 3, 5], 3], [10, 'color' => ['favorite' => 'green', 'blue']]);
-// >> ['color' => ['favorite' => 'green', 'model' => 3, 'blue'], 10]
+# ['color' => ['favorite' => 'green', 'model' => 3, 'blue'], 10]
 ```
 
 #### [`__::pick($collection = [], array $paths = [], $default = null)`](src/Traits/Collections.php)
@@ -588,7 +588,7 @@ Returns an array having only keys present in the given path list.
 
 ```php
 __::pick(['a' => 1, 'b' => ['c' => 3, 'd' => 4]], ['a', 'b.d']);
-// >> ['a' => 1, 'b' => ['d' => 4]]
+# ['a' => 1, 'b' => ['d' => 4]]
 ```
 
 #### [`__::reduce($collection, \Closure $iteratee, $accumulator = null)`](src/Traits/Collections.php)
@@ -599,7 +599,7 @@ Reduces $collection to a value which is the $accumulator result of running each 
 __::reduce([1, 2], function ($sum, $number) {
     return $sum + $number;
 }, 0);
-// >> 3
+# 3
 
 $a = [
     ['state' => 'IN', 'city' => 'Indianapolis', 'object' => 'School bus'],
@@ -616,12 +616,12 @@ $iteratee = function ($accumulator, $value) {
     return $accumulator;
 };
 __::reduce($c, $iteratee, []);
-// >> [
-// >>    'Indianapolis' => 2,
-// >>    'Plainfield' => 1,
-// >>    'San Diego' => 1,
-// >>    'Mountain View' => 1,
-// >> ]
+# [
+#    'Indianapolis' => 2,
+#    'Plainfield' => 1,
+#    'San Diego' => 1,
+#    'Mountain View' => 1,
+# ]
 
 $object = new \stdClass();
 $object->a = 1;
@@ -633,10 +633,10 @@ __::reduce($object, function ($result, $value, $key) {
     $result[$value][] = $key;
     return $result;
 }, [])
-// >> [
-// >>     '1' => ['a', 'c'],
-// >>     '2' => ['b']
-// >> ]
+# [
+#     '1' => ['a', 'c'],
+#     '2' => ['b']
+# ]
 ```
 
 #### [`__::unease(array $collection, $separator = '.')`](src/Traits/Collections.php)
@@ -645,7 +645,7 @@ Builds a multidimensional collection out of a hash map using the key as indicato
 
 ```php
 __::unease(['foo.bar' => 'ter', 'baz.0' => 'b', , 'baz.1' => 'z']);
-// >> '['foo' => ['bar' => 'ter'], 'baz' => ['b', 'z']]'
+# '['foo' => ['bar' => 'ter'], 'baz' => ['b', 'z']]'
 ```
 
 ### Strings
@@ -656,7 +656,7 @@ Split a string by string.
 
 ```php
 __::split('a-b-c', '-', 2);
-// >> ['a', 'b-c']
+# ['a', 'b-c']
 ```
 
 #### [`__::camelCase($input)`](src/Traits/Strings.php)
@@ -665,7 +665,7 @@ Converts string to [camel case](https://en.wikipedia.org/wiki/CamelCase).
 
 ```php
 __::camelCase('Foo Bar');
-// >> 'fooBar'
+# 'fooBar'
 ```
 
 #### [`__::capitalize($input)`](src/Traits/Strings.php)
@@ -674,7 +674,7 @@ Converts the first character of string to upper case and the remaining to lower 
 
 ```php
 __::capitalize('FRED');
-// >> 'Fred'
+# 'Fred'
 ```
 
 #### [`__::kebabCase($input)`](src/Traits/Strings.php)
@@ -683,7 +683,7 @@ Converts string to [kebab case](https://en.wikipedia.org/wiki/Letter_case#Specia
 
 ```php
 __::kebabCase('Foo Bar');
-// >> 'foo-bar'
+# 'foo-bar'
 ```
 
 #### [`__::lowerFirst($input)`](src/Traits/Strings.php)
@@ -692,7 +692,7 @@ Converts the first character of string to lower case, like lcfirst.
 
 ```php
 __::lowerFirst('Fred');
-// >> 'fred'
+# 'fred'
 ```
 
 #### [`__::snakeCase($input)`](src/Traits/Strings.php)
@@ -701,7 +701,7 @@ Converts string to [snake case](https://en.wikipedia.org/wiki/Snake_case).
 
 ```php
 __::snakeCase('Foo Bar');
-// >> 'foo_bar'
+# 'foo_bar'
 ```
 
 #### [`__::startCase($input)`](src/Traits/Strings.php)
@@ -710,7 +710,7 @@ Converts string to [start case](https://en.wikipedia.org/wiki/Letter_case#Stylis
 
 ```php
 __::startCase('--foo-bar--');
-// >> 'Foo Bar'
+# 'Foo Bar'
 ```
 
 #### [`__::toLower($input)`](src/Traits/Strings.php)
@@ -719,7 +719,7 @@ Converts string, as a whole, to lower case just like strtolower.
 
 ```php
 __::toLower('fooBar');
-// >> 'foobar'
+# 'foobar'
 ```
 
 #### [`__::toUpper($input)`](src/Traits/Strings.php)
@@ -728,7 +728,7 @@ Converts string, as a whole, to lower case just like strtoupper.
 
 ```php
 __::toUpper('fooBar');
-// >> 'FOOBAR'
+# 'FOOBAR'
 ```
 
 #### [`__::upperCase($input)`](src/Traits/Strings.php)
@@ -737,7 +737,7 @@ Converts string, as space separated words, to upper case.
 
 ```php
 __::upperCase('--foo-bar');
-// >> 'FOO BAR'
+# 'FOO BAR'
 ```
 
 #### [`__::upperFirst($input)`](src/Traits/Strings.php)
@@ -746,7 +746,7 @@ Converts the first character of string to upper case, like ucfirst.
 
 ```php
 __::upperFirst('fred');
-// >> 'Fred'
+# 'Fred'
 ```
 
 #### [`__::words($input, $pattern = null)`](src/Traits/Strings.php)
@@ -755,10 +755,10 @@ Splits string into an array of its words.
 
 ```php
 __::words('fred, barney, & pebbles');
-// >> ['fred', 'barney', 'pebbles']
+# ['fred', 'barney', 'pebbles']
 
 __::words('fred, barney, & pebbles', '/[^, ]+/');
-// >> ['fred', 'barney', '&', 'pebbles']
+# ['fred', 'barney', '&', 'pebbles']
 ```
 
 #### [`__::lowerCase($input)`](src/Traits/Strings.php)
@@ -767,7 +767,7 @@ Converts string, as space separated words, to lower case.
 
 ```php
 __::lowerCase('--Foo-Bar--');
-// >> 'foo bar'
+# 'foo bar'
 ```
 
 ### Functions
@@ -775,7 +775,7 @@ __::lowerCase('--Foo-Bar--');
 ##### [`__::slug($string, [array $options])`](src/Traits/Functions.php)
 ```php
 __::slug('Jakieś zdanie z dużą ilością obcych znaków!');
-// >> 'jakies-zdanie-z-duza-iloscia-obcych-znakow'
+# 'jakies-zdanie-z-duza-iloscia-obcych-znakow'
 
 $options = [
     'delimiter' => '-',
@@ -786,7 +786,7 @@ $options = [
 ]
 
 __::slug('Something you don\'t know about know about Jackson', $options);
-// >> 'something-you-dont-know-about'
+# 'something-you-dont-know-about'
 ```
 
 ##### [`__::truncate($string, [$limit=40])`](src/Traits/Functions.php)
@@ -796,10 +796,10 @@ Truncate string based on count of words
 ```php
 $string = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque et mi orci.';
 __::truncate($string);
-// >> 'Lorem ipsum dolor sit amet, consectetur...'
+# 'Lorem ipsum dolor sit amet, consectetur...'
 
 __::truncate($string, 60);
-// >> 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pel...'
+# 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pel...'
 ```
 
 ##### [`__::urlify($string)`](src/Traits/Functions.php)
@@ -808,7 +808,7 @@ Find the urls inside a string a put them inside anchor tags
 
 ```php
 __::urlify('I love https://google.com');
-// >> 'I love <a href="https://google.com">google.com</a>'
+# 'I love <a href="https://google.com">google.com</a>'
 ```
 
 ### Objects
@@ -819,10 +819,10 @@ Check if give value is array or not.
 
 ```php
 __::isArray([1, 2, 3]);
-// >> true
+# true
 
 __::isArray(123);
-// >> false
+# false
 ```
 
 ##### [`__::isFunction($string)`](src/Traits/Objects.php)
@@ -831,7 +831,7 @@ Check if give value is function or not.
 
 ```php
 __::isFunction(function ($a) { return $a + 2; });
-// >> true
+# true
 ```
 
 ##### [`__::isNull($null)`](src/Traits/Objects.php)
@@ -840,7 +840,7 @@ Check if give value is null or not.
 
 ```php
 __::isNull(null);
-// >> true
+# true
 ```
 
 ##### [`__::isNumber($int|$float)`](src/Traits/Objects.php)
@@ -849,7 +849,7 @@ Check if give value is number or not.
 
 ```php
 __::isNumber(123);
-// >> true
+# true
 ```
 
 ##### [`__::isObject($object)`](src/Traits/Objects.php)
@@ -858,7 +858,7 @@ Check if give value is object or not.
 
 ```php
 __::isObject('fred');
-// >> false
+# false
 ```
 
 ##### [`__::isString($string)`](src/Traits/Objects.php)
@@ -867,7 +867,7 @@ Check if give value is string or not.
 
 ```php
 __::isString('fred');
-// >> true
+# true
 ```
 
 ### Utilities
@@ -878,10 +878,10 @@ Check if the value is valid email.
 
 ```php
 __::isEmail('test@test.com');
-// >> true
+# true
 
 __::isEmail('test_test.com');
-// >> false
+# false
 ```
 
 ##### [`__::now()`](src/Traits/Utilities.php)
@@ -890,7 +890,7 @@ Wrapper of the [`time()`](http://php.net/manual/en/function.time.php) function t
 
 ```php
 __::now();
-// >> 1417546029
+# 1417546029
 ```
 
 ##### [`__::stringContains($needle, $haystack, [$offset])`](src/Traits/Utilities.php)
@@ -899,7 +899,7 @@ Wrapper of the [`time()`](http://php.net/manual/en/function.time.php) function t
 
 ```php
 __::stringContains('waffle', 'wafflecone');
-// >> true
+# true
 ```
 
 ## Contributing
