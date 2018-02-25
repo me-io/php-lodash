@@ -3,7 +3,6 @@
 namespace __\Traits;
 
 use __;
-use Closure;
 
 trait Arrays
 {
@@ -194,7 +193,7 @@ trait Arrays
      * @return array Returns a new array of filled values.
      *
      */
-    public static function repeat(string $object = '', $times = null): array
+    public static function repeat($object = '', $times = null): array
     {
         $times = abs($times);
         if ($times == null) {
@@ -281,7 +280,7 @@ trait Arrays
      * @usage __::contains(['a', 'b', 'c'], 'b')
      *        >> true
      *
-     * @param array $array
+     * @param array  $array
      * @param string $value
      *
      * @return bool
@@ -335,7 +334,7 @@ trait Arrays
     public static function clean(array $array)
     {
         return __::filter($array, function ($value) {
-            return (bool) $value;
+            return (bool)$value;
         });
     }
 
@@ -374,8 +373,8 @@ trait Arrays
      */
     public static function intersection(array $a, array $b): array
     {
-        $a = (array) $a;
-        $b = (array) $b;
+        $a = (array)$a;
+        $b = (array)$b;
 
         return array_values(array_intersect($a, $b));
     }
@@ -393,8 +392,8 @@ trait Arrays
      */
     public static function intersects(array $a, array $b): bool
     {
-        $a = (array) $a;
-        $b = (array) $b;
+        $a = (array)$a;
+        $b = (array)$b;
 
         return count(self::intersection($a, $b)) > 0;
     }
