@@ -24,6 +24,6 @@
   },
   "homepage": "https://github.com/me-io/php-lodash#readme",
   "devDependencies": {
-    "all-contributors-cli": "^4.10.1"
+    "all-contributors-cli": "^4.11.1"
   }
 }
