@@ -672,8 +672,8 @@ class CollectionsTest extends TestCase
     public function testReduceArray()
     {
         // Arrange
-        $a = [1, 2, 3];
-        $b = [
+        $a        = [1, 2, 3];
+        $b        = [
             10659489,
             1578484,
             1620331,
@@ -681,13 +681,14 @@ class CollectionsTest extends TestCase
             944022,
             1037939,
         ];
-        $c = [
+        $c        = [
             ['state' => 'IN', 'city' => 'Indianapolis', 'object' => 'School bus'],
             ['state' => 'IN', 'city' => 'Indianapolis', 'object' => 'Manhole'],
             ['state' => 'IN', 'city' => 'Plainfield', 'object' => 'Basketball'],
             ['state' => 'CA', 'city' => 'San Diego', 'object' => 'Light bulb'],
             ['state' => 'CA', 'city' => 'Mountain View', 'object' => 'Space pen'],
         ];
+        $d        = [2];
         $aReducer = function ($accumulator, $value) {
             return $accumulator + $value;
         };
@@ -698,7 +699,7 @@ class CollectionsTest extends TestCase
 
             return $accumulator + $value;
         };
-        $cIndex = 0;
+        $cIndex   = 0;
         $cReducer = function ($accumulator, $value, $index, $collection) use (&$c, &$cIndex) {
             $this->assertEquals($c, $collection);
             $this->assertEquals($cIndex++, $index);
@@ -712,17 +713,21 @@ class CollectionsTest extends TestCase
         };
 
         // Act
-        $x = __::reduce($a, $aReducer, 2);
-        $y = __::reduce($b, $bReducer);
-        $z = __::reduce($c, $cReducer, []);
+        $w  = __::reduce($d, $aReducer);
+        $ww = __::reduce($d, $aReducer, 0);
+        $x  = __::reduce($a, $aReducer, 2);
+        $y  = __::reduce($b, $bReducer);
+        $z  = __::reduce($c, $cReducer, []);
 
         // Assert
+        $this->assertEquals(2, $w);
+        $this->assertEquals(2, $ww);
         $this->assertEquals(8, $x);
-        $this->assertEquals(27435194, $y);
+        $this->assertEquals(16775705, $y);
         $this->assertEquals([
-            'Indianapolis' => 2,
-            'Plainfield' => 1,
-            'San Diego' => 1,
+            'Indianapolis'  => 2,
+            'Plainfield'    => 1,
+            'San Diego'     => 1,
             'Mountain View' => 1,
         ], $z);
     }
@@ -780,7 +785,7 @@ class CollectionsTest extends TestCase
 
         // Assert
         $this->assertEquals('cba', $x);
-        $this->assertEquals('acba', $x1);
+        $this->assertEquals('cba', $x1);
     }
 
     public function testPick()
