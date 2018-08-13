@@ -192,8 +192,8 @@ class CollectionsTest extends TestCase
                 $array[$key] = $value;
             };
         };
-        $a = [1, 2, 3];
-        $b = ['state' => 'IN', 'city' => 'Indianapolis', 'object' => 'School bus'];
+        $a          = [1, 2, 3];
+        $b          = ['state' => 'IN', 'city' => 'Indianapolis', 'object' => 'School bus'];
 
         // Act.
         $aMapped = [];
@@ -219,8 +219,8 @@ class CollectionsTest extends TestCase
                 $array[$key] = $value;
             };
         };
-        $a = [1, 2, 3];
-        $b = ['state' => 'IN', 'city' => 'Indianapolis', 'object' => 'School bus'];
+        $a          = [1, 2, 3];
+        $b          = ['state' => 'IN', 'city' => 'Indianapolis', 'object' => 'School bus'];
 
         // Act.
         $aAppend = [];
@@ -271,8 +271,8 @@ class CollectionsTest extends TestCase
                 }
             };
         };
-        $a = [1, 2, 3, 4];
-        $b = ['state' => 'IN', 'city' => 'Indianapolis', 'object' => 'School bus'];
+        $a          = [1, 2, 3, 4];
+        $b          = ['state' => 'IN', 'city' => 'Indianapolis', 'object' => 'School bus'];
 
         // Act.
         $aMapped = [];
@@ -295,15 +295,15 @@ class CollectionsTest extends TestCase
         ];
 
         // Act
-        $x = __::get($a, 'foo.bar');
+        $x  = __::get($a, 'foo.bar');
         $x2 = __::get($a, 'foo.bar', 'default');
         $x3 = __::get($a, null);
-        $y = __::get($a, 'foo.baz');
+        $y  = __::get($a, 'foo.baz');
         $y2 = __::get($a, 'foo.baz', 'default');
         $y3 = __::get($a, 'foo.baz', function () {
             return 'default_from_callback';
         });
-        $z = __::get($a, 'baz.foo.obj');
+        $z  = __::get($a, 'baz.foo.obj');
 
         // Assert
         $this->assertEquals('ter', $x);
@@ -318,23 +318,23 @@ class CollectionsTest extends TestCase
     public function testGetObjects()
     {
         // Arrange
-        $o = new \stdClass();
-        $a = new \stdClass();
-        $a->foo = new \stdClass();
-        $a->foo->bar = 'ter';
-        $a->baz = new \stdClass();
-        $a->baz->foo = new \stdClass();
+        $o                = new \stdClass();
+        $a                = new \stdClass();
+        $a->foo           = new \stdClass();
+        $a->foo->bar      = 'ter';
+        $a->baz           = new \stdClass();
+        $a->baz->foo      = new \stdClass();
         $a->baz->foo->obj = $o;
 
         // Act
-        $x = __::get($a, 'foo.bar');
+        $x  = __::get($a, 'foo.bar');
         $x2 = __::get($a, 'foo.bar', 'default');
-        $y = __::get($a, 'foo.baz');
+        $y  = __::get($a, 'foo.baz');
         $y2 = __::get($a, 'foo.baz', 'default');
         $y3 = __::get($a, 'foo.baz', function () {
             return 'default_from_callback';
         });
-        $z = __::get($a, 'baz.foo.obj');
+        $z  = __::get($a, 'baz.foo.obj');
 
         // Assert
         $this->assertEquals('ter', $x);
@@ -433,9 +433,9 @@ class CollectionsTest extends TestCase
         $e = (object)[5];
 
         // Act.
-        $x = __::has($a, 'foo');
-        $y = __::has($a, 'foz');
-        $z = __::has($b, 'foo');
+        $x  = __::has($a, 'foo');
+        $y  = __::has($a, 'foz');
+        $z  = __::has($b, 'foo');
         $xa = __::has($b, 'foz');
         $xb = __::has($c, 'foo.bar');
         $xc = __::has($d, 0);
@@ -627,35 +627,35 @@ class CollectionsTest extends TestCase
             ['foo' => 'bar2', 'bis' => 'ter2', '' => 1],
         ];
 
-        $b = new \stdClass();
-        $b->one = new \stdClass();
+        $b           = new \stdClass();
+        $b->one      = new \stdClass();
         $b->one->foo = 'bar';
-        $b->two = new \stdClass();
+        $b->two      = new \stdClass();
         $b->two->foo = 'bar2';
-        $b->three = new \stdClass();
-        $c = [$b->one, $b->two];
+        $b->three    = new \stdClass();
+        $c           = [$b->one, $b->two];
 
-        $d = [
+        $d                     = [
             ['foo' => ['bar' => ['baz' => 1]]],
             ['foo' => ['bar' => ['baz' => 2]]],
         ];
-        $e = new \stdClass();
-        $e->one = new \stdClass();
-        $e->one->foo = new \stdClass();
-        $e->one->foo->bar = ['baz' => 1];
-        $e->two = new \stdClass();
-        $e->two->foo = new \stdClass();
-        $e->two->foo->bar = new \stdClass();
+        $e                     = new \stdClass();
+        $e->one                = new \stdClass();
+        $e->one->foo           = new \stdClass();
+        $e->one->foo->bar      = ['baz' => 1];
+        $e->two                = new \stdClass();
+        $e->two->foo           = new \stdClass();
+        $e->two->foo->bar      = new \stdClass();
         $e->two->foo->bar->baz = 2;
 
         // Act
-        $x = __::pluck($a, 'foo');
+        $x  = __::pluck($a, 'foo');
         $x2 = __::pluck($a, '');
 
-        $y = __::pluck($b, 'foo');
+        $y  = __::pluck($b, 'foo');
         $y2 = __::pluck($c, 'foo');
 
-        $z = __::pluck($d, 'foo.bar.baz');
+        $z  = __::pluck($d, 'foo.bar.baz');
         $z2 = __::pluck($e, 'foo.bar.baz');
 
         // Assert
@@ -672,8 +672,8 @@ class CollectionsTest extends TestCase
     public function testReduceArray()
     {
         // Arrange
-        $a = [1, 2, 3];
-        $b = [
+        $a        = [1, 2, 3];
+        $b        = [
             10659489,
             1578484,
             1620331,
@@ -681,13 +681,15 @@ class CollectionsTest extends TestCase
             944022,
             1037939,
         ];
-        $c = [
+        $c        = [
             ['state' => 'IN', 'city' => 'Indianapolis', 'object' => 'School bus'],
             ['state' => 'IN', 'city' => 'Indianapolis', 'object' => 'Manhole'],
             ['state' => 'IN', 'city' => 'Plainfield', 'object' => 'Basketball'],
             ['state' => 'CA', 'city' => 'San Diego', 'object' => 'Light bulb'],
             ['state' => 'CA', 'city' => 'Mountain View', 'object' => 'Space pen'],
         ];
+        $d        = [2];
+        $e        = [];
         $aReducer = function ($accumulator, $value) {
             return $accumulator + $value;
         };
@@ -698,7 +700,7 @@ class CollectionsTest extends TestCase
 
             return $accumulator + $value;
         };
-        $cIndex = 0;
+        $cIndex   = 0;
         $cReducer = function ($accumulator, $value, $index, $collection) use (&$c, &$cIndex) {
             $this->assertEquals($c, $collection);
             $this->assertEquals($cIndex++, $index);
@@ -712,17 +714,23 @@ class CollectionsTest extends TestCase
         };
 
         // Act
-        $x = __::reduce($a, $aReducer, 2);
-        $y = __::reduce($b, $bReducer);
-        $z = __::reduce($c, $cReducer, []);
+        $w  = __::reduce($d, $aReducer);
+        $ww = __::reduce($d, $aReducer, 0);
+        $ee = __::reduce($e, $aReducer);
+        $x  = __::reduce($a, $aReducer, 2);
+        $y  = __::reduce($b, $bReducer);
+        $z  = __::reduce($c, $cReducer, []);
 
         // Assert
+        $this->assertEquals(2, $w);
+        $this->assertEquals(2, $ww);
         $this->assertEquals(8, $x);
-        $this->assertEquals(27435194, $y);
+        $this->assertEquals(16775705, $y);
+        $this->assertNull($ee);
         $this->assertEquals([
-            'Indianapolis' => 2,
-            'Plainfield' => 1,
-            'San Diego' => 1,
+            'Indianapolis'  => 2,
+            'Plainfield'    => 1,
+            'San Diego'     => 1,
             'Mountain View' => 1,
         ], $z);
     }
@@ -730,22 +738,22 @@ class CollectionsTest extends TestCase
     public function testReduceObject()
     {
         // Arrange
-        $a = new \stdClass();
-        $a->paris = 10659489;
+        $a            = new \stdClass();
+        $a->paris     = 10659489;
         $a->marseille = 1578484;
-        $a->lyon = 1620331;
-        $a->toulouse = 935440;
-        $a->nice = 944022;
-        $a->lille = 1037939;
-        $aReducer = function ($accumulator, $value) {
+        $a->lyon      = 1620331;
+        $a->toulouse  = 935440;
+        $a->nice      = 944022;
+        $a->lille     = 1037939;
+        $aReducer     = function ($accumulator, $value) {
             return $accumulator + $value;
         };
-        $b = (object)[
+        $b            = (object)[
             'a' => 1,
             'b' => 2,
             'c' => 1,
         ];
-        $bReducer = function ($accumulator, $value, $key) {
+        $bReducer     = function ($accumulator, $value, $key) {
             if (!isset($accumulator[$value])) {
                 $accumulator[$value] = [];
             }
@@ -769,18 +777,18 @@ class CollectionsTest extends TestCase
     public function testReduceRightArray()
     {
         // Arrange
-        $a = ['a', 'b', 'c'];
+        $a        = ['a', 'b', 'c'];
         $aReducer = function ($word, $char) {
             return $word . $char;
         };
 
         // Act
-        $x = __::reduceRight($a, $aReducer, '');
+        $x  = __::reduceRight($a, $aReducer, '');
         $x1 = __::reduceRight($a, $aReducer, null);
 
         // Assert
         $this->assertEquals('cba', $x);
-        $this->assertEquals('acba', $x1);
+        $this->assertEquals('cba', $x1);
     }
 
     public function testPick()
@@ -813,7 +821,7 @@ class CollectionsTest extends TestCase
         // Assert.
         $this->assertEquals([
             'cnsa' => 42,
-            'esa' => 26,
+            'esa'  => 26,
             'jaxa' => 26,
         ], $x);
         $this->assertEquals([
@@ -827,10 +835,10 @@ class CollectionsTest extends TestCase
     public function testPickObject()
     {
         // Arrange.
-        $a = new \stdClass();
-        $a->paris = 10659489;
+        $a            = new \stdClass();
+        $a->paris     = 10659489;
         $a->marseille = 1578484;
-        $a->lyon = 1620331;
+        $a->lyon      = 1620331;
 
         // Act.
         $x = __::pick($a, ['marseille', 'london']);
@@ -838,7 +846,7 @@ class CollectionsTest extends TestCase
         // Assert.
         $this->assertEquals((object)[
             'marseille' => 1578484,
-            'london' => null,
+            'london'    => null,
         ], $x);
     }
 
@@ -889,7 +897,7 @@ class CollectionsTest extends TestCase
     {
         // Arrange
         $nestedA = ['k1' => 'v1', 'k2' => 'v2', 'k3' => ['k31' => 'v31', 'k32' => 'v32'], 'k4' => ['k41' => 'v41']];
-        $a = [
+        $a       = [
             ['name' => 'fred', 'age' => 32],
             ['name' => 'maciej', 'age' => 16],
             ['a' => 'b', 'c' => 'd'],
@@ -897,15 +905,15 @@ class CollectionsTest extends TestCase
         ];
 
         // Act
-        $x = __::where($a, ['age' => 16]);
-        $x2 = __::where($a, ['age' => 16, 'name' => 'fred']);
-        $x3 = __::where($a, ['name' => 'maciej', 'age' => 16]);
-        $x4 = __::where($a, ['name' => 'unknown']);
-        $x5 = __::where($a, ['k4' => ['k41' => 'v41']]);
-        $x6 = __::where($a, ['k4xx' => ['k41' => 'v41']]);
-        $x7 = __::where($a, ['k4' => ['k41xx' => 'v41']]);
-        $x8 = __::where($a, ['k4' => ['k41' => 'v41xx']]);
-        $x9 = __::where($a, ['k4' => ['k41xx' => 'v41xx']]);
+        $x   = __::where($a, ['age' => 16]);
+        $x2  = __::where($a, ['age' => 16, 'name' => 'fred']);
+        $x3  = __::where($a, ['name' => 'maciej', 'age' => 16]);
+        $x4  = __::where($a, ['name' => 'unknown']);
+        $x5  = __::where($a, ['k4' => ['k41' => 'v41']]);
+        $x6  = __::where($a, ['k4xx' => ['k41' => 'v41']]);
+        $x7  = __::where($a, ['k4' => ['k41xx' => 'v41']]);
+        $x8  = __::where($a, ['k4' => ['k41' => 'v41xx']]);
+        $x9  = __::where($a, ['k4' => ['k41xx' => 'v41xx']]);
         $x10 = __::where($a, ['k4' => ['k41' => 'v41']], true);
 
         // Assert
@@ -927,11 +935,11 @@ class CollectionsTest extends TestCase
         $a = [
             'name1' => [
                 'name' => 'Tuan',
-                'age' => 26,
+                'age'  => 26,
             ],
             'name2' => [
                 'name' => 'Nguyen',
-                'age' => '25',
+                'age'  => '25',
             ],
         ];
 
@@ -944,11 +952,11 @@ class CollectionsTest extends TestCase
         $this->assertEquals([
             'NAME1' => [
                 'name' => 'Tuan',
-                'age' => 26,
+                'age'  => 26,
             ],
             'NAME2' => [
                 'name' => 'Nguyen',
-                'age' => '25',
+                'age'  => '25',
             ],
         ], $b);
 
@@ -962,13 +970,13 @@ class CollectionsTest extends TestCase
 
         // Assert
         $this->assertEquals([
-            'name1_Tuan_2' => [
+            'name1_Tuan_2'   => [
                 'name' => 'Tuan',
-                'age' => 26,
+                'age'  => 26,
             ],
             'name2_Nguyen_2' => [
                 'name' => 'Nguyen',
-                'age' => '25',
+                'age'  => '25',
             ],
         ], $b);
 
@@ -1005,11 +1013,11 @@ class CollectionsTest extends TestCase
         $a = [
             'name1' => [
                 'name' => 'Tuan',
-                'age' => 26,
+                'age'  => 26,
             ],
             'name2' => [
                 'name' => 'Nguyen',
-                'age' => '25',
+                'age'  => '25',
             ],
         ];
 
@@ -1022,11 +1030,11 @@ class CollectionsTest extends TestCase
         $this->assertEquals([
             'name1' => [
                 'Tuan' => 'name',
-                26 => 'age',
+                26     => 'age',
             ],
             'name2' => [
                 'Nguyen' => 'name',
-                25 => 'age',
+                25       => 'age',
             ],
         ], $b);
 

@@ -318,7 +318,7 @@ trait Collections
     public static function reduceRight($collection, Closure $iterateFn, $accumulator = null)
     {
         if ($accumulator === null) {
-            $accumulator = __::first($collection);
+            $accumulator = array_pop($collection);
         }
 
         __::doForEachRight(
@@ -906,7 +906,7 @@ trait Collections
     public static function reduce($collection, Closure $iterateFn, $accumulator = null)
     {
         if ($accumulator === null) {
-            $accumulator = __::first($collection);
+            $accumulator = array_shift($collection);
         }
         __::doForEach(
             $collection,
