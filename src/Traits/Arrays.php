@@ -454,4 +454,34 @@ trait Arrays
 
         return $array;
     }
+
+    /**
+     * Remove unwanted values from array
+     *
+     * @param array        $array
+     * @param array|string $remove
+     * @param bool         $preserveKeys , set true if you want to preserve the keys. by default false
+     *
+     * @usage _::without([1,5=>3,2 => 4,5],2)
+     *
+     * @return array
+     */
+    public static function without(array $array, $remove, $preserveKeys = false): array
+    {
+        $remove = !is_array($remove) ? [$remove] : $remove;
+        $result = [];
+        foreach ($array as $key => $value) {
+            if (in_array($value, $remove)) {
+                continue;
+            }
+
+            if ($preserveKeys) {
+                $result[$key] = $value;
+            } else {
+                $result[] = $value;
+            }
+        }
+
+        return $result;
+    }
 }
