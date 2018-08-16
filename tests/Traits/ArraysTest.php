@@ -224,4 +224,22 @@ class ArraysTest extends TestCase
         // Assert
         $this->assertEquals(['b' => 1, 'r' => 2, 'z' => 0], $x);
     }
+
+    public function testWithout()
+    {
+        //Act
+        $x = __::without([1, 1 => 3, 2 => 4, 5], 4);
+
+        //Assert
+        $this->assertEquals([0 => 1, 1 => 3, 2 => 5], $x);
+    }
+
+    public function testWithoutPreserveKey()
+    {
+        //Act
+        $x = __::without([1, 3 => 3, 2 => 4, 5], 4, true);
+
+        //Assert
+        $this->assertEquals([0 => 1, 3 => 3, 4 => 5], $x);
+    }
 }

@@ -288,6 +288,21 @@ __::sortKeys(['z' => 0, 'b' => 1, 'r' => 2], 'desc');
 # ['z' => 0, 'r' => 2, 'b' => 1]
 ```
 
+###[`____::without([1, 1 => 3, 2 => 4, 5], 4)`](src/Traits/Arrays.php)
+
+Remove unwanted values from array
+
+Returns new array without preserving keys.
+```php
+__::without([1, 1 => 3, 2 => 4, 5], 4)
+# [0 => 1, 1 => 3, 2 => 5] 
+```
+Returns new array with preserving keys.
+```php
+__::without([1, 3 => 3, 2 => 4, 5], 4, true)
+# [0 => 1, 3 => 3, 4 => 5]
+```
+
 ### Chaining
 
 #### [`__::chain($initialValue)`](src/Traits/Sequence/Chain.php)
