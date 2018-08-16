@@ -288,7 +288,7 @@ __::sortKeys(['z' => 0, 'b' => 1, 'r' => 2], 'desc');
 # ['z' => 0, 'r' => 2, 'b' => 1]
 ```
 
-###[`____::without([1, 1 => 3, 2 => 4, 5], 4)`](src/Traits/Arrays.php)
+#### [`____::without(array $array, $remove, $preserveKeys = false)`](src/Traits/Arrays.php)
 
 Remove unwanted values from array
 
