@@ -17,7 +17,7 @@ checks:
 
 tools:
   external_code_coverage:
-    timeout: 600
+    timeout: 1200
   php_mess_detector: true
   php_code_sniffer: true
   sensiolabs_security_checker: true
@@ -50,7 +50,7 @@ build:
     postgresql: false
     redis: false
     php:
-      version: 7.1, 7.2, 7.3,
+      version: 7.3
   tests:
     override:
       - php-scrutinizer-run
