@@ -44,29 +44,32 @@ extension=php_mbstring.dll
 
 ### Project Structure
 
-- `lodash.php` is the entry point for the `lodash-php` utility library
+- `__.php` is the entry point for the `lodash-php` utility library
 - All lodash-php methods are stored in separate files within their respective `namespace` folder outlined in `/src/__`
 - Tests reflect the `namespace` defined within the library and are processed using [phpunit testing](https://phpunit.de)
   - To run tests run the following command `phpunit`
 
 ```bash
 .
-├── images                        # Place relevant graphics in this folder
-├── src                           # Core code of the application.
-│   ├── __.php                    # Entry point for the library                  
-│   └── Traits                    # Contains all lodash-php methods
-│       ├── Sequence\Chain.php    # Methods related to chaining
-│       ├── Arrays.php            # Methods related to arrays
-│       ├── Collections.php       # Methods related to collections
-│       ├── Functions.php         # Methods related to functions
-│       ├── Objects.php           # Methods related to objects
-│       ├── Strings.php           # Methods related to strings
-│       └── Utilities.php         # Methods related to utilities
-├── tests                         # Tests are placed in that folder.
-├── composer.json                 # This file defines the project requirements
-├── phpunit.xml                   # Contains the configuration for PHPUnit.
-├── LICENSE                       # License file for `lodash-php`
-└── README.md                     # Introduces our library to user.
+├── images                               # Place relevant graphics in this folder
+├── src                                  # Core code of the application.
+│   ├── __.php                           # Entry point for the library                  
+│   └── Traits                           # Contains all lodash-php methods
+│       ├── Sequence\Chain.php           # Methods related to chaining
+│       ├── Sequence\ChainWrapper.php    # Methods related to chaining
+│       ├── Arrays.php                   # Methods related to arrays
+│       ├── Collections.php              # Methods related to collections
+│       ├── Functions.php                # Methods related to functions
+│       ├── Objects.php                  # Methods related to objects
+│       ├── Strings.php                  # Methods related to strings
+│       └── Utilities.php                # Methods related to utilities
+├── tests                                # Tests are placed in that folder.
+├── composer.json                        # This file defines the project requirements
+├── phpcs.xml.dist                       # Contains the configuration for PHPcs.
+├── phpstan.neon.dist                    # Contains the configuration for PHPStan.
+├── phpunit.xml.dist                     # Contains the configuration for PHPUnit.
+├── LICENSE                              # License file for `lodash-php`
+└── README.md                            # Introduces our library to user.
 ```
 
 ---

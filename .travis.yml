@@ -22,6 +22,7 @@ before_script:
   - travis_retry composer install-dev
 
 script:
+  - composer check-style
   - composer stan
   - composer test-cov
 
