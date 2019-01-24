@@ -398,9 +398,9 @@ trait Collections
      * @usage __::set(['foo' => ['bar' => 'ter']], 'foo.baz.ber', 'fer');
      *        >> '['foo' => ['bar' => 'ter', 'baz' => ['ber' => 'fer']]]'
      *
-     * @param array|object $collection collection of values
-     * @param string|int   $path       key or index
-     * @param mixed        $value      the value to set at position $key
+     * @param array|object    $collection collection of values
+     * @param string|int|null $path       key or index
+     * @param mixed           $value      the value to set at position $key
      *
      * @throws \Exception if the path consists of a non collection and strict is set to false
      *
@@ -899,9 +899,9 @@ trait Collections
      *             '2' => ['b']
      *         ]
      *
-     * @param array    $collection The collection to iterate over.
-     * @param \Closure $iterateFn  The function invoked per iteration.
-     * @param null     $accumulator
+     * @param array      $collection The collection to iterate over.
+     * @param \Closure   $iterateFn  The function invoked per iteration.
+     * @param array|null $accumulator
      *
      * @return array|mixed|null (*): Returns the accumulated value.
      */
@@ -929,7 +929,7 @@ trait Collections
      * @param array  $collection hash map of values
      * @param string $separator  the glue used in the keys
      *
-     * @return array|object
+     * @return array
      * @throws \Exception
      */
     public static function unease(array $collection, string $separator = '.'): array

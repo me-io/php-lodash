@@ -932,6 +932,7 @@ $ composer test
 ## Contributing
 
 Please feel free to contribute to this project! Pull requests and feature requests welcome! :v:
+
 Please see [CONTRIBUTING](CONTRIBUTING.md) and [CODE_OF_CONDUCT](CODE_OF_CONDUCT.md) for details.
 
 ## Contributors
