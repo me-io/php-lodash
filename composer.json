@@ -1,7 +1,7 @@
 {
   "name": "me-io/php-lodash",
   "type": "library",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "description": "A full-on PHP manipulation utility-belt that provides support for the usual functional.",
   "keywords": [
     "__",
