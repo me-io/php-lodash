@@ -26,17 +26,19 @@ class ChainWrapper
      * Dynamically calls php-lodash functions, prepend the list of parameters with the current collection list
      *
      * @param string $functionName must be a valid php-lodash function
-     * @param array $params
+     * @param array  $params
      *
      * @return $this
      * @throws \Exception
      */
     public function __call(string $functionName, array $params): self
     {
-        if (is_callable('__', $functionName)) {
+        if (is_callable('\__::' . $functionName, true)) {
             $params = $params == null ? [] : $params;
             $params = __::prepend($params, $this->value);
-            $this->value = call_user_func_array(['__', $functionName], $params);
+            /** @var callable $fnCallable */
+            $fnCallable = ['\__', $functionName];
+            $this->value = call_user_func_array($fnCallable, $params);
 
             return $this;
         } else {

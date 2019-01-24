@@ -13,9 +13,9 @@ trait Strings
      * @usage __::split('a-b-c', '-', 2);
      *        >> ['a', 'b-c']
      *
-     * @param string $input The string to split.
+     * @param string $input     The string to split.
      * @param string $delimiter The boundary string.
-     * @param int $limit (optional) If limit is set and positive, the returned array
+     * @param int    $limit     (optional) If limit is set and positive, the returned array
      *                          will contain a maximum of limit elements with the last element containing the
      *                          rest of string.
      *                          If the limit parameter is negative, all components except the last -limit are returned.
@@ -244,12 +244,12 @@ trait Strings
      *        __::words('fred, barney, & pebbles', '/[^, ]+/');
      *        >> ['fred', 'barney', '&', 'pebbles']
      *
-     * @param string $input
-     * @param string $pattern : The pattern to match words.
+     * @param string|null $input
+     * @param string      $pattern : The pattern to match words.
      *
-     * @return mixed
+     * @return array
      */
-    public static function words(string $input, $pattern = null)
+    public static function words(?string $input, $pattern = null)
     {
         /** Used to compose unicode character classes. */
         $rsAstralRange = '\x{e800}-\x{efff}';
@@ -299,14 +299,7 @@ trait Strings
         $rsSeq = $rsOptVar . $reOptMod . $rsOptJoin;
         $rsEmoji = '(?:' . join('|', [$rsDingbat, $rsRegional, $rsSurrPair]) . ')' . $rsSeq;
 
-        /**
-         * Splits a Unicode `string` into an array of its words.
-         *
-         * @private
-         *
-         * @param {string} The string to inspect.
-         * @returns {Array} Returns the words of `string`.
-         */
+        /** @var string $unicodeWords unicode words patterns to be used in preg_match */
         $unicodeWords = '/' . join('|', [
                 $rsUpper . '?' . $rsLower . '+' . $rsOptContrLower . '(?=' . join(
                     '|',
@@ -329,7 +322,7 @@ trait Strings
         }
         $r = preg_match_all($pattern, $input, $matches, PREG_PATTERN_ORDER);
         if ($r === false) {
-            throw new RuntimeException('Regex exception');
+            throw new \RuntimeException('Regex exception');
         }
 
         return count($matches[0]) > 0 ? $matches[0] : [];

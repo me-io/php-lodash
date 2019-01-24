@@ -1,6 +1,7 @@
 {
   "name": "me-io/php-lodash",
   "type": "library",
+  "version": "2.0.0",
   "description": "A full-on PHP manipulation utility-belt that provides support for the usual functional.",
   "keywords": [
     "__",
@@ -14,13 +15,14 @@
   "minimum-stability": "dev",
   "prefer-stable": true,
   "require": {
-    "php": ">=7.0"
+    "php": ">=7.1"
   },
   "require-dev": {
-    "phpunit/phpunit": "^6",
-    "fzaninotto/faker": "^1",
-    "squizlabs/php_codesniffer": "^3",
-    "overtrue/phplint": "^1"
+    "phpunit/phpunit": "~7.5",
+    "fzaninotto/faker": "^1.8",
+    "squizlabs/php_codesniffer": "~3.4",
+    "overtrue/phplint": "~1.1",
+    "phpstan/phpstan": "~0.11"
   },
   "autoload": {
     "files": [
@@ -35,7 +37,28 @@
       "Tests\\": "tests/"
     }
   },
+  "scripts": {
+    "update-dev": "composer update",
+    "install-dev": "composer install --no-interaction",
+    "update-prod": "composer update --no-dev",
+    "install-prod": "composer install --no-dev --no-interaction",
+    "stan": "phpstan analyse src",
+    "test": "phpunit",
+    "test-cov": "phpunit --coverage-text --coverage-clover=coverage.xml",
+    "test-html": "phpunit --coverage-text --coverage-clover=coverage.xml --coverage-html=./report/",
+    "lint": "phplint",
+    "check-style": "phpcs src tests",
+    "fix-style": "phpcbf src tests"
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.0-dev"
+    }
+  },
   "config": {
-    "optimize-autoloader": true
+    "optimize-autoloader": true,
+    "preferred-install": "dist",
+    "sort-packages": true,
+    "process-timeout": 1000000
   }
 }

@@ -50,3 +50,4 @@ coverage.clover
 !.gitkeep
 index.php
 yarn.lock
+/build

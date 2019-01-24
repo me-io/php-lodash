@@ -1,5 +1,7 @@
 <?php
 
+namespace Traits;
+
 use PHPUnit\Framework\TestCase;
 
 class ObjectsTest extends TestCase

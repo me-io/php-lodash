@@ -2,7 +2,7 @@
   PHP Lodash
 </h1>
 <p align="center" style="font-size: 1.2rem;">
-lodash-php is a PHP utility library, similar to Underscore/Lodash, that utilizes `namespace`s and dynamic auto loading to improve library performance.
+php-lodash is a PHP utility library, similar to Underscore/Lodash, that utilizes `namespace`s and dynamic auto loading to improve library performance.
 </p>
 <hr />
 
@@ -11,7 +11,7 @@ lodash-php is a PHP utility library, similar to Underscore/Lodash, that utilizes
 [![Scrutinizer][scrutinizer-badge]][scrutinizer]
 [![downloads][downloads-badge]][downloads]
 [![MIT License][license-badge]][license]
-[![Donate][donate-badge]][donate]
+[![SymfonyInsight](https://insight.symfony.com/projects/68f431f1-aba2-4189-aaeb-0a6531038997/mini.svg)](https://insight.symfony.com/projects/68f431f1-aba2-4189-aaeb-0a6531038997)
 
 [![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors)
 [![PRs Welcome][prs-badge]][prs]
@@ -19,6 +19,7 @@ lodash-php is a PHP utility library, similar to Underscore/Lodash, that utilizes
 [![Watch on GitHub][github-watch-badge]][github-watch]
 [![Star on GitHub][github-star-badge]][github-star]
 [![Tweet][twitter-badge]][twitter]
+[![Donate][donate-badge]][donate]
 
 ## Table of Contents
 
@@ -918,9 +919,21 @@ __::stringContains('waffle', 'wafflecone');
 # true
 ```
 
+## Change log
+
+Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
+
+## Testing
+
+``` bash
+$ composer test
+```
+
 ## Contributing
 
 Please feel free to contribute to this project! Pull requests and feature requests welcome! :v:
+
+Please see [CONTRIBUTING](CONTRIBUTING.md) and [CODE_OF_CONDUCT](CODE_OF_CONDUCT.md) for details.
 
 ## Contributors
 
@@ -934,7 +947,7 @@ A huge thanks to all of our contributors:
 
 ## License
 
-The code is available under the [MIT license](LICENSE.md).
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
 
 [build-badge]: https://img.shields.io/travis/me-io/php-lodash.svg?style=flat-square
 [build]: https://travis-ci.org/me-io/php-lodash

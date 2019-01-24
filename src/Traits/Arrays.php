@@ -65,7 +65,7 @@ trait Arrays
         bool $strict = true,
         int $startIndex = 0
     ): array {
-        $idx    = 0;
+        $idx = 0;
         $output = [];
 
         foreach ($array as $index => $value) {
@@ -73,7 +73,7 @@ trait Arrays
                 if (!$shallow) {
                     $value = static::baseFlatten($value, $shallow, $strict);
                 }
-                $j   = 0;
+                $j = 0;
                 $len = count($value);
                 while ($j < $len) {
                     $output[$idx++] = $value[$j++];
@@ -174,7 +174,7 @@ trait Arrays
     public static function range($start = null, $stop = null, int $step = 1): array
     {
         if ($stop == null && $start != null) {
-            $stop  = $start;
+            $stop = $start;
             $start = 1;
         }
 
@@ -188,12 +188,12 @@ trait Arrays
      **       >> ['foo', 'foo', 'foo']
      *
      * @param string $object The object to repeat.
-     * @param null   $times  ow many times has to be repeated.
+     * @param int    $times  ow many times has to be repeated.
      *
      * @return array Returns a new array of filled values.
      *
      */
-    public static function repeat($object = '', $times = null): array
+    public static function repeat($object = '', int $times = null): array
     {
         $times = abs($times);
         if ($times == null) {
@@ -299,9 +299,9 @@ trait Arrays
      * @param array $array    The source array
      * @param int   $decimals The number of decimals to return
      *
-     * @return int The average value
+     * @return float The average value
      */
-    public static function average(array $array, int $decimals = 0): int
+    public static function average(array $array, int $decimals = 0): float
     {
         return round((array_sum($array) / count($array)), $decimals);
     }
@@ -312,7 +312,7 @@ trait Arrays
      * @usage __::size([1, 2, 3])
      *        >> 3
      *
-     * @param $array
+     * @param array $array
      *
      * @return int
      */
@@ -344,8 +344,8 @@ trait Arrays
      * @usage __::random([1, 2, 3])
      *        >> Returns 1, 2 or 3
      *
-     * @param array $array
-     * @param null  $take
+     * @param array   $array
+     * @param integer $take
      *
      * @return mixed
      */
