@@ -15,8 +15,8 @@ trait Functions
      * @usage __::slug('Jakieś zdanie z dużą ilością obcych znaków!');
      *        >> 'jakies-zdanie-z-duza-iloscia-obcych-znakow'
      *
-     * @param string $str string to generate slug from
-     * @param array $options method options which includes: delimiter, limit, lowercase, replacements, transliterate
+     * @param string $str     string to generate slug from
+     * @param array  $options method options which includes: delimiter, limit, lowercase, replacements, transliterate
      *
      * @return string
      */
@@ -402,7 +402,7 @@ trait Functions
      *        __::truncate($string);
      *        >> 'Lorem ipsum dolor sit amet, consectetur...'
      *
-     * @param string $text text to truncate
+     * @param string  $text  text to truncate
      * @param integer $limit limit of words
      *
      * @return string

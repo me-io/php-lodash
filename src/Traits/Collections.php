@@ -12,7 +12,7 @@ trait Collections
     /**
      * Returns the values in the collection that pass the truth test.
      *
-     * @param array $array array to filter
+     * @param array    $array   array to filter
      * @param \Closure $closure closure to filter array based on
      *
      * @return array
@@ -40,8 +40,8 @@ trait Collections
      * @usage __::first([1, 2, 3]);
      *        >> 1
      *
-     * @param array $array of values
-     * @param int|null $take number of values to return
+     * @param array    $array of values
+     * @param int|null $take  number of values to return
      *
      * @return mixed
      */
@@ -61,8 +61,8 @@ trait Collections
      *        >> 'ter'
      *
      * @param array|object $collection array of values
-     * @param null|string $key key or index
-     * @param null $default default value to return if index not exist
+     * @param null|string  $key        key or index
+     * @param null         $default    default value to return if index not exist
      *
      * @return mixed
      */
@@ -101,8 +101,8 @@ trait Collections
      * @usage __::last([1, 2, 3, 4, 5], 2);
      *        >> [4, 5]
      *
-     * @param array $array array of values
-     * @param int|null $take number of returned values
+     * @param array    $array array of values
+     * @param int|null $take  number of returned values
      *
      * @return mixed
      */
@@ -125,7 +125,7 @@ trait Collections
      *       >> [3, 6, 9]
      *
      * @param array|object $collection The collection of values to map over.
-     * @param \Closure $iterateFn The function to apply on each value.
+     * @param \Closure     $iterateFn  The function to apply on each value.
      *
      * @return array
      */
@@ -184,7 +184,7 @@ trait Collections
      *        >> ['bar', 'bar2']
      *
      * @param array|object $collection array or object that can be converted to array
-     * @param string $property property name
+     * @param string       $property   property name
      *
      * @return array
      */
@@ -193,7 +193,7 @@ trait Collections
         $result = array_map(function ($value) use ($property) {
             if (is_array($value) && isset($value[$property])) {
                 return $value[$property];
-            } elseif (is_object($value) && isset($value->{$property})) {
+            } else if (is_object($value) && isset($value->{$property})) {
                 return $value->{$property};
             }
             foreach (__::split($property, '.') as $segment) {
@@ -225,9 +225,9 @@ trait Collections
      * @usage __::where($a, ['age' => 16]);
      *        >> [['name' => 'maciej', 'age' => 16]]
      *
-     * @param array $array array of values
-     * @param array $key condition in format of ['KEY'=>'VALUE']
-     * @param bool $keepKeys keep original keys
+     * @param array $array    array of values
+     * @param array $key      condition in format of ['KEY'=>'VALUE']
+     * @param bool  $keepKeys keep original keys
      *
      * @return array
      */
@@ -310,8 +310,8 @@ trait Collections
      *        >> 'cba'
      *
      * @param array|object $collection The collection to iterate over.
-     * @param \Closure $iterateFn The function invoked per iteration.
-     * @param null $accumulator
+     * @param \Closure     $iterateFn  The function invoked per iteration.
+     * @param null         $accumulator
      *
      * @return array|mixed|null (*): Returns the accumulated value.
      */
@@ -342,7 +342,7 @@ trait Collections
      *        >> (Side effect: print 3, 2, 1)
      *
      * @param array|object $collection The collection to iterate over.
-     * @param \Closure $iterateFn The function to call for each value.
+     * @param \Closure     $iterateFn  The function to call for each value.
      *
      * @return null
      */
@@ -361,7 +361,7 @@ trait Collections
      *        >> (Side effect: print 1, 2, 3)
      *
      * @param array|object $collection The collection to iterate over.
-     * @param \Closure $iterateFn The function to call for each value
+     * @param \Closure     $iterateFn  The function to call for each value
      *
      * @return null
      */
@@ -397,8 +397,8 @@ trait Collections
      *        >> '['foo' => ['bar' => 'ter', 'baz' => ['ber' => 'fer']]]'
      *
      * @param array|object $collection collection of values
-     * @param string $path key or index
-     * @param mixed $value the value to set at position $key
+     * @param string       $path       key or index
+     * @param mixed        $value      the value to set at position $key
      *
      * @throws \Exception if the path consists of a non collection and strict is set to false
      *
@@ -463,8 +463,8 @@ trait Collections
      *        >> true
      *
      * @param array|object $collection of key values pairs
-     * @param array $keys collection of keys to look for
-     * @param boolean $strict to exclusively check
+     * @param array        $keys       collection of keys to look for
+     * @param boolean      $strict     to exclusively check
      *
      * @return boolean
      */
@@ -496,8 +496,8 @@ trait Collections
      *        __::hasKeys((object) ['foo' => 'bar', 'foz' => 'baz'], 'bar');
      *        >> false
      *
-     * @param array|object $collection of key values pairs
-     * @param string|integer $path Path to look for.
+     * @param array|object   $collection of key values pairs
+     * @param string|integer $path       Path to look for.
      *
      * @return boolean
      */
@@ -588,8 +588,8 @@ trait Collections
      * @usage __::ease(['foo' => ['bar' => 'ter'], 'baz' => ['b', 'z']]);
      *        >> '['foo.bar' => 'ter', 'baz.0' => 'b', , 'baz.1' => 'z']'
      *
-     * @param array $collection array of values
-     * @param string $glue glue between key path
+     * @param array  $collection array of values
+     * @param string $glue       glue between key path
      *
      * @return array flatten collection
      */
@@ -604,8 +604,8 @@ trait Collections
     /**
      * Inner function for collections::ease
      *
-     * @param array $map
-     * @param array $array
+     * @param array  $map
+     * @param array  $array
      * @param string $glue
      * @param string $prefix
      */
@@ -630,7 +630,7 @@ trait Collections
      *        >> true
      *
      * @param array|object $collection The collection to iterate over.
-     * @param \Closure $iterateFn The function to call for each value.
+     * @param \Closure     $iterateFn  The function to call for each value.
      *
      * @return bool
      */
@@ -692,7 +692,7 @@ trait Collections
      *           ]
      *         ]
      *
-     * @param array $array
+     * @param array                     $array
      * @param int|float|string|\Closure $key
      *
      * @return array
@@ -707,9 +707,9 @@ trait Collections
             $groupKey = null;
             if (is_callable($key)) {
                 $groupKey = call_user_func($key, $value);
-            } elseif (is_object($value) && property_exists($value, $key)) {
+            } else if (is_object($value) && property_exists($value, $key)) {
                 $groupKey = $value->{$key};
-            } elseif (is_array($value) && isset($value[$key])) {
+            } else if (is_array($value) && isset($value[$key])) {
                 $groupKey = $value[$key];
             }
             if ($groupKey === null) {
@@ -746,7 +746,7 @@ trait Collections
     /**
      * Transforms the keys in a collection by running each key through the iterator
      *
-     * @param array $array array of values
+     * @param array    $array   array of values
      * @param \Closure $closure closure to map the keys
      *
      * @throws \Exception if closure doesn't return a valid key that can be used in PHP array
@@ -774,7 +774,7 @@ trait Collections
     /**
      * Transforms the values in a collection by running each value through the iterator
      *
-     * @param array $array array of values
+     * @param array    $array   array of values
      * @param \Closure $closure closure to map the values
      *
      * @return array
@@ -832,8 +832,8 @@ trait Collections
      *        >> ['a' => 1, 'b' => ['d' => 4]]
      *
      * @param array|object $collection The collection to iterate over.
-     * @param array $paths array paths to pick
-     * @param null $default
+     * @param array        $paths      array paths to pick
+     * @param null         $default
      *
      * @return array|object
      */
@@ -898,8 +898,8 @@ trait Collections
      *         ]
      *
      * @param array|object $collection The collection to iterate over.
-     * @param \Closure $iterateFn The function invoked per iteration.
-     * @param null $accumulator
+     * @param \Closure     $iterateFn  The function invoked per iteration.
+     * @param null         $accumulator
      *
      * @return array|mixed|null (*): Returns the accumulated value.
      */
@@ -924,8 +924,8 @@ trait Collections
      * @usage __::unease(['foo.bar' => 'ter', 'baz.0' => 'b', , 'baz.1' => 'z']);
      *        >> '['foo' => ['bar' => 'ter'], 'baz' => ['b', 'z']]'
      *
-     * @param array $collection hash map of values
-     * @param string $separator the glue used in the keys
+     * @param array  $collection hash map of values
+     * @param string $separator  the glue used in the keys
      *
      * @return array
      * @throws \Exception

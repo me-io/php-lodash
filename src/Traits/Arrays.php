@@ -64,8 +64,9 @@ trait Arrays
         bool $shallow = false,
         bool $strict = true,
         int $startIndex = 0
-    ): array {
-        $idx    = 0;
+    ): array
+    {
+        $idx = 0;
         $output = [];
 
         foreach ($array as $index => $value) {
@@ -73,7 +74,7 @@ trait Arrays
                 if (!$shallow) {
                     $value = static::baseFlatten($value, $shallow, $strict);
                 }
-                $j   = 0;
+                $j = 0;
                 $len = count($value);
                 while ($j < $len) {
                     $output[$idx++] = $value[$j++];
@@ -174,7 +175,7 @@ trait Arrays
     public static function range($start = null, $stop = null, int $step = 1): array
     {
         if ($stop == null && $start != null) {
-            $stop  = $start;
+            $stop = $start;
             $start = 1;
         }
 

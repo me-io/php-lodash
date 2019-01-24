@@ -26,7 +26,7 @@ class ChainWrapper
      * Dynamically calls php-lodash functions, prepend the list of parameters with the current collection list
      *
      * @param string $functionName must be a valid php-lodash function
-     * @param array $params
+     * @param array  $params
      *
      * @return $this
      * @throws \Exception

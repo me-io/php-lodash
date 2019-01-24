@@ -1,38 +1,43 @@
-Hello, and thanks for contributing to php-lodash
+<!--- Provide a general summary of your changes in the Title above -->
 
-# Description
+## Description
 
-Please include a summary of the change and which issue is fixed. Please also include relevant motivation and context. List any dependencies that are required for this change.
+Describe your changes in detail.
 
-Fixes # (issue)
+## Motivation and context
 
-## Type of change
+Why is this change required? What problem does it solve?
 
-Please delete options that are not relevant.
+If it fixes an open issue, please link to the issue here (if you write `fixes #num`
+or `closes #num`, the issue will be automatically closed when the pull is accepted.)
 
+## How has this been tested?
+
+Please describe in detail how you tested your changes.
+
+Include details of your testing environment, and the tests you ran to
+see how your change affects other areas of the code, etc.
+
+## Screenshots (if appropriate)
+
+## Types of changes
+
+What types of changes does your code introduce? Put an `x` in all the boxes that apply:
 - [ ] Bug fix (non-breaking change which fixes an issue)
 - [ ] New feature (non-breaking change which adds functionality)
-- [ ] Breaking change (fix or feature that would cause existing functionality to not work as expected)
-- [ ] This change requires a documentation update
-- [ ] Fixing typos
+- [ ] Breaking change (fix or feature that would cause existing functionality to change)
 
-# How Has This Been Tested?
+## Checklist:
 
-Please describe the tests that you ran to verify your changes. Provide instructions so we can reproduce. Please also list any relevant details for your test configuration
+Go over all the following points, and put an `x` in all the boxes that apply.
 
-- [ ] Test A
-- [ ] Test B
+Please, please, please, don't send your pull request until all of the boxes are ticked. Once your pull request is created, it will trigger a build on our [continuous integration](http://www.phptherightway.com/#continuous-integration) server to make sure your [tests and code style pass](https://help.github.com/articles/about-required-status-checks/).
 
-**Test Configuration**:
-- PHP Version:
+- [ ] I have read the **[CONTRIBUTING](CONTRIBUTING.md)** document.
+- [ ] My pull request addresses exactly one patch/feature.
+- [ ] I have created a branch for this patch/feature.
+- [ ] Each individual commit in the pull request is meaningful.
+- [ ] I have added tests to cover my changes.
+- [ ] If my change requires a change to the documentation, I have updated it accordingly.
 
-# Checklist:
-
-- [ ] My code follows the style guidelines of this project
-- [ ] I have performed a self-review of my own code
-- [ ] I have commented my code, particularly in hard-to-understand areas
-- [ ] I have made corresponding changes to the documentation
-- [ ] My changes generate no new warnings
-- [ ] I have added tests that prove my fix is effective or that my feature works
-- [ ] New and existing unit tests pass locally with my changes
-- [ ] Any dependent changes have been merged and published in downstream modules
+If you're unsure about any of these, don't hesitate to ask. We're here to help!
