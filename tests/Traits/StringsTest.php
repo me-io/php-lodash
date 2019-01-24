@@ -1,5 +1,7 @@
 <?php
 
+namespace Traits;
+
 use PHPUnit\Framework\TestCase;
 
 class StringsTest extends TestCase
@@ -12,9 +14,9 @@ class StringsTest extends TestCase
         $c = '__FOO_BAR__';
 
         // Act
-        $x = __::camelCase($a);
-        $y = __::camelCase($b);
-        $z = __::camelCase($c);
+        $x = \__::camelCase($a);
+        $y = \__::camelCase($b);
+        $z = \__::camelCase($c);
 
         // Assert
         $this->assertEquals('fooBar', $x);
@@ -28,7 +30,7 @@ class StringsTest extends TestCase
         $a = 'FRED';
 
         // Act
-        $x = __::capitalize($a);
+        $x = \__::capitalize($a);
 
         // Assert
         $this->assertEquals('Fred', $x);
@@ -42,9 +44,9 @@ class StringsTest extends TestCase
         $c = '__FOO_BAR__';
 
         // Act
-        $x = __::kebabCase($a);
-        $y = __::kebabCase($b);
-        $z = __::kebabCase($c);
+        $x = \__::kebabCase($a);
+        $y = \__::kebabCase($b);
+        $z = \__::kebabCase($c);
 
         // Assert
         $this->assertEquals('foo-bar', $x);
@@ -60,9 +62,9 @@ class StringsTest extends TestCase
         $c = '__FOO_BAR__';
 
         // Act
-        $x = __::lowerCase($a);
-        $y = __::lowerCase($b);
-        $z = __::lowerCase($c);
+        $x = \__::lowerCase($a);
+        $y = \__::lowerCase($b);
+        $z = \__::lowerCase($c);
 
         // Assert
         $this->assertEquals('foo bar', $x);
@@ -77,8 +79,8 @@ class StringsTest extends TestCase
         $b = 'FRED';
 
         // Act
-        $x = __::lowerFirst($a);
-        $y = __::lowerFirst($b);
+        $x = \__::lowerFirst($a);
+        $y = \__::lowerFirst($b);
 
         // Assert
         $this->assertEquals('fred', $x);
@@ -93,9 +95,9 @@ class StringsTest extends TestCase
         $c = '--FOO-BAR--';
 
         // Act
-        $x = __::snakeCase($a);
-        $y = __::snakeCase($b);
-        $z = __::snakeCase($c);
+        $x = \__::snakeCase($a);
+        $y = \__::snakeCase($b);
+        $z = \__::snakeCase($c);
 
         // Assert
         $this->assertEquals('foo_bar', $x);
@@ -110,9 +112,9 @@ class StringsTest extends TestCase
         $b = 'a-b-c';
 
         // Act
-        $x = __::split($a, '.');
-        $y = __::split($b, '-');
-        $z = __::split($b, '-', 2);
+        $x = \__::split($a, '.');
+        $y = \__::split($b, '-');
+        $z = \__::split($b, '-', 2);
 
         // Assert
         $this->assertEquals(['github', 'com'], $x);
@@ -128,9 +130,9 @@ class StringsTest extends TestCase
         $c = '__FOO_BAR__';
 
         // Act
-        $x = __::startCase($a);
-        $y = __::startCase($b);
-        $z = __::startCase($c);
+        $x = \__::startCase($a);
+        $y = \__::startCase($b);
+        $z = \__::startCase($c);
 
         // Assert
         $this->assertEquals('Foo Bar', $x);
@@ -146,9 +148,9 @@ class StringsTest extends TestCase
         $c = '__FOO_BAR__';
 
         // Act
-        $x = __::toLower($a);
-        $y = __::toLower($b);
-        $z = __::toLower($c);
+        $x = \__::toLower($a);
+        $y = \__::toLower($b);
+        $z = \__::toLower($c);
 
         // Assert
         $this->assertEquals('--foo-bar--', $x);
@@ -164,9 +166,9 @@ class StringsTest extends TestCase
         $c = '__foo_bar__';
 
         // Act
-        $x = __::toUpper($a);
-        $y = __::toUpper($b);
-        $z = __::toUpper($c);
+        $x = \__::toUpper($a);
+        $y = \__::toUpper($b);
+        $z = \__::toUpper($c);
 
         // Assert
         $this->assertEquals('--FOO-BAR--', $x);
@@ -182,9 +184,9 @@ class StringsTest extends TestCase
         $c = '__foo_bar__';
 
         // Act
-        $x = __::upperCase($a);
-        $y = __::upperCase($b);
-        $z = __::upperCase($c);
+        $x = \__::upperCase($a);
+        $y = \__::upperCase($b);
+        $z = \__::upperCase($c);
 
         // Assert
         $this->assertEquals('FOO BAR', $x);
@@ -199,8 +201,8 @@ class StringsTest extends TestCase
         $b = 'FRED';
 
         // Act
-        $x = __::upperFirst($a);
-        $y = __::upperFirst($b);
+        $x = \__::upperFirst($a);
+        $y = \__::upperFirst($b);
 
         // Assert
         $this->assertEquals('Fred', $x);
@@ -217,10 +219,10 @@ class StringsTest extends TestCase
         $d = 'fooBar';
 
         // Act
-        $x = __::words($a);
-        $y = __::words($b, $bPattern);
-        $z = __::words($c);
-        $u = __::words($d);
+        $x = \__::words($a);
+        $y = \__::words($b, $bPattern);
+        $z = \__::words($c);
+        $u = \__::words($d);
 
         // Assert
         $this->assertEquals(['fred', 'barney', 'pebbles'], $x);

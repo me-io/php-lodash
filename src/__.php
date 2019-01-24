@@ -1,4 +1,5 @@
 <?php
+// phpcs:ignoreFile
 
 use __\Traits\Arrays;
 use __\Traits\Collections;

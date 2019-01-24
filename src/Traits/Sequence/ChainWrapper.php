@@ -33,10 +33,12 @@ class ChainWrapper
      */
     public function __call(string $functionName, array $params): self
     {
-        if (is_callable('__', $functionName)) {
+        if (is_callable('\__::' . $functionName, true)) {
             $params = $params == null ? [] : $params;
             $params = __::prepend($params, $this->value);
-            $this->value = call_user_func_array(['__', $functionName], $params);
+            /** @var callable $fnCallable */
+            $fnCallable = ['\__', $functionName];
+            $this->value = call_user_func_array($fnCallable, $params);
 
             return $this;
         } else {

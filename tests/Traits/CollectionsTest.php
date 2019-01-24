@@ -1,5 +1,7 @@
 <?php
 
+namespace Traits;
+
 use PHPUnit\Framework\TestCase;
 
 class CollectionsTest extends TestCase
@@ -14,8 +16,8 @@ class CollectionsTest extends TestCase
         $b3 = ['c' => 3, 'd' => 4];
 
         // Act
-        $x = __::assign($a1, $a2);
-        $y = __::assign($b1, $b2, $b3);
+        $x = \__::assign($a1, $a2);
+        $y = \__::assign($b1, $b2, $b3);
 
         // Assert
         $this->assertEquals(['color' => ['favorite' => 'green', 'blue'], 10], $x);
@@ -32,8 +34,8 @@ class CollectionsTest extends TestCase
         $b3 = (object)['c' => 3, 'd' => 4, 6];
 
         // Act
-        $x = __::assign($a1, $a2);
-        $y = __::assign($b1, $b2, $b3);
+        $x = \__::assign($a1, $a2);
+        $y = \__::assign($b1, $b2, $b3);
 
         // Assert
         $this->assertEquals((object)['color' => (object)['favorite' => 'green', 'blue'], 10], $x);
@@ -52,9 +54,9 @@ class CollectionsTest extends TestCase
         $c2 = [4, 5];
 
         // Act
-        $x = __::concat($a1, $a2);
-        $y = __::concat($b1, $b2, $b3);
-        $z = __::concat($c1, $c2);
+        $x = \__::concat($a1, $a2);
+        $y = \__::concat($b1, $b2, $b3);
+        $z = \__::concat($c1, $c2);
 
         // Assert
         $this->assertEquals(['color' => ['favorite' => 'green', 'blue'], 3, 10], $x);
@@ -72,8 +74,8 @@ class CollectionsTest extends TestCase
         $b3 = (object)['c' => 3, 'd' => 4];
 
         // Act
-        $x = __::concat($a1, $a2);
-        $y = __::concat($b1, $b2, $b3);
+        $x = \__::concat($a1, $a2);
+        $y = \__::concat($b1, $b2, $b3);
 
         // Assert
         $this->assertEquals((object)['color' => (object)['favorite' => 'green', 'blue'], 10], $x);
@@ -90,8 +92,8 @@ class CollectionsTest extends TestCase
         $b3 = ['c' => 3, 'd' => 4];
 
         // Act
-        $x = __::concatDeep($a1, $a2);
-        $y = __::concatDeep($b1, $b2, $b3);
+        $x = \__::concatDeep($a1, $a2);
+        $y = \__::concatDeep($b1, $b2, $b3);
 
         // Assert
         $this->assertEquals(['color' => ['favorite' => ['red', 'green'], 5, 'blue'], 3, 10], $x);
@@ -108,8 +110,8 @@ class CollectionsTest extends TestCase
         $b3 = (object)['c' => 3, 'd' => 4];
 
         // Act
-        $x = __::concatDeep($a1, $a2);
-        $y = __::concatDeep($b1, $b2, $b3);
+        $x = \__::concatDeep($a1, $a2);
+        $y = \__::concatDeep($b1, $b2, $b3);
 
         // Assert
         $this->assertEquals((object)['color' => (object)['favorite' => ['red', 'green'], 5, 'blue'], 10], $x);
@@ -124,8 +126,8 @@ class CollectionsTest extends TestCase
         $b = ['foo' => ['bar' => $object], 'baz' => ['b', 'z']];
 
         // Act
-        $x = __::ease($a);
-        $y = __::ease($b);
+        $x = \__::ease($a);
+        $y = \__::ease($b);
 
         // Assert
         $this->assertEquals(3, count($x));
@@ -140,7 +142,7 @@ class CollectionsTest extends TestCase
         $a = ['foo.bar' => 'ter', 'baz.0' => 'b', 'baz.1' => 'z'];
 
         // Act
-        $x = __::unease($a);
+        $x = \__::unease($a);
 
         // Assert
         $this->assertEquals(2, count($x));
@@ -158,13 +160,13 @@ class CollectionsTest extends TestCase
         $c = [0, 1, false, 2, null, 3, true];
 
         // Act
-        $x = __::filter($a, function ($n) {
+        $x = \__::filter($a, function ($n) {
             return $n > 3;
         });
-        $y = __::filter($b, function ($n) {
+        $y = \__::filter($b, function ($n) {
             return $n['age'] == 16;
         });
-        $z = __::filter($c);
+        $z = \__::filter($c);
 
         // Assert
         $this->assertEquals([4, 5], $x);
@@ -178,7 +180,7 @@ class CollectionsTest extends TestCase
         $a = [1, 2, 3, 4, 5];
 
         // Act
-        $x = __::first($a, 2);
+        $x = \__::first($a, 2);
 
         // Assert
         $this->assertEquals([1, 2], $x);
@@ -192,14 +194,14 @@ class CollectionsTest extends TestCase
                 $array[$key] = $value;
             };
         };
-        $a          = [1, 2, 3];
-        $b          = ['state' => 'IN', 'city' => 'Indianapolis', 'object' => 'School bus'];
+        $a = [1, 2, 3];
+        $b = ['state' => 'IN', 'city' => 'Indianapolis', 'object' => 'School bus'];
 
         // Act.
         $aMapped = [];
         $bMapped = [];
-        __::doForEach($a, $makeMapper($aMapped));
-        __::doForEach($b, $makeMapper($bMapped));
+        \__::doForEach($a, $makeMapper($aMapped));
+        \__::doForEach($b, $makeMapper($bMapped));
 
         // Assert
         $this->assertEquals($a, $aMapped);
@@ -219,16 +221,16 @@ class CollectionsTest extends TestCase
                 $array[$key] = $value;
             };
         };
-        $a          = [1, 2, 3];
-        $b          = ['state' => 'IN', 'city' => 'Indianapolis', 'object' => 'School bus'];
+        $a = [1, 2, 3];
+        $b = ['state' => 'IN', 'city' => 'Indianapolis', 'object' => 'School bus'];
 
         // Act.
         $aAppend = [];
         $aMapped = [];
         $bMapped = [];
-        __::doForEachRight($a, $makeAppend($aAppend));
-        __::doForEachRight($a, $makeMapper($aMapped));
-        __::doForEachRight($b, $makeMapper($bMapped));
+        \__::doForEachRight($a, $makeAppend($aAppend));
+        \__::doForEachRight($a, $makeMapper($aMapped));
+        \__::doForEachRight($b, $makeMapper($bMapped));
 
         // Assert
         $this->assertEquals(array_reverse($a), $aAppend);
@@ -244,13 +246,13 @@ class CollectionsTest extends TestCase
         $c = [1, 3, 4];
 
         // Act.
-        $x = __::every($a, function ($v) {
+        $x = \__::every($a, function ($v) {
             return is_bool($v);
         });
-        $y = __::every($b, function ($v) {
+        $y = \__::every($b, function ($v) {
             return is_bool($v);
         });
-        $z = __::every($c, function ($v) {
+        $z = \__::every($c, function ($v) {
             return is_int($v);
         });
 
@@ -271,14 +273,14 @@ class CollectionsTest extends TestCase
                 }
             };
         };
-        $a          = [1, 2, 3, 4];
-        $b          = ['state' => 'IN', 'city' => 'Indianapolis', 'object' => 'School bus'];
+        $a = [1, 2, 3, 4];
+        $b = ['state' => 'IN', 'city' => 'Indianapolis', 'object' => 'School bus'];
 
         // Act.
         $aMapped = [];
         $bMapped = [];
-        __::doForEach($a, $makeMapper($aMapped, 1));
-        __::doForEach($b, $makeMapper($bMapped, 'city'));
+        \__::doForEach($a, $makeMapper($aMapped, 1));
+        \__::doForEach($b, $makeMapper($bMapped, 'city'));
 
         // Assert
         $this->assertEquals([1, 2], $aMapped);
@@ -295,15 +297,15 @@ class CollectionsTest extends TestCase
         ];
 
         // Act
-        $x  = __::get($a, 'foo.bar');
-        $x2 = __::get($a, 'foo.bar', 'default');
-        $x3 = __::get($a, null);
-        $y  = __::get($a, 'foo.baz');
-        $y2 = __::get($a, 'foo.baz', 'default');
-        $y3 = __::get($a, 'foo.baz', function () {
+        $x = \__::get($a, 'foo.bar');
+        $x2 = \__::get($a, 'foo.bar', 'default');
+        $x3 = \__::get($a, null);
+        $y = \__::get($a, 'foo.baz');
+        $y2 = \__::get($a, 'foo.baz', 'default');
+        $y3 = \__::get($a, 'foo.baz', function () {
             return 'default_from_callback';
         });
-        $z  = __::get($a, 'baz.foo.obj');
+        $z = \__::get($a, 'baz.foo.obj');
 
         // Assert
         $this->assertEquals('ter', $x);
@@ -318,23 +320,23 @@ class CollectionsTest extends TestCase
     public function testGetObjects()
     {
         // Arrange
-        $o                = new \stdClass();
-        $a                = new \stdClass();
-        $a->foo           = new \stdClass();
-        $a->foo->bar      = 'ter';
-        $a->baz           = new \stdClass();
-        $a->baz->foo      = new \stdClass();
+        $o = new \stdClass();
+        $a = new \stdClass();
+        $a->foo = new \stdClass();
+        $a->foo->bar = 'ter';
+        $a->baz = new \stdClass();
+        $a->baz->foo = new \stdClass();
         $a->baz->foo->obj = $o;
 
         // Act
-        $x  = __::get($a, 'foo.bar');
-        $x2 = __::get($a, 'foo.bar', 'default');
-        $y  = __::get($a, 'foo.baz');
-        $y2 = __::get($a, 'foo.baz', 'default');
-        $y3 = __::get($a, 'foo.baz', function () {
+        $x = \__::get($a, 'foo.bar');
+        $x2 = \__::get($a, 'foo.bar', 'default');
+        $y = \__::get($a, 'foo.baz');
+        $y2 = \__::get($a, 'foo.baz', 'default');
+        $y3 = \__::get($a, 'foo.baz', function () {
             return 'default_from_callback';
         });
-        $z  = __::get($a, 'baz.foo.obj');
+        $z = \__::get($a, 'baz.foo.obj');
 
         // Assert
         $this->assertEquals('ter', $x);
@@ -355,7 +357,7 @@ class CollectionsTest extends TestCase
             ['state' => 'CA', 'city' => 'Mountain View', 'object' => 'Space pen'],
         ];
 
-        $grouped = __::groupBy($a, 'state');
+        $grouped = \__::groupBy($a, 'state');
         $this->assertCount(2, $grouped);
         $this->assertArrayHasKey('CA', $grouped);
     }
@@ -370,7 +372,7 @@ class CollectionsTest extends TestCase
             ['state' => 'CA', 'city' => 'Mountain View', 'object' => 'Space pen'],
         ];
 
-        $grouped = __::groupBy($a, 'state', 'city');
+        $grouped = \__::groupBy($a, 'state', 'city');
         $this->assertCount(2, $grouped);
         $this->assertCount(2, $grouped['IN']);
         $this->assertArrayHasKey('Indianapolis', $grouped['IN']);
@@ -386,7 +388,7 @@ class CollectionsTest extends TestCase
             ['CA', 'Mountain View', 'Space pen'],
         ];
 
-        $grouped = __::groupBy($a, 1);
+        $grouped = \__::groupBy($a, 1);
         $this->assertCount(4, $grouped);
         $this->assertArrayHasKey('Indianapolis', $grouped);
     }
@@ -401,7 +403,7 @@ class CollectionsTest extends TestCase
             (object)['state' => 'CA', 'city' => 'Mountain View', 'object' => 'Space pen'],
         ];
 
-        $grouped = __::groupBy($a, 'state');
+        $grouped = \__::groupBy($a, 'state');
         $this->assertCount(2, $grouped);
         $this->assertArrayHasKey('CA', $grouped);
     }
@@ -416,7 +418,7 @@ class CollectionsTest extends TestCase
             (object)['state' => 'CA', 'city' => 'Mountain View', 'object' => 'Space pen'],
         ];
 
-        $grouped = __::groupBy($a, function ($value) {
+        $grouped = \__::groupBy($a, function ($value) {
             return $value->city;
         });
         $this->assertCount(4, $grouped);
@@ -433,13 +435,13 @@ class CollectionsTest extends TestCase
         $e = (object)[5];
 
         // Act.
-        $x  = __::has($a, 'foo');
-        $y  = __::has($a, 'foz');
-        $z  = __::has($b, 'foo');
-        $xa = __::has($b, 'foz');
-        $xb = __::has($c, 'foo.bar');
-        $xc = __::has($d, 0);
-        $xd = __::has($e, 0);
+        $x = \__::has($a, 'foo');
+        $y = \__::has($a, 'foz');
+        $z = \__::has($b, 'foo');
+        $xa = \__::has($b, 'foz');
+        $xb = \__::has($c, 'foo.bar');
+        $xc = \__::has($d, 0);
+        $xd = \__::has($e, 0);
 
         // Assert.
         $this->assertTrue($x);
@@ -458,9 +460,9 @@ class CollectionsTest extends TestCase
         $b = ['foo' => ['bar' => 'foie'], 'estomac' => true];
 
         // Act
-        $x = __::hasKeys($a, ['foo', 'foz'], false);
-        $y = __::hasKeys($a, ['foo', 'foz'], true);
-        $z = __::hasKeys($b, ['foo.bar', 'estomac']);
+        $x = \__::hasKeys($a, ['foo', 'foz'], false);
+        $y = \__::hasKeys($a, ['foo', 'foz'], true);
+        $z = \__::hasKeys($b, ['foo.bar', 'estomac']);
 
         // Assert
         $this->assertFalse($x);
@@ -471,8 +473,8 @@ class CollectionsTest extends TestCase
         $a['foz'] = 'baz';
 
         //React
-        $x = __::hasKeys($a, ['foo', 'foz'], false);
-        $y = __::hasKeys($a, ['foo', 'foz'], true);
+        $x = \__::hasKeys($a, ['foo', 'foz'], false);
+        $y = \__::hasKeys($a, ['foo', 'foz'], true);
 
         // Assert
         $this->assertTrue($x);
@@ -482,8 +484,8 @@ class CollectionsTest extends TestCase
         $a['xxx'] = 'bay';
 
         //React
-        $x = __::hasKeys($a, ['foo', 'foz'], false);
-        $y = __::hasKeys($a, ['foo', 'foz'], true);
+        $x = \__::hasKeys($a, ['foo', 'foz'], false);
+        $y = \__::hasKeys($a, ['foo', 'foz'], true);
 
         // Assert
         $this->assertTrue($x);
@@ -496,8 +498,8 @@ class CollectionsTest extends TestCase
         $a = (object)['foo' => 'bar'];
 
         // Act
-        $x = __::hasKeys($a, ['foo']);
-        $y = __::hasKeys($a, ['foo', 'foz']);
+        $x = \__::hasKeys($a, ['foo']);
+        $y = \__::hasKeys($a, ['foo', 'foz']);
 
         // Assert
         $this->assertTrue($x);
@@ -507,14 +509,14 @@ class CollectionsTest extends TestCase
     public function testIsEmpty()
     {
         // Assert nominal cases.
-        $this->assertTrue(__::isEmpty([]));
-        $this->assertFalse(__::isEmpty(['Falcon', 'Heavy']));
-        $this->assertTrue(__::isEmpty(new stdClass()));
-        $this->assertFalse(__::isEmpty((object)['Baie' => 'Goji']));
+        $this->assertTrue(\__::isEmpty([]));
+        $this->assertFalse(\__::isEmpty(['Falcon', 'Heavy']));
+        $this->assertTrue(\__::isEmpty(new \stdClass()));
+        $this->assertFalse(\__::isEmpty((object)['Baie' => 'Goji']));
         // Assert on non-collections.
-        $this->assertTrue(__::isEmpty(null));
-        $this->assertTrue(__::isEmpty(3));
-        $this->assertTrue(__::isEmpty(true));
+        $this->assertTrue(\__::isEmpty(null));
+        $this->assertTrue(\__::isEmpty(3));
+        $this->assertTrue(\__::isEmpty(true));
     }
 
     public function testLast()
@@ -523,8 +525,8 @@ class CollectionsTest extends TestCase
         $a = [1, 2, 3, 4, 5];
 
         // Act
-        $x = __::last($a, 2);
-        $y = __::last($a);
+        $x = \__::last($a, 2);
+        $y = \__::last($a);
 
         // Assert
         $this->assertEquals([4, 5], $x);
@@ -537,7 +539,7 @@ class CollectionsTest extends TestCase
         $a = [1, 2, 3];
 
         // Act
-        $x = __::map($a, function ($n) {
+        $x = \__::map($a, function ($n) {
             return $n * 3;
         });
 
@@ -551,7 +553,7 @@ class CollectionsTest extends TestCase
         $a = ['a' => 1, 'b' => 2, 'c' => 3];
 
         // Act
-        $x = __::map($a, function ($n, $key) {
+        $x = \__::map($a, function ($n, $key) {
             return $key === 'c' ? $n : $n * 3;
         });
 
@@ -565,7 +567,7 @@ class CollectionsTest extends TestCase
         $a = [1, 2, 3];
 
         // Act
-        $x = __::max($a);
+        $x = \__::max($a);
 
         // Assert
         $this->assertEquals(3, $x);
@@ -577,7 +579,7 @@ class CollectionsTest extends TestCase
         $a = [1, 2, 3];
 
         // Act
-        $x = __::min($a);
+        $x = \__::min($a);
 
         // Assert
         $this->assertEquals(1, $x);
@@ -593,8 +595,8 @@ class CollectionsTest extends TestCase
         $b3 = ['c' => 3, 'd' => 4];
 
         // Act
-        $x = __::merge($a1, $a2);
-        $y = __::merge($b1, $b2, $b3);
+        $x = \__::merge($a1, $a2);
+        $y = \__::merge($b1, $b2, $b3);
 
         // Assert
         $this->assertEquals(['color' => ['favorite' => 'green', 'model' => 3, 'blue'], 10], $x);
@@ -611,8 +613,8 @@ class CollectionsTest extends TestCase
         $b3 = (object)['c' => 3, 'd' => 4, 6];
 
         // Act
-        $x = __::merge($a1, $a2);
-        $y = __::merge($b1, $b2, $b3);
+        $x = \__::merge($a1, $a2);
+        $y = \__::merge($b1, $b2, $b3);
 
         // Assert
         $this->assertEquals((object)['color' => (object)['favorite' => 'green', 'model' => 3, 'blue'], 10], $x);
@@ -627,36 +629,36 @@ class CollectionsTest extends TestCase
             ['foo' => 'bar2', 'bis' => 'ter2', '' => 1],
         ];
 
-        $b           = new \stdClass();
-        $b->one      = new \stdClass();
+        $b = new \stdClass();
+        $b->one = new \stdClass();
         $b->one->foo = 'bar';
-        $b->two      = new \stdClass();
+        $b->two = new \stdClass();
         $b->two->foo = 'bar2';
-        $b->three    = new \stdClass();
-        $c           = [$b->one, $b->two];
+        $b->three = new \stdClass();
+        $c = [$b->one, $b->two];
 
-        $d                     = [
+        $d = [
             ['foo' => ['bar' => ['baz' => 1]]],
             ['foo' => ['bar' => ['baz' => 2]]],
         ];
-        $e                     = new \stdClass();
-        $e->one                = new \stdClass();
-        $e->one->foo           = new \stdClass();
-        $e->one->foo->bar      = ['baz' => 1];
-        $e->two                = new \stdClass();
-        $e->two->foo           = new \stdClass();
-        $e->two->foo->bar      = new \stdClass();
+        $e = new \stdClass();
+        $e->one = new \stdClass();
+        $e->one->foo = new \stdClass();
+        $e->one->foo->bar = ['baz' => 1];
+        $e->two = new \stdClass();
+        $e->two->foo = new \stdClass();
+        $e->two->foo->bar = new \stdClass();
         $e->two->foo->bar->baz = 2;
 
         // Act
-        $x  = __::pluck($a, 'foo');
-        $x2 = __::pluck($a, '');
+        $x = \__::pluck($a, 'foo');
+        $x2 = \__::pluck($a, '');
 
-        $y  = __::pluck($b, 'foo');
-        $y2 = __::pluck($c, 'foo');
+        $y = \__::pluck($b, 'foo');
+        $y2 = \__::pluck($c, 'foo');
 
-        $z  = __::pluck($d, 'foo.bar.baz');
-        $z2 = __::pluck($e, 'foo.bar.baz');
+        $z = \__::pluck($d, 'foo.bar.baz');
+        $z2 = \__::pluck($e, 'foo.bar.baz');
 
         // Assert
         $this->assertEquals(['bar', 'bar2'], $x);
@@ -672,8 +674,8 @@ class CollectionsTest extends TestCase
     public function testReduceArray()
     {
         // Arrange
-        $a        = [1, 2, 3];
-        $b        = [
+        $a = [1, 2, 3];
+        $b = [
             10659489,
             1578484,
             1620331,
@@ -681,15 +683,15 @@ class CollectionsTest extends TestCase
             944022,
             1037939,
         ];
-        $c        = [
+        $c = [
             ['state' => 'IN', 'city' => 'Indianapolis', 'object' => 'School bus'],
             ['state' => 'IN', 'city' => 'Indianapolis', 'object' => 'Manhole'],
             ['state' => 'IN', 'city' => 'Plainfield', 'object' => 'Basketball'],
             ['state' => 'CA', 'city' => 'San Diego', 'object' => 'Light bulb'],
             ['state' => 'CA', 'city' => 'Mountain View', 'object' => 'Space pen'],
         ];
-        $d        = [2];
-        $e        = [];
+        $d = [2];
+        $e = [];
         $aReducer = function ($accumulator, $value) {
             return $accumulator + $value;
         };
@@ -700,7 +702,7 @@ class CollectionsTest extends TestCase
 
             return $accumulator + $value;
         };
-        $cIndex   = 0;
+        $cIndex = 0;
         $cReducer = function ($accumulator, $value, $index, $collection) use (&$c, &$cIndex) {
             $this->assertEquals($c, $collection);
             $this->assertEquals($cIndex++, $index);
@@ -714,12 +716,12 @@ class CollectionsTest extends TestCase
         };
 
         // Act
-        $w  = __::reduce($d, $aReducer);
-        $ww = __::reduce($d, $aReducer, 0);
-        $ee = __::reduce($e, $aReducer);
-        $x  = __::reduce($a, $aReducer, 2);
-        $y  = __::reduce($b, $bReducer);
-        $z  = __::reduce($c, $cReducer, []);
+        $w = \__::reduce($d, $aReducer);
+        $ww = \__::reduce($d, $aReducer, 0);
+        $ee = \__::reduce($e, $aReducer);
+        $x = \__::reduce($a, $aReducer, 2);
+        $y = \__::reduce($b, $bReducer);
+        $z = \__::reduce($c, $cReducer, []);
 
         // Assert
         $this->assertEquals(2, $w);
@@ -728,9 +730,9 @@ class CollectionsTest extends TestCase
         $this->assertEquals(16775705, $y);
         $this->assertNull($ee);
         $this->assertEquals([
-            'Indianapolis'  => 2,
-            'Plainfield'    => 1,
-            'San Diego'     => 1,
+            'Indianapolis' => 2,
+            'Plainfield' => 1,
+            'San Diego' => 1,
             'Mountain View' => 1,
         ], $z);
     }
@@ -738,22 +740,22 @@ class CollectionsTest extends TestCase
     public function testReduceObject()
     {
         // Arrange
-        $a            = new \stdClass();
-        $a->paris     = 10659489;
+        $a = new \stdClass();
+        $a->paris = 10659489;
         $a->marseille = 1578484;
-        $a->lyon      = 1620331;
-        $a->toulouse  = 935440;
-        $a->nice      = 944022;
-        $a->lille     = 1037939;
-        $aReducer     = function ($accumulator, $value) {
+        $a->lyon = 1620331;
+        $a->toulouse = 935440;
+        $a->nice = 944022;
+        $a->lille = 1037939;
+        $aReducer = function ($accumulator, $value) {
             return $accumulator + $value;
         };
-        $b            = (object)[
+        $b = (object)[
             'a' => 1,
             'b' => 2,
             'c' => 1,
         ];
-        $bReducer     = function ($accumulator, $value, $key) {
+        $bReducer = function ($accumulator, $value, $key) {
             if (!isset($accumulator[$value])) {
                 $accumulator[$value] = [];
             }
@@ -763,8 +765,8 @@ class CollectionsTest extends TestCase
         };
 
         // Act
-        $x = __::reduce($a, $aReducer, 0);
-        $y = __::reduce($b, $bReducer, []);
+        $x = \__::reduce($a, $aReducer, 0);
+        $y = \__::reduce($b, $bReducer, []);
 
         // Assert
         $this->assertEquals(16775705, $x);
@@ -777,14 +779,14 @@ class CollectionsTest extends TestCase
     public function testReduceRightArray()
     {
         // Arrange
-        $a        = ['a', 'b', 'c'];
+        $a = ['a', 'b', 'c'];
         $aReducer = function ($word, $char) {
             return $word . $char;
         };
 
         // Act
-        $x  = __::reduceRight($a, $aReducer, '');
-        $x1 = __::reduceRight($a, $aReducer, null);
+        $x = \__::reduceRight($a, $aReducer, '');
+        $x1 = \__::reduceRight($a, $aReducer, null);
 
         // Assert
         $this->assertEquals('cba', $x);
@@ -797,7 +799,7 @@ class CollectionsTest extends TestCase
         $a = ['a' => 1, 'b' => ['c' => 3, 'd' => 4], 'h' => 5];
 
         // Act
-        $x = __::pick($a, ['a', 'b.d', 'e', 'f.g']);
+        $x = \__::pick($a, ['a', 'b.d', 'e', 'f.g']);
 
         // Assert
         $this->assertEquals([
@@ -815,13 +817,13 @@ class CollectionsTest extends TestCase
         $b = ['a' => 1, 'b' => ['c' => 3, 'd' => 4]];
 
         // Act.
-        $x = __::pick($a, ['cnsa', 'esa', 'jaxa'], 26);
-        $y = __::pick($b, ['a', 'b.d', 'e', 'f.g'], 'default');
+        $x = \__::pick($a, ['cnsa', 'esa', 'jaxa'], 26);
+        $y = \__::pick($b, ['a', 'b.d', 'e', 'f.g'], 'default');
 
         // Assert.
         $this->assertEquals([
             'cnsa' => 42,
-            'esa'  => 26,
+            'esa' => 26,
             'jaxa' => 26,
         ], $x);
         $this->assertEquals([
@@ -835,18 +837,18 @@ class CollectionsTest extends TestCase
     public function testPickObject()
     {
         // Arrange.
-        $a            = new \stdClass();
-        $a->paris     = 10659489;
+        $a = new \stdClass();
+        $a->paris = 10659489;
         $a->marseille = 1578484;
-        $a->lyon      = 1620331;
+        $a->lyon = 1620331;
 
         // Act.
-        $x = __::pick($a, ['marseille', 'london']);
+        $x = \__::pick($a, ['marseille', 'london']);
 
         // Assert.
         $this->assertEquals((object)[
             'marseille' => 1578484,
-            'london'    => null,
+            'london' => null,
         ], $x);
     }
 
@@ -856,8 +858,8 @@ class CollectionsTest extends TestCase
         $a = ['foo' => ['bar' => 'ter']];
 
         // Act
-        $x = __::set($a, 'foo.baz.ber', 'fer');
-        $y = __::set($a, 'foo.bar', 'fer2');
+        $x = \__::set($a, 'foo.baz.ber', 'fer');
+        $y = \__::set($a, 'foo.bar', 'fer2');
 
         // Assert
         $this->assertEquals(['foo' => ['bar' => 'ter']], $a);
@@ -871,8 +873,8 @@ class CollectionsTest extends TestCase
         $a = (object)['foo' => (object)['bar' => 'ter']];
 
         // Act.
-        $x = __::set($a, 'foo.baz.ber', 'fer');
-        $y = __::set($a, 'foo.bar', 'fer2');
+        $x = \__::set($a, 'foo.baz.ber', 'fer');
+        $y = \__::set($a, 'foo.bar', 'fer2');
 
         // Assert.
         $this->assertEquals((object )['foo' => (object)['bar' => 'ter']], $a);
@@ -886,7 +888,7 @@ class CollectionsTest extends TestCase
         $a = ['foo' => ['bar' => 'ter']];
 
         // Act
-        $x = __::set($a, 'foo.bar.not_exist', 'baz');
+        $x = \__::set($a, 'foo.bar.not_exist', 'baz');
 
         // Assert.
         $this->assertEquals(['foo' => ['bar' => 'ter']], $a);
@@ -897,7 +899,7 @@ class CollectionsTest extends TestCase
     {
         // Arrange
         $nestedA = ['k1' => 'v1', 'k2' => 'v2', 'k3' => ['k31' => 'v31', 'k32' => 'v32'], 'k4' => ['k41' => 'v41']];
-        $a       = [
+        $a = [
             ['name' => 'fred', 'age' => 32],
             ['name' => 'maciej', 'age' => 16],
             ['a' => 'b', 'c' => 'd'],
@@ -905,16 +907,16 @@ class CollectionsTest extends TestCase
         ];
 
         // Act
-        $x   = __::where($a, ['age' => 16]);
-        $x2  = __::where($a, ['age' => 16, 'name' => 'fred']);
-        $x3  = __::where($a, ['name' => 'maciej', 'age' => 16]);
-        $x4  = __::where($a, ['name' => 'unknown']);
-        $x5  = __::where($a, ['k4' => ['k41' => 'v41']]);
-        $x6  = __::where($a, ['k4xx' => ['k41' => 'v41']]);
-        $x7  = __::where($a, ['k4' => ['k41xx' => 'v41']]);
-        $x8  = __::where($a, ['k4' => ['k41' => 'v41xx']]);
-        $x9  = __::where($a, ['k4' => ['k41xx' => 'v41xx']]);
-        $x10 = __::where($a, ['k4' => ['k41' => 'v41']], true);
+        $x = \__::where($a, ['age' => 16]);
+        $x2 = \__::where($a, ['age' => 16, 'name' => 'fred']);
+        $x3 = \__::where($a, ['name' => 'maciej', 'age' => 16]);
+        $x4 = \__::where($a, ['name' => 'unknown']);
+        $x5 = \__::where($a, ['k4' => ['k41' => 'v41']]);
+        $x6 = \__::where($a, ['k4xx' => ['k41' => 'v41']]);
+        $x7 = \__::where($a, ['k4' => ['k41xx' => 'v41']]);
+        $x8 = \__::where($a, ['k4' => ['k41' => 'v41xx']]);
+        $x9 = \__::where($a, ['k4' => ['k41xx' => 'v41xx']]);
+        $x10 = \__::where($a, ['k4' => ['k41' => 'v41']], true);
 
         // Assert
         $this->assertEquals([$a[1]], $x);
@@ -935,16 +937,16 @@ class CollectionsTest extends TestCase
         $a = [
             'name1' => [
                 'name' => 'Tuan',
-                'age'  => 26,
+                'age' => 26,
             ],
             'name2' => [
                 'name' => 'Nguyen',
-                'age'  => '25',
+                'age' => '25',
             ],
         ];
 
         // Act
-        $b = __::mapKeys($a, function ($key) {
+        $b = \__::mapKeys($a, function ($key) {
             return strtoupper($key);
         });
 
@@ -952,17 +954,17 @@ class CollectionsTest extends TestCase
         $this->assertEquals([
             'NAME1' => [
                 'name' => 'Tuan',
-                'age'  => 26,
+                'age' => 26,
             ],
             'NAME2' => [
                 'name' => 'Nguyen',
-                'age'  => '25',
+                'age' => '25',
             ],
         ], $b);
 
         // test with complicated closure
         // Act
-        $b = __::mapKeys($a, function ($key, $value, $collection) {
+        $b = \__::mapKeys($a, function ($key, $value, $collection) {
             $size = count($collection);
 
             return "{$key}_{$value['name']}_{$size}";
@@ -970,19 +972,19 @@ class CollectionsTest extends TestCase
 
         // Assert
         $this->assertEquals([
-            'name1_Tuan_2'   => [
+            'name1_Tuan_2' => [
                 'name' => 'Tuan',
-                'age'  => 26,
+                'age' => 26,
             ],
             'name2_Nguyen_2' => [
                 'name' => 'Nguyen',
-                'age'  => '25',
+                'age' => '25',
             ],
         ], $b);
 
         // test when closure is null, the returned array should have the same data with the original array
         // Act
-        $b = __::mapKeys($a);
+        $b = \__::mapKeys($a);
 
         // Assert
         $this->assertEquals($a, $b);
@@ -1002,7 +1004,7 @@ class CollectionsTest extends TestCase
         $a = ['x' => ['y' => 1]];
 
         // Act
-        __::mapKeys($a, function ($key) {
+        \__::mapKeys($a, function ($key) {
             return ['key' => $key];
         });
     }
@@ -1013,16 +1015,16 @@ class CollectionsTest extends TestCase
         $a = [
             'name1' => [
                 'name' => 'Tuan',
-                'age'  => 26,
+                'age' => 26,
             ],
             'name2' => [
                 'name' => 'Nguyen',
-                'age'  => '25',
+                'age' => '25',
             ],
         ];
 
         // Act
-        $b = __::mapValues($a, function ($value) {
+        $b = \__::mapValues($a, function ($value) {
             return array_flip($value);
         });
 
@@ -1030,17 +1032,17 @@ class CollectionsTest extends TestCase
         $this->assertEquals([
             'name1' => [
                 'Tuan' => 'name',
-                26     => 'age',
+                26 => 'age',
             ],
             'name2' => [
                 'Nguyen' => 'name',
-                25       => 'age',
+                25 => 'age',
             ],
         ], $b);
 
         // test with complicated closure
         // Act
-        $b = __::mapValues($a, function ($value, $key, $collection) {
+        $b = \__::mapValues($a, function ($value, $key, $collection) {
             $size = count($collection);
 
             return [
@@ -1056,7 +1058,7 @@ class CollectionsTest extends TestCase
 
         // test when closure is null, the returned array should have the same data with the original array
         // Act
-        $b = __::mapValues($a);
+        $b = \__::mapValues($a);
 
         // Assert
         $this->assertEquals($a, $b);

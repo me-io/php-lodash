@@ -51,7 +51,7 @@ trait Collections
             return array_shift($array);
         }
 
-        return array_splice($array, 0, $take, true);
+        return array_splice($array, 0, $take);
     }
 
     /**
@@ -62,7 +62,7 @@ trait Collections
      *
      * @param array|object $collection array of values
      * @param null|string  $key        key or index
-     * @param null         $default    default value to return if index not exist
+     * @param mixed        $default    default value to return if index not exist
      *
      * @return mixed
      */
@@ -311,7 +311,7 @@ trait Collections
      *
      * @param array|object $collection The collection to iterate over.
      * @param \Closure     $iterateFn  The function invoked per iteration.
-     * @param null         $accumulator
+     * @param mixed        $accumulator
      *
      * @return array|mixed|null (*): Returns the accumulated value.
      */
@@ -344,11 +344,12 @@ trait Collections
      * @param array|object $collection The collection to iterate over.
      * @param \Closure     $iterateFn  The function to call for each value.
      *
-     * @return null
+     * @return boolean
      */
     public static function doForEachRight($collection, Closure $iterateFn)
     {
-        return __::doForEach(__::iteratorReverse($collection), $iterateFn);
+        __::doForEach(__::iteratorReverse($collection), $iterateFn);
+        return true;
     }
 
     /**
@@ -363,7 +364,7 @@ trait Collections
      * @param array|object $collection The collection to iterate over.
      * @param \Closure     $iterateFn  The function to call for each value
      *
-     * @return null
+     * @return boolean
      */
     public static function doForEach($collection, Closure $iterateFn)
     {
@@ -372,10 +373,11 @@ trait Collections
                 break;
             }
         }
+        return true;
     }
 
     /**
-     * @param $iterable
+     * @param array $iterable
      *
      * @return \Generator
      */
@@ -397,14 +399,14 @@ trait Collections
      *        >> '['foo' => ['bar' => 'ter', 'baz' => ['ber' => 'fer']]]'
      *
      * @param array|object $collection collection of values
-     * @param string       $path       key or index
+     * @param string|int   $path       key or index
      * @param mixed        $value      the value to set at position $key
      *
      * @throws \Exception if the path consists of a non collection and strict is set to false
      *
      * @return array|object the new collection with the item set
      */
-    public static function set($collection, string $path, $value = null)
+    public static function set($collection, $path, $value = null)
     {
         if ($path === null) {
             return $collection;
@@ -431,9 +433,9 @@ trait Collections
     }
 
     /**
-     * @param $collection
-     * @param $key
-     * @param $value
+     * @param mixed $collection
+     * @param mixed $key
+     * @param mixed $value
      *
      * @return mixed
      */
@@ -462,9 +464,9 @@ trait Collections
      * @usage __::hasKeys(['foo' => 'bar', 'foz' => 'baz'], ['foo', 'foz']);
      *        >> true
      *
-     * @param array|object $collection of key values pairs
-     * @param array        $keys       collection of keys to look for
-     * @param boolean      $strict     to exclusively check
+     * @param array   $collection of key values pairs
+     * @param array   $keys       collection of keys to look for
+     * @param boolean $strict     to exclusively check
      *
      * @return boolean
      */
@@ -496,8 +498,8 @@ trait Collections
      *        __::hasKeys((object) ['foo' => 'bar', 'foz' => 'baz'], 'bar');
      *        >> false
      *
-     * @param array|object   $collection of key values pairs
-     * @param string|integer $path       Path to look for.
+     * @param array|object $collection of key values pairs
+     * @param string       $path       Path to look for.
      *
      * @return boolean
      */
@@ -596,7 +598,7 @@ trait Collections
     public static function ease(array $collection, string $glue = '.'): array
     {
         $map = [];
-        __::_ease($map, $collection, $glue);
+        __::internalEase($map, $collection, $glue);
 
         return $map;
     }
@@ -609,11 +611,11 @@ trait Collections
      * @param string $glue
      * @param string $prefix
      */
-    public static function _ease(array &$map, array $array, string $glue, string $prefix = '')
+    private static function internalEase(array &$map, array $array, string $glue, string $prefix = '')
     {
         foreach ($array as $index => $value) {
             if (is_array($value)) {
-                __::_ease($map, $value, $glue, $prefix . $index . $glue);
+                __::internalEase($map, $value, $glue, $prefix . $index . $glue);
             } else {
                 $map[$prefix . $index] = $value;
             }
@@ -692,8 +694,8 @@ trait Collections
      *           ]
      *         ]
      *
-     * @param array                     $array
-     * @param int|float|string|\Closure $key
+     * @param array $array
+     * @param mixed $key
      *
      * @return array
      */
@@ -707,7 +709,7 @@ trait Collections
             $groupKey = null;
             if (is_callable($key)) {
                 $groupKey = call_user_func($key, $value);
-            } else if (is_object($value) && property_exists($value, $key)) {
+            } else if (is_object($value) && property_exists($value, (string)$key)) {
                 $groupKey = $value->{$key};
             } else if (is_array($value) && isset($value[$key])) {
                 $groupKey = $value[$key];
@@ -721,7 +723,7 @@ trait Collections
             $args = func_get_args();
             foreach ($grouped as $_key => $value) {
                 $params = array_merge([$value], array_slice($args, 2, $argCnt));
-                $grouped[$_key] = call_user_func_array('__::groupBy', $params);
+                $grouped[$_key] = call_user_func_array('\__::groupBy', $params);
             }
         }
 
@@ -897,9 +899,9 @@ trait Collections
      *             '2' => ['b']
      *         ]
      *
-     * @param array|object $collection The collection to iterate over.
-     * @param \Closure     $iterateFn  The function invoked per iteration.
-     * @param null         $accumulator
+     * @param array    $collection The collection to iterate over.
+     * @param \Closure $iterateFn  The function invoked per iteration.
+     * @param null     $accumulator
      *
      * @return array|mixed|null (*): Returns the accumulated value.
      */
@@ -927,7 +929,7 @@ trait Collections
      * @param array  $collection hash map of values
      * @param string $separator  the glue used in the keys
      *
-     * @return array
+     * @return array|object
      * @throws \Exception
      */
     public static function unease(array $collection, string $separator = '.'): array

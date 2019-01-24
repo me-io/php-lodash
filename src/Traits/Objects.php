@@ -12,7 +12,7 @@ trait Objects
      * @usage __::isArray([1, 2, 3]);
      *        >> true
      *
-     * @param null $value
+     * @param mixed $value
      *
      * @return bool
      */
@@ -27,7 +27,7 @@ trait Objects
      * @usage __::isFunction(function ($a) { return $a + 2; });
      *        >> true
      *
-     * @param null $value
+     * @param mixed $value
      *
      * @return bool
      */
@@ -42,7 +42,7 @@ trait Objects
      * @usage __::isNull(null);
      *        >> true
      *
-     * @param null $value
+     * @param mixed $value
      *
      * @return bool
      */
@@ -58,7 +58,7 @@ trait Objects
      * @usage __::isNumber(123);
      *        >> true
      *
-     * @param null $value
+     * @param mixed $value
      *
      * @return bool
      */
@@ -73,7 +73,7 @@ trait Objects
      * @usage __::isObject('fred');
      *        >> false
      *
-     * @param null $value
+     * @param mixed $value
      *
      * @return bool
      */
@@ -88,7 +88,7 @@ trait Objects
      * @usage __::isString('fred');
      *        >> true
      *
-     * @param null $value
+     * @param mixed $value
      *
      * @return bool
      */
@@ -100,12 +100,12 @@ trait Objects
     /**
      * Check if the object is a collection. A collection is either an array or an object.
      *
-     * @param null $object
+     * @param mixed $value
      *
      * @return bool
      */
-    public static function isCollection($object): bool
+    public static function isCollection($value): bool
     {
-        return __::isArray($object) || __::isObject($object);
+        return __::isArray($value) || __::isObject($value);
     }
 }

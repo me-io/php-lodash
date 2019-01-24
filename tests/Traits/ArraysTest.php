@@ -1,5 +1,7 @@
 <?php
 
+namespace Traits;
+
 use PHPUnit\Framework\TestCase;
 
 class ArraysTest extends TestCase
@@ -31,11 +33,11 @@ class ArraysTest extends TestCase
     public function testFlatten()
     {
         // Arrange
-        $a  = [1, 2, [3, [4]]];
+        $a = [1, 2, [3, [4]]];
         $a2 = [1, 2, [3, [[4]]]];
 
         // Act
-        $x  = \__::flatten($a);
+        $x = \__::flatten($a);
         $x2 = \__::flatten($a2, true);
 
         // Assert
@@ -129,7 +131,7 @@ class ArraysTest extends TestCase
     public function testSearch()
     {
         // Act
-        $x = __::search(['a', 'b', 'c'], 'b');
+        $x = \__::search(['a', 'b', 'c'], 'b');
 
         // Assert
         $this->assertEquals(1, $x);
@@ -138,7 +140,7 @@ class ArraysTest extends TestCase
     public function testContains()
     {
         // Act
-        $x = __::contains(['a', 'b', 'c'], 'b');
+        $x = \__::contains(['a', 'b', 'c'], 'b');
 
         // Assert
         $this->assertEquals(true, $x);
@@ -147,7 +149,7 @@ class ArraysTest extends TestCase
     public function testAverage()
     {
         // Act
-        $x = __::average([1, 2, 3]);
+        $x = \__::average([1, 2, 3]);
 
         // Assert
         $this->assertEquals(2, $x);
@@ -156,7 +158,7 @@ class ArraysTest extends TestCase
     public function testSize()
     {
         // Act
-        $x = __::size([1, 2, 3]);
+        $x = \__::size([1, 2, 3]);
 
         // Assert
         $this->assertEquals(3, $x);
@@ -165,7 +167,7 @@ class ArraysTest extends TestCase
     public function testClean()
     {
         // Act
-        $x = __::clean([true, false, 0, 1, 'string', '']);
+        $x = \__::clean([true, false, 0, 1, 'string', '']);
 
         // Assert
         $this->assertEquals([true, 1, 'string'], $x);
@@ -174,7 +176,7 @@ class ArraysTest extends TestCase
     public function testRandom()
     {
         // Act
-        $x = __::random([1, 2, 3]);
+        $x = \__::random([1, 2, 3]);
 
         // Assert
         $this->assertTrue(in_array($x, [1, 2, 3]));
@@ -183,7 +185,7 @@ class ArraysTest extends TestCase
     public function testIntersection()
     {
         // Act
-        $x = __::intersection(["green", "red", "blue"], ["green", "yellow", "red"]);
+        $x = \__::intersection(["green", "red", "blue"], ["green", "yellow", "red"]);
 
         // Assert
         $this->assertEquals(["green", "red"], $x);
@@ -192,7 +194,7 @@ class ArraysTest extends TestCase
     public function testIntersects()
     {
         // Act
-        $x = __::intersects(["green", "red", "blue"], ["green", "yellow", "red"]);
+        $x = \__::intersects(["green", "red", "blue"], ["green", "yellow", "red"]);
 
         // Assert
         $this->assertEquals(true, $x);
@@ -201,7 +203,7 @@ class ArraysTest extends TestCase
     public function testInitial()
     {
         // Act
-        $x = __::initial([1, 2, 3], 1);
+        $x = \__::initial([1, 2, 3], 1);
 
         // Assert
         $this->assertEquals([1, 2], $x);
@@ -210,7 +212,7 @@ class ArraysTest extends TestCase
     public function testRest()
     {
         // Act
-        $x = __::rest([1, 2, 3], 2);
+        $x = \__::rest([1, 2, 3], 2);
 
         // Assert
         $this->assertEquals([3], $x);
@@ -219,7 +221,7 @@ class ArraysTest extends TestCase
     public function testSortKeys()
     {
         // Act
-        $x = __::sortKeys(['z' => 0, 'b' => 1, 'r' => 2]);
+        $x = \__::sortKeys(['z' => 0, 'b' => 1, 'r' => 2]);
 
         // Assert
         $this->assertEquals(['b' => 1, 'r' => 2, 'z' => 0], $x);
@@ -228,7 +230,7 @@ class ArraysTest extends TestCase
     public function testWithout()
     {
         //Act
-        $x = __::without([1, 1 => 3, 2 => 4, 5], 4);
+        $x = \__::without([1, 1 => 3, 2 => 4, 5], 4);
 
         //Assert
         $this->assertEquals([0 => 1, 1 => 3, 2 => 5], $x);
@@ -237,7 +239,7 @@ class ArraysTest extends TestCase
     public function testWithoutPreserveKey()
     {
         //Act
-        $x = __::without([1, 3 => 3, 2 => 4, 5], 4, true);
+        $x = \__::without([1, 3 => 3, 2 => 4, 5], 4, true);
 
         //Assert
         $this->assertEquals([0 => 1, 3 => 3, 4 => 5], $x);

@@ -21,7 +21,7 @@ trait Strings
      *                          If the limit parameter is negative, all components except the last -limit are returned.
      *                          If the limit parameter is zero, then this is treated as 1.
      *
-     * @return array<int,string>|false.
+     * @return array
      */
     public static function split(string $input, string $delimiter, int $limit = PHP_INT_MAX)
     {

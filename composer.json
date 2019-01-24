@@ -42,7 +42,7 @@
     "install-dev": "composer install --no-interaction",
     "update-prod": "composer update --no-dev",
     "install-prod": "composer install --no-dev --no-interaction",
-    "stan": "phpstan analyse -l max src",
+    "stan": "phpstan analyse src",
     "test": "phpunit",
     "test-cov": "phpunit --coverage-text --coverage-clover=coverage.xml",
     "test-html": "phpunit --coverage-text --coverage-clover=coverage.xml --coverage-html=./report/",
