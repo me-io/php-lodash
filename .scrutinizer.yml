@@ -2,12 +2,12 @@
 filter:
   paths:
     - 'src/*'
-    excluded_paths:
-      - 'vendor/*'
-      - 'tests/*'
-      - 'build/*'
-      - 'docs/*'
-      - 'src/__.php'
+  excluded_paths:
+    - 'vendor/*'
+    - 'tests/*'
+    - 'build/*'
+    - 'docs/*'
+    - 'src/__.php'
   dependency_paths:
     - 'vendor/*'
 coding_style:
