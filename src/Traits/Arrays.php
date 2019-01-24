@@ -64,8 +64,7 @@ trait Arrays
         bool $shallow = false,
         bool $strict = true,
         int $startIndex = 0
-    ): array
-    {
+    ): array {
         $idx = 0;
         $output = [];
 

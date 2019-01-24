@@ -193,7 +193,7 @@ trait Collections
         $result = array_map(function ($value) use ($property) {
             if (is_array($value) && isset($value[$property])) {
                 return $value[$property];
-            } else if (is_object($value) && isset($value->{$property})) {
+            } elseif (is_object($value) && isset($value->{$property})) {
                 return $value->{$property};
             }
             foreach (__::split($property, '.') as $segment) {
@@ -709,9 +709,9 @@ trait Collections
             $groupKey = null;
             if (is_callable($key)) {
                 $groupKey = call_user_func($key, $value);
-            } else if (is_object($value) && property_exists($value, (string)$key)) {
+            } elseif (is_object($value) && property_exists($value, (string)$key)) {
                 $groupKey = $value->{$key};
-            } else if (is_array($value) && isset($value[$key])) {
+            } elseif (is_array($value) && isset($value[$key])) {
                 $groupKey = $value[$key];
             }
             if ($groupKey === null) {
