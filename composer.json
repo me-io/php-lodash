@@ -49,6 +49,11 @@
     "check-style": "phpcs src tests",
     "fix-style": "phpcbf src tests"
   },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "2.0.x-dev"
+    }
+  }
   "config": {
     "optimize-autoloader": true,
     "preferred-install": "dist",
