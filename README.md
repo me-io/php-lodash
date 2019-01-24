@@ -84,7 +84,7 @@ Just add `me-io/php-lodash` to your project composer.json file:
 ```json
 {
     "require": {
-        "me-io/php-lodash": "^1"
+        "me-io/php-lodash": "^2"
     }
 }
 ```
